@@ -12,6 +12,7 @@ const BUNDLE_OUT = path.join(CONTENT_DIR, "bundle.js");
 const CONTENT_ORDER = [
   "contentScript.js",
   "global.js",
+  "svgAssets.js",
   "pageInit.js",
   "favicon.js",
   "headerActions.js",
@@ -36,9 +37,7 @@ const CONTENT_ORDER = [
   "customRefresh.js",
   "shapes.js",
   "endpointGlow.js",
-  "descriptionMarkdown.js",
   "tableWrap.js",
-  "notes.js",
   "imageCapture.js",
   "groups.js",
   "connectionOperations.js",
@@ -48,10 +47,11 @@ const CONTENT_ORDER = [
 ];
 
 function getConcatenatedSource() {
-  const fullscreenStub = `// content-context stub — real implementation runs in page/fullscreen.js
+  const stubs = `// content-context stubs — real implementations elsewhere or feature removed
 const add_fullscreen_listener = () => {};
+const add_notecontent_listener = () => {};
 `;
-  return fullscreenStub + CONTENT_ORDER.map((filename) => {
+  return stubs + CONTENT_ORDER.map((filename) => {
     const filePath = path.join(CONTENT_DIR, filename);
     return `// ${filePath}\n${fs.readFileSync(filePath, "utf-8")}\n`;
   }).join("");

@@ -7,6 +7,7 @@ function setLogo(img) {
 }
 
 function watchLogo() {
+  if (BoomiPlatform.brand_logo !== "on") return;
   var img = document.querySelector(LOGO_SELECTOR);
   if (img) setLogo(img);
 
@@ -18,12 +19,13 @@ function watchLogo() {
   }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["src", "class"] });
 }
 
-chrome.storage.sync.get(["brand_logo"], function (result) {
-  if (result.brand_logo !== "on") {
-    chrome.storage.onChanged.addListener(function (changes) {
-      if (changes.brand_logo && changes.brand_logo.newValue === "on") watchLogo();
-    });
-    return;
+// Defer until BoomiPlatform is populated by listenerGlobal.js
+var brandLogoInitAttempts = 0;
+var brandLogoInitInterval = setInterval(function () {
+  brandLogoInitAttempts++;
+  if (typeof BoomiPlatform !== "undefined" && BoomiPlatform.brand_logo) {
+    clearInterval(brandLogoInitInterval);
+    watchLogo();
   }
-  watchLogo();
-});
+  if (brandLogoInitAttempts > 30) clearInterval(brandLogoInitInterval);
+}, 300);

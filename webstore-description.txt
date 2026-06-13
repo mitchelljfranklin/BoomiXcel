@@ -23,7 +23,6 @@ BUILD CANVAS
 
 EDITING
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
-- Markdown rendering in process descriptions and notes (configurable)
 - Resizable SQL editor in Database Operation shapes
 - Copy raw document content from the Document Viewer dialog
 

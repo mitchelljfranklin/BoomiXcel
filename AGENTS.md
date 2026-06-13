@@ -112,16 +112,15 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/customRefresh.js` | content | Custom process-reporting refresh interval |
 | `content/shapes.js` | content | Trace path highlight during test execution |
 | `content/endpointGlow.js` | content | Non-connected endpoint glow and quick-add Stop shape |
-| `content/descriptionMarkdown.js` | content | Markdown rendering in process descriptions |
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel button order |
-| `content/notes.js` | content | Markdown in process note elements |
 | `content/imageCapture.js` | content | Capture process flow to PNG |
 | `content/groups.js` | content | Note group overlays on process canvas |
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
-| `content/dbsqlEditor.js` | content | Enables flex panel resizing for the inline SQL editor |
-| `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image |
+| `content/dbsqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
+| `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
+| `content/svgAssets.js` | content | Shared SVG icon strings used across multiple content scripts |
 | `page/fullscreen.js` | page | Full-screen toggle via keyboard shortcut (page context required) |
 | `options.js` | (options page) | Options page save/restore logic |
 | `background.js` | background | MV3 service worker: handles download renaming and options-page-open message |

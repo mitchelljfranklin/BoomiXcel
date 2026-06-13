@@ -83,7 +83,6 @@
 
 ✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
-- Markdown rendering in process descriptions and notes (configurable)
 - Resizable SQL editor in Database Operation shapes
 - Copy raw document content from the Document Viewer dialog
 
@@ -276,7 +275,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (33 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (37 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -304,16 +303,15 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/customRefresh.js` | content | Custom process-reporting refresh interval |
 | `content/shapes.js` | content | Trace path highlight |
 | `content/endpointGlow.js` | content | Endpoint glow, quick-add Stop shape |
-| `content/descriptionMarkdown.js` | content | Markdown in process descriptions |
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel order |
-| `content/notes.js` | content | Markdown in note elements |
 | `content/imageCapture.js` | content | Process flow → PNG capture |
 | `content/groups.js` | content | Note group overlays on canvas |
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
-| `content/dbsqlEditor.js` | content | Enables flexible panel resizing for the SQL editor |
-| `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image |
+| `content/dbsqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
+| `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
+| `content/svgAssets.js` | content | Shared SVG icon strings |
 | `page/fullscreen.js` | page | Full-screen toggle (page context required) |
 | `options.js` | options | Options page save/restore |
 | `background.js` | background | Service worker: download rename + options-page-open message |
