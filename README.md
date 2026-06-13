@@ -348,5 +348,8 @@ Distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) fo
 - **Tony Banik** — Boomi Tools developer, source of many ideas
 - [**Baptiste BIEBER**](https://github.com/baptistebieber) — Boomi Extension developer
 - **Noah Skelton** — Build Pallet Fix script
-- [**Matthew Flaig**](https://github.com/matt-flaig) — Ongoing contributor and maintainer
-- [**Boomi Community**](https://community.boomi.com/)
+- [**Matthew Flaig**](https://github.com/matt-flaig) — Contributor and maintainer
+- [**bbendick**](https://github.com/bbendick) — Contributor
+- [**Fernando Martín**](https://github.com/Fermartyni) — Contributor
+- [**The Boomi Community**](https://community.boomi.com/)
+- [**The Boomi Discord Community**](https://discord.gg/XcXRrYHVUa)
