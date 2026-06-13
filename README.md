@@ -13,13 +13,13 @@
 
   <p align="center">
     <a href="https://github.com/mitchelljfranklin/BoomiXcel/releases">
-      <img src="https://img.shields.io/github/package-json/v/mitchelljfranklin/BoomiXcel?color=blue" alt="Version">
+      <img src="https://img.shields.io/github/package-json/v/mitchelljfranklin/BoomiXcel?color=blue&style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/mitchelljfranklin/BoomiXcel/blob/main/LICENSE">
-      <img src="https://img.shields.io/badge/license-GPLv3-blue" alt="License">
+      <img src="https://img.shields.io/badge/license-GPLv3-blue?style=for-the-badge" alt="License">
     </a>
     <a href="https://github.com/mitchelljfranklin/BoomiXcel">
-      <img src="https://img.shields.io/github/stars/mitchelljfranklin/BoomiXcel?style=social" alt="GitHub stars">
+      <img src="https://img.shields.io/github/stars/mitchelljfranklin/BoomiXcel?color=gold&style=for-the-badge" alt="GitHub stars">
     </a>
     <br />
     <a href="https://github.com/mitchelljfranklin/BoomiXcel/releases">📦 What's new</a>
@@ -30,11 +30,13 @@
     <br />
     <br />
     <a href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko">
-      <img src="https://img.shields.io/badge/Chrome-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store">
+      <img src="https://img.shields.io/badge/Chrome-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Install from Chrome Web Store">
+      <img src="https://img.shields.io/chrome-web-store/users/behhfojpggobllhaifocfcampokbfhko?color=4285F4&style=for-the-badge&label=%20" alt="Chrome Web Store users">
     </a>
-    &nbsp;
+    &nbsp;&nbsp;
     <a href="https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active">
-      <img src="https://img.shields.io/badge/Firefox-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white" alt="Firefox Add-ons">
+      <img src="https://img.shields.io/badge/Firefox-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white" alt="Install from Firefox Add-ons">
+      <img src="https://img.shields.io/amo/users/boomi-platform-enhancer-active?color=FF7139&style=for-the-badge&label=%20" alt="Firefox Add-on users">
     </a>
     <br />
     <br />
