@@ -1,54 +1,3 @@
-let boomi_title = document.title;
-let boomiPageLoaded = setInterval(() => {
-  if (boomi_title != document.title) {
-    clearInterval(boomiPageLoaded);
-
-    var subHeaderContainerNav =
-      document.getElementsByClassName("qm-c-servicenav")[0];
-    var headerAdd = document.getElementsByClassName(
-      "qm-c-servicenav__navbar",
-    )[0];
-
-    // this covers about 90% of the use cases where the header should / shouldn't be hidden.
-
-    /* Only hide the header if
-        1) The "Show Header" button can be injected
-        2) The nav-bar in which the show header button option is visible
-        3) The localstorage/chromestorage "headerVisibile" value is set to false
-
-        This doesn't cover two cases:
-        1) The user navigated (with header hidden) to another page (such as settings) without the page reloading.
-        2) The user changed to another Boomi platform account, which reloads the DOM but this code is never re-executed because the page didn't reload
-    */
-
-    if (
-      headerAdd &&
-      subHeaderContainerNav &&
-      subHeaderContainerNav.style.display != "none" &&
-      !subHeaderContainerNav.classList.contains("no_display")
-    ) {
-      chrome.storage.local.get(["headerVisible"], function (e) {
-        if (e.headerVisible == false) {
-          document
-            .getElementsByClassName("qm-c-masthead")[0]
-            .classList.add("headerHide");
-        }
-        var headerVisibilityState =
-          !e.headerVisible && typeof e.headerVisible !== "undefined"
-            ? "Show"
-            : "Hide";
-        $("#" + headerAdd.id).append(
-          '<li id="showHeaderbtn" class="qm-c-servicenav__nav-item"><a class="gwt-Anchor qm-c-servicenav__nav-link qm-a--alternate"><span id="showHeaderspan" class="">' +
-            headerVisibilityState +
-            " Header</span></a></li>",
-        );
-      });
-    }
-    onNavigationChange();
-    updateNotificationCheck();
-  }
-}, 250);
-
 function onNavigationChange() {
   var urlPath = getUrlpath();
 
@@ -88,8 +37,6 @@ function removeAccountPrefixFromDocumentTitle() {
     var title = document.title
       .replace(accountEl.innerHTML, "")
       .replace(/^(\s-\s)/, "");
-    // replace trailing " - Boomi AtomSphere" (optional)
-    //title = title.split(' -')[0];
     document.title = title;
   }, 250);
 }
@@ -111,7 +58,7 @@ function changeFaviconBasedOnPage() {
               break;
             default:
               svgIcon =
-                "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 204.28 204.28'%3E%3Cdefs%3E%3Cstyle%3E.cls-1 %7B fill: %23033d58; %7D%3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpath class='cls-1' d='M102.14,0A102.14,102.14,0,1,0,204.28,102.14,102.14,102.14,0,0,0,102.14,0Zm0,181.58v-22.7a56.74,56.74,0,0,1,0-113.48V22.7a79.44,79.44,0,0,1,0,158.88Z'%3E%3C/path%3E%3Cpath class='cls-1' d='M157.91,102.14a55.77,55.77,0,0,0-55.77-55.77V157.91A55.77,55.77,0,0,0,157.91,102.14Z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A";
+                "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 204.28 204.28'%3E%3Cdefs%3E%3Cstyle%3E.cls-1 %7B fill: %23033d58; %7D%3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpath class='cls-1' d='M102.14,0A102.14,102.14,0,1,0,204.28,102.14,102.14,0,0,0,102.14,0Zm0,181.58v-22.7a56.74,56.74,0,0,1,0-113.48V22.7a79.44,79.44,0,0,1,0,158.88Z'%3E%3C/path%3E%3Cpath class='cls-1' d='M157.91,102.14a55.77,55.77,0,0,0-55.77-55.77V157.91A55.77,55.77,0,0,0,157.91,102.14Z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A";
               break;
           }
           break;
@@ -134,8 +81,6 @@ function changeFaviconBasedOnPage() {
   if (svgIcon) {
     changeFaviconToSVG(svgIcon);
   }
-  //just for fun!
-  //changeFaviconToEmoji('🥔')
 }
 
 function changeFaviconToEmoji(emoji) {

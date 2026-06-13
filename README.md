@@ -282,11 +282,12 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 |---|---|---|
 | `content/contentScript.js` | content | Entry point — injects fullscreen.js, checks platform status |
 | `content/global.js` | content | Shared utilities — URL parsing, dashboard default, alert dialogs |
-| `content/boomi.js` | content | Core enhancements — header toggle, copy component ID, capture flow |
+| `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
+| `content/favicon.js` | content | Page-specific favicons, unique page titles, nav listeners |
 | `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/shortCuts.js` | content | Keyboard shortcuts — Ctrl+Alt+S save, Ctrl+Alt+T test |
 | `content/messageEditor.js` | content | CodeMirror editor for Message/Notify/Command shapes |
-| `content/buildPallet.js` | content | Restored old-style shape connector palette |
+| `content/shapePalette.js` | content | Restored old-style shape connector palette |
 | `content/scheduleIcons.js` | content | Old play/pause icons in deployed processes |
 | `content/buildFilters.js` | content | Default process filters |
 | `content/filterButtons.js` | content | Collapse-all-folders, single-click tree navigation |
@@ -301,7 +302,8 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/listenerGlobal.js` | content | Reads config from storage, caches it, runs the DOM poller |
 | `content/canvas.js` | content | Canvas grid toggle |
 | `content/customRefresh.js` | content | Custom process-reporting refresh interval |
-| `content/shapes.js` | content | Endpoint glow, trace path highlighting |
+| `content/shapes.js` | content | Trace path highlight |
+| `content/endpointGlow.js` | content | Endpoint glow, quick-add Stop shape |
 | `content/descriptionMarkdown.js` | content | Markdown in process descriptions |
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel order |

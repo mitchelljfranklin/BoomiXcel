@@ -90,11 +90,12 @@ document.arrive(".qm-c-servicenav", function (nav) {
 |---|---|---|
 | `content/contentScript.js` | content | Entry point. Detects page load via title change, injects `fullscreen.js`, sets up platform status check, update notification dialog |
 | `content/global.js` | content | Utility functions: URL parsing, dashboard 7-day default, alert dialog helper |
-| `content/boomi.js` | content | Core Boomi platform enhancements: header show/hide, copy component ID, capture flow button, and many DOM modifications |
+| `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
+| `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
 | `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/shortCuts.js` | content | Ctrl+Alt+S (save), Ctrl+Alt+T (test) |
 | `content/updateNotification.js` | content | Per-version update changelog dialog (uses `localStorage` to suppress after first view) |
-| `content/buildPallet.js` | content | Restores old-style build shape connector palette |
+| `content/shapePalette.js` | content | Restores old-style build shape connector palette |
 | `content/messageEditor.js` | content | CodeMirror-based editor for Message/Notify/Command shapes |
 | `content/scheduleIcons.js` | content | Restore old play/pause icons in deployed processes |
 | `content/buildFilters.js` | content | Default process filters (reads filter prefs from `chrome.storage`) |
@@ -109,7 +110,8 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/listenerGlobal.js` | content | Reads config from `chrome.storage.sync`, caches in bundle scope, orchestrates feature listeners via MutationObserver + poller |
 | `content/canvas.js` | content | Canvas grid toggle (reads `BoomiPlatform.canvas_grid`) |
 | `content/customRefresh.js` | content | Custom process-reporting refresh interval |
-| `content/shapes.js` | content | Non-connected endpoint glow, trace path highlight |
+| `content/shapes.js` | content | Trace path highlight during test execution |
+| `content/endpointGlow.js` | content | Non-connected endpoint glow and quick-add Stop shape |
 | `content/descriptionMarkdown.js` | content | Markdown rendering in process descriptions |
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel button order |
@@ -147,6 +149,13 @@ The **version** is read from `package.json` and injected into all manifests. To 
 - `copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js` — older versions of features now integrated elsewhere
 
 Do not modify or re-integrate without understanding why they were removed.
+
+## Refactoring rules — preserve existing logic
+
+When splitting, renaming, or moving code between files:
+- **Copy-paste verbatim** — never rewrite or simplify complex logic during a refactor. Even if the code looks verbose or outdated, its behavior depends on subtle details (DOM event timing, CSS class interactions, dispatched mouse events, etc.) that are easy to break.
+- **Verify before committing** — after any file split or rename, test the affected features on `platform.boomi.com` to confirm they still work.
+- **When in doubt, don't refactor** — a slightly messy but working file is better than a clean but broken one.
 
 ## Code style — human-readable formatting
 
