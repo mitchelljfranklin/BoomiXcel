@@ -16,7 +16,7 @@
       <img src="https://img.shields.io/github/package-json/v/mitchelljfranklin/BoomiXcel?color=blue" alt="Version">
     </a>
     <a href="https://github.com/mitchelljfranklin/BoomiXcel/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/mitchelljfranklin/BoomiXcel" alt="License">
+      <img src="https://img.shields.io/badge/license-GPLv3-blue" alt="License">
     </a>
     <a href="https://github.com/mitchelljfranklin/BoomiXcel">
       <img src="https://img.shields.io/github/stars/mitchelljfranklin/BoomiXcel?style=social" alt="GitHub stars">
