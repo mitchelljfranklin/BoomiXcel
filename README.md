@@ -44,8 +44,8 @@
   </p>
 </p>
 
-<h2 align="center"><b>Disclaimer</b></h2>
-<p align="center">Boomi has no affiliation with this extension and does not support it, endorse its use, or provide any promises or warranties.</p>
+> <p align="center">⚠️ <b>DISCLAIMER</b> ⚠️</p>
+> <p align="center"><b>Boomi has no affiliation with this extension and does not support it, endorse its use, or provide any promises or warranties.</b></p>
 
 ---
 
