@@ -99,7 +99,7 @@ Click **Install** — the extension auto-enables on `https://platform.boomi.com/
 ### Setup
 
 ```bash
-npm install
+npm install          # install dependencies (esbuild, archiver)
 ```
 
 ### Load the extension
@@ -201,6 +201,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/contentScript.js` | content | Entry point — injects fullscreen.js, checks platform status |
 | `content/global.js` | content | Shared utilities — URL parsing, dashboard default, alert dialogs |
 | `content/boomi.js` | content | Core enhancements — header toggle, copy component ID, capture flow |
+| `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/shortCuts.js` | content | Keyboard shortcuts — Ctrl+Alt+S save, Ctrl+Alt+T test |
 | `content/messageEditor.js` | content | CodeMirror editor for Message/Notify/Command shapes |
 | `content/buildPallet.js` | content | Restored old-style shape connector palette |
@@ -249,6 +250,7 @@ npm run build
 - **[arrive.js](https://github.com/uzairfarooq/arrive)** — DOM mutation observer
 - **[showdown](https://github.com/showdownjs/showdown)** — Markdown rendering
 - **[rasterizeHTML.js](https://github.com/cburgmer/rasterizeHTML.js)** — process flow image capture
+- **[shortcut.js](https://github.com/jkup/shortcut)** — keyboard shortcut handling (bundled)
 
 ---
 
