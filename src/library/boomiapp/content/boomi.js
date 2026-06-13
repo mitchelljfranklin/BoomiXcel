@@ -53,12 +53,15 @@ function onNavigationChange() {
   var urlPath = getUrlpath();
 
   // unique page titles and favicons
-  chrome.storage.sync.get(["unique_titles_and_favicons"], function (e) {
-    if (e.unique_titles_and_favicons == "on") {
-      removeAccountPrefixFromDocumentTitle();
-      changeFaviconBasedOnPage();
-    }
-  });
+  try {
+    chrome.storage.sync.get(["unique_titles_and_favicons"], function (e) {
+      if (chrome.runtime.lastError) return;
+      if (e.unique_titles_and_favicons == "on") {
+        removeAccountPrefixFromDocumentTitle();
+        changeFaviconBasedOnPage();
+      }
+    });
+  } catch (e) {}
 }
 
 // enhance the favicon to a high res image

@@ -102,7 +102,9 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/filterButtons.js` | content | Collapse-all-folders buttons, single-click tree navigation |
 | `content/quickclickComponent.js` | content | Double-click quick-shape popup on process panel |
-| `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menu items |
+| `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menu items (old and new Boomi UI with shadow DOM) |
+| `content/copyDocument.js` | content | Clipboard-copy button in Document Viewer dialog |
+| `content/downloadRename.js` | content | Intercepts document downloads, sends context to background for auto-rename |
 | `content/iconSets.js` | content | Icon set data objects referenced by `listenerGlobal` |
 | `content/listenerGlobal.js` | content | Reads config from `chrome.storage.sync`, caches in bundle scope, orchestrates feature listeners via MutationObserver + poller |
 | `content/canvas.js` | content | Canvas grid toggle (reads `BoomiPlatform.canvas_grid`) |
@@ -116,8 +118,10 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/groups.js` | content | Note group overlays on process canvas |
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
+| `content/dbsqlEditor.js` | content | Enables flex panel resizing for the inline SQL editor |
 | `page/fullscreen.js` | page | Full-screen toggle via keyboard shortcut (page context required) |
 | `options.js` | (options page) | Options page save/restore logic |
+| `background.js` | background | MV3 service worker: handles download renaming and options-page-open message |
 
 ## Browser store builds
 
@@ -140,7 +144,6 @@ The **version** is read from `package.json` and injected into all manifests. To 
 
 `.Old Scripts but want to keep/` contains scripts no longer in active rotation, including:
 - `copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js` — older versions of features now integrated elsewhere
-- `dbsqlEditor.js` — previously in `boomiapp/` but never referenced by any manifest or `loadScript()`
 
 Do not modify or re-integrate without understanding why they were removed.
 

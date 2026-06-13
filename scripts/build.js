@@ -24,6 +24,8 @@ const CONTENT_ORDER = [
   "filterButtons.js",
   "quickclickComponent.js",
   "menuOpen.js",
+  "copyDocument.js",
+  "downloadRename.js",
   "scheduleIcons.js",
   "iconSets.js",
   "modalButtons.js",
@@ -38,6 +40,7 @@ const CONTENT_ORDER = [
   "groups.js",
   "connectionOperations.js",
   "versionNotification.js",
+  "dbsqlEditor.js",
   "shortcut.js",
 ];
 

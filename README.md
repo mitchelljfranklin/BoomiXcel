@@ -79,20 +79,23 @@
 - Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape
 - Trace path highlighting during test execution
 - Note group overlays — colored semi-transparent bounding boxes created from process notes
+- View in Process Reporting quick-link icon next to the Description link
 
 ✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
 - Markdown rendering in process descriptions and notes
 - Resizable SQL editor in Database Operation shapes
+- Copy raw document content from the Document Viewer dialog
 
 🧭 **Navigation & Layout**
 - Hide the header to reclaim build space
 - Collapse-all-folders button in Process Reporting and Deployed Process screens
 - Single-click anywhere on a process folder/title to expand (instead of the tiny icon)
-- Open dropdown menu items in a new tab
+- Open dropdown menu items in a new tab (old and new Boomi UI)
 - Reverse modal button order (OK/Cancel instead of Cancel/OK)
 - Remove sticky revision notification from the build view
 - Adjust connection operation screen sizing
+- Keep the Boomi footer bar always visible (configurable)
 
 📊 **Process Reporting**
 - Custom auto-refresh interval
@@ -104,6 +107,7 @@
 - Icon set selection for shapes (Legacy, Modern, Minimal, etc.)
 - Old-style play/pause icons in deployed processes
 - Copy component ID/URL from the build canvas
+- Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
 - Post-deployment schedule reminder
 - Platform status check on every page
 - Tab names simplified (account name removed, configurable)
@@ -259,7 +263,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (29 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (32 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -274,7 +278,9 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/buildFilters.js` | content | Default process filters |
 | `content/filterButtons.js` | content | Collapse-all-folders, single-click tree navigation |
 | `content/quickclickComponent.js` | content | Double-click quick-shape popup |
-| `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menus |
+| `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menus (old and new Boomi UI) |
+| `content/copyDocument.js` | content | Clipboard-copy button in the Document Viewer dialog |
+| `content/downloadRename.js` | content | Intercepts document downloads for auto-renamed filenames |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/headerActions.js` | content | Header show/hide toggle, copy component ID/URL, update overlay close |
 | `content/updateNotification.js` | content | Per-version changelog popup |
@@ -291,8 +297,10 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/groups.js` | content | Note group overlays on canvas |
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
+| `content/dbsqlEditor.js` | content | Enables flexible panel resizing for the SQL editor |
 | `page/fullscreen.js` | page | Full-screen toggle (page context required) |
 | `options.js` | options | Options page save/restore |
+| `background.js` | background | Service worker: download rename + options-page-open message |
 
 > `.Old Scripts but want to keep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
 
