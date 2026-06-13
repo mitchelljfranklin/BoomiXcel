@@ -6,8 +6,6 @@
  * All click handlers use a single delegated listener on `document`.
  */
 
-const showHeaderspan = document.getElementById("showHeaderspan");
-
 document.addEventListener("click", function (e) {
   const target = e.target;
 
@@ -17,17 +15,18 @@ document.addEventListener("click", function (e) {
     if (!masthead) return;
 
     chrome.storage.local.get(["headerVisible"], function (result) {
+      const showHeaderspan = document.getElementById("showHeaderspan");
       let headerVisible = result.headerVisible;
       if (typeof headerVisible === "undefined") {
         headerVisible = true;
       }
       if (headerVisible === true) {
         masthead.classList.add("headerHide");
-        showHeaderspan.textContent = "Show Header";
+        if (showHeaderspan) showHeaderspan.textContent = "Show Header";
         headerVisible = false;
       } else {
         masthead.classList.remove("headerHide");
-        showHeaderspan.textContent = "Hide Header";
+        if (showHeaderspan) showHeaderspan.textContent = "Hide Header";
         headerVisible = true;
       }
       chrome.storage.local.set({ headerVisible: headerVisible });

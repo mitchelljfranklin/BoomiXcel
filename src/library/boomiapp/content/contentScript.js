@@ -8,20 +8,6 @@ const loadScript = (url) => {
 
 loadScript("./library/boomiapp/page/fullscreen.js");
 
-// Minimal page-context config receiver for fullscreen.js
-(function () {
-  var script = document.createElement("script");
-  script.textContent = `
-    window.BoomiPlatform = {};
-    window.addEventListener("message", function (e) {
-      if (e.data.BoomiPlatformconfig) {
-        Object.assign(window.BoomiPlatform, e.data);
-      }
-    }, false);
-  `;
-  document.getElementsByTagName("body")[0].appendChild(script);
-})();
-
 let org_title = document.title;
 let wait_for_load = setInterval(() => {
   if (org_title != document.title) {
@@ -51,9 +37,28 @@ let wait_for_load = setInterval(() => {
         document.getElementById("footer_links").insertAdjacentHTML(
           "afterbegin",
           `
-            <li><a class="alternate_link" target="_blank" href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko/">Boomi Platform Enhancer v${chrome.runtime.getManifest().version} loaded</a></li>
+            <li><a class="alternate_link" target="_blank" href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko/">Boomi Platform Enhancer v${chrome.runtime.getManifest().version} loaded</a> [<a class="alternate_link" href="#" id="bph-options-link">options</a>]</li>
             `,
         );
+
+        document.getElementById("bph-options-link")?.addEventListener("click", function (e) {
+          e.preventDefault();
+          chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" });
+        });
+
+        chrome.storage.sync.get(["mastfoot_show"], function (result) {
+          if (result.mastfoot_show === "off") return;
+          var mastfoot = document.getElementById("mastfoot");
+          if (!mastfoot) return;
+          mastfoot.classList.remove("mastfoot-hidden");
+          window.dispatchEvent(new Event("resize"));
+          new MutationObserver(function () {
+            if (mastfoot.classList.contains("mastfoot-hidden")) {
+              mastfoot.classList.remove("mastfoot-hidden");
+              window.dispatchEvent(new Event("resize"));
+            }
+          }).observe(mastfoot, { attributeFilter: ["class"] });
+        });
       })
       .catch((err) => console.error(err));
   }

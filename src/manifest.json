@@ -1,7 +1,7 @@
 {
     "update_url": "https://clients2.google.com/service/update2/crx",
     "manifest_version": 3,
-    "name": "Boomi Platform Enhancer",
+    "name": "BoomiXcel",
     "description": "This extension enhances Boomi Web Platform in multiple ways to provide a more robust experience",
     "version": "1.8.0.0",
     "options_ui": {

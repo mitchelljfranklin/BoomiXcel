@@ -26,13 +26,13 @@ const CONTENT_ORDER = [
   "menuOpen.js",
   "scheduleIcons.js",
   "iconSets.js",
+  "modalButtons.js",
   "listenerGlobal.js",
   "canvas.js",
   "customRefresh.js",
   "shapes.js",
   "descriptionMarkdown.js",
   "tableWrap.js",
-  "modalButtons.js",
   "notes.js",
   "imageCapture.js",
   "groups.js",
@@ -41,8 +41,14 @@ const CONTENT_ORDER = [
   "shortcut.js",
 ];
 
-function getImportStatements() {
-  return CONTENT_ORDER.map((filename) => `import './${filename}';`).join("\n");
+function getConcatenatedSource() {
+  const fullscreenStub = `// content-context stub — real implementation runs in page/fullscreen.js
+const add_fullscreen_listener = () => {};
+`;
+  return fullscreenStub + CONTENT_ORDER.map((filename) => {
+    const filePath = path.join(CONTENT_DIR, filename);
+    return `// ${filePath}\n${fs.readFileSync(filePath, "utf-8")}\n`;
+  }).join("");
 }
 
 function generateWebstoreDescription(version) {
@@ -156,7 +162,7 @@ const BROWSERS = {
 
 async function bundleContent() {
   await esbuild.build({
-    stdin: { contents: getImportStatements(), resolveDir: CONTENT_DIR, loader: "js" },
+    stdin: { contents: getConcatenatedSource(), resolveDir: CONTENT_DIR, loader: "js" },
     outfile: BUNDLE_OUT,
     bundle: true,
     format: "iife",
@@ -217,7 +223,7 @@ async function main() {
   if (isWatch) {
     const ctx = await esbuild.context({
       stdin: {
-        contents: getImportStatements(),
+        contents: getConcatenatedSource(),
         resolveDir: CONTENT_DIR,
         loader: "js",
       },

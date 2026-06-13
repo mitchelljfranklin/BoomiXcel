@@ -1,3 +1,10 @@
+window.BoomiPlatform = window.BoomiPlatform || {};
+window.addEventListener("message", function (e) {
+  if (e.data.BoomiPlatformconfig) {
+    Object.assign(window.BoomiPlatform, e.data);
+  }
+}, false);
+
 const add_fullscreen_listener = (button) => {
   setTimeout(() => {
     var click = new MouseEvent("click", {

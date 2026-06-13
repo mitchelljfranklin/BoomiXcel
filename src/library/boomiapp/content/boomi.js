@@ -23,6 +23,7 @@ let boomiPageLoaded = setInterval(() => {
 
     if (
       headerAdd &&
+      subHeaderContainerNav &&
       subHeaderContainerNav.style.display != "none" &&
       !subHeaderContainerNav.classList.contains("no_display")
     ) {
@@ -77,13 +78,12 @@ document.addEventListener("visibilitychange", (event) => {
 function removeAccountPrefixFromDocumentTitle() {
   // Change Page Title to Drop Account Prefix
   setTimeout(function () {
+    var accountEl = document.getElementsByClassName(
+      "qm-c-inlinemenu__settings-menu-item-name",
+    )[1];
+    if (!accountEl) return;
     var title = document.title
-      .replace(
-        document.getElementsByClassName(
-          "qm-c-inlinemenu__settings-menu-item-name",
-        )[1].innerHTML,
-        "",
-      )
+      .replace(accountEl.innerHTML, "")
       .replace(/^(\s-\s)/, "");
     // replace trailing " - Boomi AtomSphere" (optional)
     //title = title.split(' -')[0];
