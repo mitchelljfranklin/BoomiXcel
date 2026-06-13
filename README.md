@@ -8,7 +8,21 @@
   <h6 align="center">A New Name for a New Age</h6>
 
   <p align="center">
-    <img src="logo/BoomiXcelSlim50.png" alt="Boomi Xcel">
+    <img src="logo/BoomiXcelSlim50.png" alt="Boomi Xcel" width="65%">
+  </p>
+
+  <p align="center">
+    <a href="https://github.com/mitchelljfranklin/BoomiXcel/releases">
+      <img src="https://img.shields.io/github/package-json/v/mitchelljfranklin/BoomiXcel?color=blue" alt="Version">
+    </a>
+    <a href="https://github.com/mitchelljfranklin/BoomiXcel/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/mitchelljfranklin/BoomiXcel" alt="License">
+    </a>
+    <a href="https://github.com/mitchelljfranklin/BoomiXcel">
+      <img src="https://img.shields.io/github/stars/mitchelljfranklin/BoomiXcel?style=social" alt="GitHub stars">
+    </a>
+    <br />
+    <a href="https://github.com/mitchelljfranklin/BoomiXcel/releases">📦 What's new</a>
   </p>
 
   <p align="center">
@@ -24,7 +38,7 @@
     </a>
     <br />
     <br />
-    <a href="https://github.com/matt-flaig/Boomi-Platform-Extension/issues">🐛 Request a Feature</a>
+    <a href="https://github.com/mitchelljfranklin/BoomiXcel/issues">🐛 Request a Feature</a>
   </p>
 </p>
 
@@ -48,9 +62,12 @@
 ## Features
 
 🔧 **Keyboard Shortcuts**
-- `Ctrl+Alt+S` — Save the current flow
-- `Ctrl+Alt+T` — Test the current flow
-- Configurable shortcut for full-screen toggle (default: `~`)
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl + Alt + S` | Save the current flow |
+| `Ctrl + Alt + T` | Test the current flow |
+| Configurable (default `~`) | Toggle full-screen mode |
 
 🎨 **Build Canvas**
 - Capture the entire process flow as a PNG (with transparency, zoom, and note-expansion options)
@@ -227,6 +244,9 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 
 ### Script reference
 
+<details>
+<summary>Click to expand — 29 scripts</summary>
+
 | Script | Context | Purpose |
 |---|---|---|
 | `content/contentScript.js` | content | Entry point — injects fullscreen.js, checks platform status |
@@ -260,6 +280,8 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `page/fullscreen.js` | page | Full-screen toggle (page context required) |
 | `options.js` | options | Options page save/restore |
 
+</details>
+
 `Old Scripts but want to keep/` contains archived scripts (previous versions of features, unused experiments). They are not loaded by any manifest — do not modify or re-integrate them without first understanding why they were removed.
 
 ### To release
@@ -287,7 +309,7 @@ npm run build
 
 ## Contributing
 
-Contributions are welcome. Please [open an issue](https://github.com/matt-flaig/Boomi-Platform-Extension/issues) before starting substantial work to discuss the change.
+Contributions are welcome. Please [open an issue](https://github.com/mitchelljfranklin/BoomiXcel/issues) before starting substantial work to discuss the change.
 
 ### Making changes
 
