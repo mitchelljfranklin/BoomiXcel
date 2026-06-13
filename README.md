@@ -332,7 +332,7 @@ Join the [Boomi Discord — #extension-enhancer](https://discord.gg/XcXRrYHVUa) 
 
 ## License
 
-Distributed under the MIT License.
+Distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for details.
 
 ## Acknowledgements
 
