@@ -141,8 +141,16 @@
 
 Visit one of the browser stores:
 
-- [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko)
-- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active)
+<a href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko">
+      <img src="https://img.shields.io/badge/Chrome-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Install from Chrome Web Store">
+      <img src="https://img.shields.io/chrome-web-store/users/behhfojpggobllhaifocfcampokbfhko?color=4285F4&style=for-the-badge&label=%20" alt="Chrome Web Store users">
+</a>
+<br>
+
+<a href="https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active">
+      <img src="https://img.shields.io/badge/Firefox-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white" alt="Install from Firefox Add-ons">
+      <img src="https://img.shields.io/amo/users/boomi-platform-enhancer-active?color=FF7139&style=for-the-badge&label=%20" alt="Firefox Add-on users">
+</a>
 
 Click **Install** — the extension auto-enables on `https://platform.boomi.com/*`.
 
