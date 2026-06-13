@@ -183,11 +183,17 @@ npm run build        # bundle content scripts, generate browser manifests, creat
 npm run watch        # rebuild content scripts on file changes
 ```
 
-> On Windows, PowerShell execution policy may block `npm`. Use `cmd /c "npm run build"` as a fallback. esbuild warnings (e.g. duplicate object keys) are non-fatal — the build still completes and produces zips.
+`npm run build` (via `scripts/build.js`) performs these steps in order:
 
-**When to rebuild:** only changes to `src/library/boomiapp/content/*.js` and `src/manifest.json` require a rebuild. Editing `options.html`, `options.js`, or `page/fullscreen.js` does not.
+1. **Content bundle** — reads `CONTENT_ORDER`, concatenates all content scripts into a single source, then runs esbuild to produce a minified IIFE bundle at `src/library/boomiapp/content/bundle.js`. The concatenation approach ensures `var`/`const`/`function` declarations at the top level of each file share the same scope.
 
-`npm run build` produces three upload-ready zips in `build/`:
+2. **Webstore description** — extracts the Features section from the README, converts markdown to plain text, and regenerates `webstore-description.txt`.
+
+3. **Browser manifests** — reads version from `package.json`, injects it into `src/manifest.json`, then generates two additional manifests:
+   - **Firefox** — downgraded to Manifest V2, `web_accessible_resources` flattened to string array, `update_url` removed
+   - **Edge** — same as Chrome V3 but `update_url` removed
+
+4. **Zip packages** — creates three archives in `build/`:
 
 | File | Manifest | Notes |
 |------|----------|-------|
@@ -195,7 +201,11 @@ npm run watch        # rebuild content scripts on file changes
 | `boomi-platform-enhancer-X.Y.Z-Firefox.zip` | V2 | flat `web_accessible_resources` |
 | `boomi-platform-enhancer-X.Y.Z-Edge.zip` | V3 | no `update_url` |
 
-All manifests are generated from `src/manifest.json` — the single source of truth.
+All manifests are generated from `src/manifest.json` — the single source of truth, with version injected from `package.json`.
+
+> On Windows, PowerShell execution policy may block `npm`. Use `cmd /c "npm run build"` as a fallback. esbuild warnings (e.g. duplicate object keys) are non-fatal — the build still completes and produces zips.
+
+**When to rebuild:** only changes to `src/library/boomiapp/content/*.js` and `src/manifest.json` require a rebuild. Editing `options.html`, `options.js`, or `page/fullscreen.js` does not.
 
 ### Project Structure
 
