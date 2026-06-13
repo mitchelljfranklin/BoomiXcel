@@ -16,6 +16,7 @@ const CONTENT_ORDER = [
   "headerActions.js",
   "dashboard.js",
   "buildPallet.js",
+  "shortcut.js",
   "shortCuts.js",
   "updateNotification.js",
   "messageEditor.js",
@@ -42,7 +43,6 @@ const CONTENT_ORDER = [
   "versionNotification.js",
   "dbsqlEditor.js",
   "brandLogo.js",
-  "shortcut.js",
 ];
 
 function getConcatenatedSource() {

@@ -6,7 +6,7 @@ var DefaultPaletteWidth = 250;
 
 function GM_addStyle(cssStr) {
   var targ =
-    document.getElementsByTagName("head")[0] || D.body || D.documentElement;
+    document.getElementsByTagName("head")[0] || document.body || document.documentElement;
   var st = document.createElement("style");
   st.textContent = cssStr;
   targ.appendChild(st);

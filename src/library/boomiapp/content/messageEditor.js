@@ -160,7 +160,7 @@ function renderMessageEditorPopup(id, lang) {
     }
   } else {
     title = `Edit ${lang.toUpperCase()}`;
-    lang_html = `<option value="${langs[lang]}">${langs[lang].display}</option>`;
+    lang_html = `<option value="${lang}">${langs[lang].display}</option>`;
   }
 
   let html = `

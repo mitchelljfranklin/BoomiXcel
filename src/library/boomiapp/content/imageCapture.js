@@ -146,7 +146,6 @@ const process_to_image = (process) => {
               body.appendChild(canvas);
 
               rasterizeHTML.drawDocument(document, canvas).then(() => {
-                document.createElement = origCreateElement;
                 let output_html = `<a href="${canvas.toDataURL()}" download="${title}.png" id="output-process-image" target="_blank"></a>`;
 
                 body.insertAdjacentHTML("beforeend", output_html);
