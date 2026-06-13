@@ -247,7 +247,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>Click to expand — 29 scripts</summary>
+<summary>📂 <b>Click to expand — full script reference (29 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -282,9 +282,9 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `page/fullscreen.js` | page | Full-screen toggle (page context required) |
 | `options.js` | options | Options page save/restore |
 
-</details>
+> `.Old Scripts but want to keep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
 
-`Old Scripts but want to keep/` contains archived scripts (previous versions of features, unused experiments). They are not loaded by any manifest — do not modify or re-integrate them without first understanding why they were removed.
+</details>
 
 ### To release
 
