@@ -4,11 +4,12 @@
         <title>Boomi Platform Enhancer Options</title>         
         <link href="library/css/bootstrap.min.css" rel="stylesheet"> 
         <link rel="stylesheet" href="library/css/blocks.css"> 
+        <style>
+            .options-body-bg { background-color: #033d58; }
+        </style>
     </head>     
     <body> 
-        <div class="container"> 
-</div>         
-        <section class="align-items-center d-flex min-vh-100 pb-5 pt-5 text-secondary" style="background-color: #033d58;"> 
+        <section class="align-items-center d-flex min-vh-100 pb-5 pt-5 text-secondary options-body-bg"> 
             <div class="container"> 
                 <div class="row"> 
                     <div class="col-lg-11 col-md-9 col-xl-9 ms-auto me-auto"> 
@@ -26,138 +27,131 @@
                                         <p class="mb-4">Adjust to suit your needs.</p> 
                                         <form> 
                                             <div class="mb-3"> 
-                                                <label>Shape Icon Styling:</label>                                                 
-                                                <select name="shape_icon_styling" class="option form-select" aria-label="Shape Icon Styling">
-                                                    <option value="off">Off (Default)</option>                                                     
-                                                    <option value="legacy">Legacy Shapes</option>                                                     
-                                                    <option value="modern">Modern Shapes</option>                                                     
+                                                <label for="shape_icon_styling">Shape Icon Styling:</label>
+                                                <select id="shape_icon_styling" name="shape_icon_styling" class="option form-select" aria-label="Shape Icon Styling">
+                                                    <option value="off">Off (Default)</option>
+                                                    <option value="legacy">Legacy Shapes</option>
+                                                    <option value="modern">Modern Shapes</option>
                                                     <option value="minimal">Minimal Shapes</option>
                                                     <option value="minimal-inverted">Minimal Shapes Inverted</option>
-                                                    <option value="refreshed-inverted">Refreshed Shapes Inverted</option>                                                 
+                                                    <option value="refreshed-inverted">Refreshed Shapes Inverted</option>
                                                 </select>
-                                            </div>                                             
-                                            <div class="mb-3"> 
-                                                <label>Non-Connected Endpoint Notification:</label>                                                 
-                                                <select name="endpoint_flash" class="option form-select"> 
-                                                    <option value="on" selected>Always On</option>                                                     
-                                                    <option value="off">Always Off</option>                                                     
-                                                    <option value="testing">Only when running tests</option>                                                     
-                                                </select>                                                 
-                                            </div> 
-                                            <div class="mb-3"> 
-                                                <label>Table Text Wrapping:</label>                                                 
-                                                <select name="tablewrap_selector" class="option form-select">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="endpoint_flash">Non-Connected Endpoint Notification:</label>
+                                                <select id="endpoint_flash" name="endpoint_flash" class="option form-select">
+                                                    <option value="on" selected>Always On</option>
+                                                    <option value="off">Always Off</option>
+                                                    <option value="testing">Only when running tests</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="tablewrap_selector">Table Text Wrapping:</label>
+                                                <select id="tablewrap_selector" name="tablewrap_selector" class="option form-select">
                                                     <option value="never" selected>Never Wrap (Default)</option>
                                                     <option value="always">Always Wrap</option>
                                                     <option value="toggle">Toggle on Header Hover</option>
-                                                </select>    
-                                                <small>Allows the table text to wrap instead of being cut off. This is useful on the Process Reporting page to see all the details.</small>                                              
-                                            </div>                                             
-                                            <div class="mb-3"> 
-                                                <label>Trace Path Highlight:</label>                                                 
-                                                <select name="path_trace_highlight" class="option form-select"> 
-                                                    <option value="pulse" selected>On</option>                                                     
-                                                    <option value="off">Off</option>                                                     
-                                                </select>                                                 
-                                            </div>                                             
-                                            <div class="mb-3"> 
-                                                <label>Process Flow Description Markdown:</label>                                                 
-                                                <select name="description_markdown" class="option form-select"> 
-                                                    <option value="on" selected>On Automatically</option>                                                     
-                                                    <option value="manual">On Manually</option>                                                     
-                                                    <option value="off">Off</option>                                                     
-                                                </select>                                                 
-                                            </div>                                             
-                                            <div class="mb-3"> 
-                                                <label>Show Canvas Grid:</label>                                                 
-                                                <select name="canvas_grid" class="option form-select"> 
-                                                    <option value="on" selected>On</option>                                                     
-                                                    <option value="off">Off</option>                                                     
-                                                </select>                                                 
-                                            </div>                                             
-                                            <div class="mb-3"> 
-                                                <label>Show Play and Pause Icons (Old Style) in Deployed Processes:</label>                                                 
-                                                <select name="schedule_icon" class="option form-select"> 
-                                                    <option value="on">On</option>                                                     
-                                                    <option value="off" selected>Off</option>                                                     
-                                                </select>                                                 
-                                            </div>    
-                                            <div class="mb-3"> 
-                                                <label>Reverse Modal Buttons to Match Side Panel Button layout:</label>                                                 
-                                                <select name="reverse_modal" class="option form-select"> 
-                                                    <option value="on">On</option>                                                     
-                                                    <option value="off" selected>Off</option>                                                     
-                                                </select>                                                 
-                                            </div>                                           
-                                            <div class="mb-3"> 
-                                                <label>Reminder - Schedule Deployed Component:</label>                                                 
-                                                <select name="reminder_schedule" class="option form-select"> 
-                                                    <option value="on" selected>On</option>                                                     
-                                                    <option value="off">Off</option>                                                     
-                                                </select>                                                 
-                                            </div>                                             
-                                            <div class="input-group mb-3"> 
-                                                <section> 
-                                                    <label>Process Reporting Refresh Interval (Seconds):</label>                                                     
-                                                    <input type="number" name="refresh_interval" class="option form-control" value="15"> 
-                                                    <small>Refresh Interval will be enabled once you click the "Refresh Every XX" button on the Process Reporting page.</small> 
-                                                </section>                                                 
+                                                </select>
+                                                <small>Allows the table text to wrap instead of being cut off. This is useful on the Process Reporting page to see all the details.</small>
                                             </div>
-                                            <div class="mb-3"> 
-                                                <label>Unique Page Titles and Favicon Icons:</label>                                                 
-                                                <select name="unique_titles_and_favicons" class="option form-select" aria-label=""> 
-                                                    <option value="on" selected>On</option>                                                     
-                                                    <option value="off">Off</option>                                                     
-                                                </select>                                                 
+                                            <div class="mb-3">
+                                                <label for="path_trace_highlight">Trace Path Highlight:</label>
+                                                <select id="path_trace_highlight" name="path_trace_highlight" class="option form-select">
+                                                    <option value="pulse" selected>On</option>
+                                                    <option value="off">Off</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="description_markdown">Process Flow Description Markdown:</label>
+                                                <select id="description_markdown" name="description_markdown" class="option form-select">
+                                                    <option value="on" selected>On Automatically</option>
+                                                    <option value="manual">Manual</option>
+                                                    <option value="off">Off</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="canvas_grid">Show Canvas Grid:</label>
+                                                <select id="canvas_grid" name="canvas_grid" class="option form-select">
+                                                    <option value="on" selected>On</option>
+                                                    <option value="off">Off</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="schedule_icon">Show Play and Pause Icons (Old Style) in Deployed Processes:</label>
+                                                <select id="schedule_icon" name="schedule_icon" class="option form-select">
+                                                    <option value="on">On</option>
+                                                    <option value="off" selected>Off</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="reverse_modal">Reverse Modal Buttons to Match Side Panel Button layout:</label>
+                                                <select id="reverse_modal" name="reverse_modal" class="option form-select">
+                                                    <option value="on">On</option>
+                                                    <option value="off" selected>Off</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="reminder_schedule">Reminder - Schedule Deployed Component:</label>
+                                                <select id="reminder_schedule" name="reminder_schedule" class="option form-select">
+                                                    <option value="on" selected>On</option>
+                                                    <option value="off">Off</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="refresh_interval">Process Reporting Refresh Interval (Seconds):</label>
+                                                <input type="number" id="refresh_interval" name="refresh_interval" class="option form-control" value="15" min="1" max="3600">
+                                                <small>Refresh Interval will be enabled once you click the "Refresh Every XX" button on the Process Reporting page.</small>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="unique_titles_and_favicons">Unique Page Titles and Favicon Icons:</label>
+                                                <select id="unique_titles_and_favicons" name="unique_titles_and_favicons" class="option form-select" aria-label="Unique Page Titles and Favicon Icons">
+                                                    <option value="on" selected>On</option>
+                                                    <option value="off">Off</option>
+                                                </select>
                                             </div>                                             
-                                            <div class="input-group mb-3"> 
-                                                <section> 
-                                                    <label>Shortcut key for Full Screen (<a href="https://keycode.info/" target="_blank">must be a keycode</a>):
-                                                    </label>                                                     
-                                                    <input type="number" name="full_screen_shortcut" class="option form-control" value="192"> 
-                                                    <label> 
-                                                        <input type="checkbox" name="full_screen_shortcut_alt" value="ALT" class="option form-check-input">alt
-                                                    </label>                                                     
-                                                    <label> 
-                                                        <input type="checkbox" name="full_screen_shortcut_ctrl" value="CTRL" class="option form-check-input">ctrl
-                                                    </label>                                                     
-                                                    <label> 
-                                                        <input type="checkbox" name="full_screen_shortcut_shift" value="SHIFT" class="option form-check-input">shift
-                                                    </label>                                                     
-                                                    <br> 
-                                                    <small>Shortcut will not override system shortcuts, so be careful with what keys/modifiers you use.</small> 
-                                                </section>   
-                                                
-                                                <div class="input-group mb-3"> 
-                                                    
-                                                    <section> 
-                                                        <br>
-                                                        <label>Default Filters - Applied with clicking the filter button:</label> 
-                                             
-                                                    <select name="apply_process_filters" class="option form-select" aria-label=""> 
-                                                        <option value="on">On</option>                                                     
-                                                        <option value="off" selected>Off</option>                                                     
-                                                    </select>  
-                                                    
-                                                        <label> 
-                                                            <input type="checkbox" name="Filter_process" value="Process" class="option form-check-input">Process
-                                                        </label>                                                    <label> 
-                                                            <input type="checkbox" name="Filter_processProp" value="ProcessProperties" class="option form-check-input">Process Properties
-                                                        </label> 
-                                                        <label> 
-                                                            <input type="checkbox" name="Filter_crossref" value="CrossReferrenceTables" class="option form-check-input">Cross Referrence Tables
-                                                        </label> 
-                                                        <label> 
-                                                            <input type="checkbox" name="Filter_api_service" value="APIServices" class="option form-check-input">API Service
-                                                        </label> 
+                                            <div class="mb-3">
+                                                <section>
+                                                    <label for="full_screen_shortcut">Shortcut key for Full Screen (<a href="https://keycode.info/" target="_blank">must be a keycode</a>):</label>
+                                                    <input type="number" id="full_screen_shortcut" name="full_screen_shortcut" class="option form-control mb-2" value="192" min="0" max="255">
+                                                    <label>
+                                                        <input type="checkbox" id="full_screen_shortcut_alt" name="full_screen_shortcut_alt" value="ALT" class="option form-check-input"> Alt
+                                                    </label>
+                                                    <label>
+                                                        <input type="checkbox" id="full_screen_shortcut_ctrl" name="full_screen_shortcut_ctrl" value="CTRL" class="option form-check-input"> Ctrl
+                                                    </label>
+                                                    <label>
+                                                        <input type="checkbox" id="full_screen_shortcut_shift" name="full_screen_shortcut_shift" value="SHIFT" class="option form-check-input"> Shift
+                                                    </label>
+                                                    <small class="d-block mt-1">Shortcut will not override system shortcuts, so be careful with what keys/modifiers you use.</small>
+                                                </section>
+                                            </div>
 
-                                                    </section> 
-                                            </div>                                             
-                                            <br> 
-                                            <button id="save" type="button" class="btn d-block w-100 btn-primary fw-bold">Save Options</button>                                             
+                                            <div class="mb-3">
+                                                <section>
+                                                    <label for="apply_process_filters">Default Filters - Applied when clicking the filter button:</label>
+                                                    <select id="apply_process_filters" name="apply_process_filters" class="option form-select mb-2" aria-label="Apply Process Filters">
+                                                        <option value="on">On</option>
+                                                        <option value="off" selected>Off</option>
+                                                    </select>
+                                                    <label>
+                                                        <input type="checkbox" id="Filter_process" name="Filter_process" value="Process" class="option form-check-input"> Process
+                                                    </label>
+                                                    <label>
+                                                        <input type="checkbox" id="Filter_processProp" name="Filter_processProp" value="ProcessProperties" class="option form-check-input"> Process Properties
+                                                    </label>
+                                                    <label>
+                                                        <input type="checkbox" id="Filter_crossref" name="Filter_crossref" value="CrossReferenceTables" class="option form-check-input"> Cross Reference Tables
+                                                    </label>
+                                                    <label>
+                                                        <input type="checkbox" id="Filter_api_service" name="Filter_api_service" value="APIServices" class="option form-check-input"> API Service
+                                                    </label>
+                                                </section>
+                                            </div>
+
+                                            <button id="save" type="button" class="btn d-block w-100 btn-primary fw-bold">Save Options</button>
                                         </form>                                         
-                                        <div id="status" class="alert alert-success w-100 text-center" id="success-alert" style="display: none;"> 
-                                            <strong>Success!</strong> Settings Saved.
+                                        <div id="status" class="alert alert-success w-100 text-center mt-3" style="display: none;">
+                                            <strong>Success!</strong> Settings saved. Reload the Boomi platform tab for changes to take effect.
                                         </div>                                         
                                     </div>                                     
                                 </div>                                 

@@ -7,7 +7,7 @@ const save_options = () => {
   );
   chrome.storage.sync.set(options, () => {
     let status = document.getElementById("status");
-    status.style.display = null;
+    status.style.display = "";
     setTimeout(() => {
       status.style.display = "none";
     }, 750);
@@ -24,7 +24,7 @@ const restore_options = () => {
 
   chrome.storage.sync.get(options, (items) =>
     Object.entries(items).forEach(([key, value]) => {
-      if (!value) return false;
+      if (!value) return;
       let elements = [...document.getElementsByName(key)];
       if (elements.length == 1) {
         if (value === true || value === false)
@@ -37,13 +37,9 @@ const restore_options = () => {
 document.addEventListener("DOMContentLoaded", restore_options);
 document.getElementById("save").addEventListener("click", save_options);
 
-/*if (window.screenX != 0 && window.screenY != 0) {
-    document.getElementById('header').style.display = 'block';
-}*/
-
-var popoverTriggerList = [].slice.call(
+const popoverTriggerList = [].slice.call(
   document.querySelectorAll('[data-bs-toggle="popover"]'),
 );
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl);
 });

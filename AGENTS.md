@@ -74,7 +74,7 @@ content/*.js (in bundle)
 - **shortcut.js** — keyboard shortcut library (bundled into `content/bundle.js`)
 - **showdown.min.js**, **rasterizeHTML.min.js** — loaded at `document_start` in the isolated context (used by content scripts for markdown rendering and image capture)
 
-### arrise.js cleanup pattern
+### arrive.js cleanup pattern
 
 Scripts that use `document.arrive()` on a selector that can be matched multiple times should call `document.unbindArrive(selector)` after the first match to avoid duplicate handlers. Example from `content/menuOpen.js`:
 ```js
@@ -158,5 +158,26 @@ The **only** minification happens in the build step (`npm run build`). All `.js`
 ## No linter / formatter / test suite
 
 There is no linter, formatter, or test suite. To test, load the extension unpacked in `chrome://extensions` (Developer Mode) pointing to the `src/` directory, then visit `https://platform.boomi.com/`.
+
+esbuild warnings (e.g. duplicate object keys) are non-fatal — the build will still complete and produce zips. Do not block on warnings.
+
+On Windows, PowerShell execution policy may block `npm`. Use `cmd /c "npm run build"` as a fallback.
+
+## Options page form contract
+
+Every form control on `options.html` **must** have both:
+- `class="option"` — this is how `options.js` discovers controls to serialize/restore via `document.querySelectorAll(".option")`
+- a `name` attribute — becomes the `chrome.storage.sync` key
+
+If you add a new option toggle on the options page, you must also add the corresponding key read in `listenerGlobal.js` for it to take effect on the Boomi platform pages.
+
+The options.html SVG logo contains a large inline `data:image/png;base64,…` — be careful when editing that file, as some tools may truncate it.
+
+## Rebuild scope
+
+- Changes to `src/library/boomiapp/content/*.js` → must run `npm run build` (they go into the bundle)
+- Changes to `src/library/boomiapp/page/fullscreen.js` → no rebuild needed (loaded directly via `loadScript()`)
+- Changes to `options.html` or `options.js` → no rebuild needed (loaded standalone by the options page)
+- Changes to `src/manifest.json` → must run `npm run build` (generates browser-specific manifests)
 
 To see content-script console output, inspect the page — content scripts log to the main page console in Chrome. To see page-context console output, same approach. Errors from the bundle will show with the source file name in the stack trace (esbuild injects `// src/library/boomiapp/content/...` comments).
