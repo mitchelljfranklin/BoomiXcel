@@ -12,9 +12,9 @@ npm run build        # bundle content scripts → content/bundle.js + browser zi
 npm run watch        # rebuild on file changes
 ```
 
-Content scripts in `content/` are bundled by esbuild into a single `content/bundle.js`, which is the only content-script entry in every manifest. The bundle order is defined in `scripts/build.js > CONTENT_ORDER`. If you add a new content script, add it to that array and run `npm run build`.
+Content scripts in `src/library/boomiapp/content/` are bundled by esbuild into a single `src/library/boomiapp/content/bundle.js`, which is the only content-script entry in every manifest. The bundle order is defined in `scripts/build.js > CONTENT_ORDER`. If you add a new content script, add it to that array and run `npm run build`.
 
-`content/bundle.js` is a build artifact — it's gitignored. The only page-context script is `page/fullscreen.js` (Fullscreen API requires page context); it is loaded individually via `loadScript()`.
+`bundle.js` is a build artifact — it's gitignored. The only page-context script is `page/fullscreen.js` (Fullscreen API requires page context); it is loaded individually via `loadScript()`.
 
 ### Bundle scope behavior
 
@@ -26,7 +26,7 @@ The `listenerGlobal.js` sets a `var BoomiPlatform = {}` in the bundle scope, rea
 
 The code is split into two directories under `src/library/boomiapp/`:
 
-- **`content/`** — scripts built into `bundle.js` that run in the extension's isolated sandbox. Can use `chrome.*` APIs, `document.arrive()`, `CodeMirror`, and `shortcut.add()`. Loaded via a single `content_scripts[].js` entry in the manifest. **All feature scripts live here.**
+- **`content/`** — scripts built into `bundle.js` that run in the extension's isolated sandbox.
 - **`page/`** — contains only `fullscreen.js`, injected by `content/contentScript.js` via `loadScript()`. Runs in the page's own context because Chrome restricts the Fullscreen API (`element.requestFullscreen()`) from the isolated world. Receives config via a minimal `postMessage` from `contentScript.js`. Listed in `web_accessible_resources`.
 
 **Rule of thumb for new scripts:**
@@ -91,6 +91,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/contentScript.js` | content | Entry point. Detects page load via title change, injects `fullscreen.js`, sets up platform status check, update notification dialog |
 | `content/global.js` | content | Utility functions: URL parsing, dashboard 7-day default, alert dialog helper |
 | `content/boomi.js` | content | Core Boomi platform enhancements: header show/hide, copy component ID, capture flow button, and many DOM modifications |
+| `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/shortCuts.js` | content | Ctrl+Alt+S (save), Ctrl+Alt+T (test) |
 | `content/updateNotification.js` | content | Per-version update changelog dialog (uses `localStorage` to suppress after first view) |
 | `content/buildPallet.js` | content | Restores old-style build shape connector palette |
@@ -145,7 +146,7 @@ Do not modify or re-integrate without understanding why they were removed.
 
 ## Code style — human-readable formatting
 
-All code must be written in a human-readable format — this applies equally to hand-written and AI-generated code. Avoid minified, obfuscated, or machine-optimized code in any source files. This means:
+All code must be written in a human-readable format — this applies equally to hand-written and AI-generated code. Avoid minified, obfuscated, or machine-optimized code in any source files.
 
 - Use descriptive variable and function names (not single-letter names except for trivial loop counters)
 - Use consistent indentation and whitespace
