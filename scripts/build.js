@@ -45,6 +45,77 @@ function getImportStatements() {
   return CONTENT_ORDER.map((filename) => `import './${filename}';`).join("\n");
 }
 
+function generateWebstoreDescription(version) {
+  const readmePath = path.join(ROOT, "README.md");
+  const outputPath = path.join(ROOT, "webstore-description.txt");
+
+  if (!fs.existsSync(readmePath)) {
+    console.log("  Skipping webstore description: README.md not found");
+    return;
+  }
+
+  const readme = fs.readFileSync(readmePath, "utf-8");
+
+  // Extract the Features section (from "## Features" to next "---" divider)
+  const featuresMatch = readme.match(/## Features\n([\s\S]*?)\n---/);
+  if (!featuresMatch) {
+    console.log("  Skipping webstore description: Features section not found");
+    return;
+  }
+
+  let features = featuresMatch[1];
+
+  // Convert markdown to plain text
+  features = features
+    // Strip HTML tags
+    .replace(/<[^>]*>/g, "")
+    // Strip all emoji (broad unicode ranges + variation selectors)
+    .replace(/[\u{1F000}-\u{1FFFF}]/gu, "")
+    .replace(/[\u{2600}-\u{27BF}]/gu, "")
+    .replace(/[\u{2B00}-\u{2BFF}]/gu, "")
+    .replace(/[\u{FE00}-\u{FE0F}]/gu, "")
+    .replace(/[\u{200D}]/gu, "")
+    // Convert bold markers
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    // Remove markdown table entirely, replace with indented list
+    .replace(/^\| (.+?) \| (.+?) \|$/gm, (_, key, value) => {
+      const k = key.trim();
+      if (k.match(/^[-:]+$/) || k === "Shortcut") return "";
+      return `  - ${k}: ${value.trim()}`;
+    })
+    // Remove table separator rows (just in case)
+    .replace(/^\|[-| :]+\|$/gm, "")
+    // Convert category headers to uppercase (allow leading whitespace from stripped emoji)
+    .replace(/^\s*([A-Z][A-Za-z &\/]+)$/gm, (_, text) => `\n${text.toUpperCase()}`)
+    // Clean up extra blank lines (max 1 consecutive)
+    .replace(/\n{3,}/g, "\n\n")
+    // Remove back-to-top navigation lines
+    .replace(/^\s*↑ Back to top\s*$/gm, "")
+    .trim();
+
+  const description = [
+    `Boomi Xcel v${version}`,
+    "The Boomi Integration Platform Extension",
+    "",
+    "A browser extension that enhances the Boomi Integration Platform web UI at platform.boomi.com with powerful productivity tools, visual improvements, and workflow optimizations.",
+    "",
+    "---",
+    "",
+    features,
+    "",
+    "---",
+    "",
+    "All features are configurable via the extension options page.",
+    "",
+    "DISCLAIMER: Boomi has no affiliation with this extension and does not support it, endorse its use, or provide any promises or warranties.",
+    "",
+    "Source code: https://github.com/mitchelljfranklin/BoomiXcel",
+  ].join("\n");
+
+  fs.writeFileSync(outputPath, description, "utf-8");
+  console.log(`  Generated: webstore-description.txt`);
+}
+
 function getVersion() {
   return JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf-8")).version;
 }
@@ -166,7 +237,10 @@ async function main() {
   // Step 1: Bundle content scripts
   await bundleContent();
 
-  // Step 2: Generate per-browser packages
+  // Step 2: Generate webstore description from README
+  generateWebstoreDescription(version);
+
+  // Step 3: Generate per-browser packages
   const base = readBaseManifest();
   base.version = version;
 
