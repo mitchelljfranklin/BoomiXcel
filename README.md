@@ -281,6 +281,7 @@ Distributed under the MIT License.
 
 ## Acknowledgements
 
+- **Mitch Franklin** — Original Extension Developer
 - **Tony Banik** — Boomi Tools developer, source of many ideas
 - [**Baptiste BIEBER**](https://github.com/baptistebieber) — Boomi Extension developer
 - **Noah Skelton** — Build Pallet Fix script
