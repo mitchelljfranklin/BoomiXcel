@@ -6,6 +6,12 @@
 .qm-u-theme-dark { --bph-icon-color: #fff; }
 .qm-u-theme-default { --bph-icon-color: #333; }
 
+/* Brand logo replacement */
+.bph-brand-logo {
+  height: 30px !important;
+  width: auto !important;
+}
+
 .qm-c-servicenav {
     height: 2.5em !important;
 }

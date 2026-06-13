@@ -13,17 +13,17 @@ KEYBOARD SHORTCUTS
 
 BUILD CANVAS
 - Capture the entire process flow as a PNG (with transparency, zoom, and note-expansion options)
-- Remove the canvas dot grid (works well with dark mode)
+- Remove the canvas dot grid — works well with dark mode (configurable)
 - Double-click to add shapes via a quick-shape popup
 - Restored old-style shape connector palette
-- Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape
-- Trace path highlighting during test execution
+- Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape (configurable)
+- Trace path highlighting during test execution (configurable)
 - Note group overlays — colored semi-transparent bounding boxes created from process notes
 - View in Process Reporting quick-link icon next to the Description link
 
 EDITING
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
-- Markdown rendering in process descriptions and notes
+- Markdown rendering in process descriptions and notes (configurable)
 - Resizable SQL editor in Database Operation shapes
 - Copy raw document content from the Document Viewer dialog
 
@@ -32,27 +32,28 @@ NAVIGATION & LAYOUT
 - Collapse-all-folders button in Process Reporting and Deployed Process screens
 - Single-click anywhere on a process folder/title to expand (instead of the tiny icon)
 - Open dropdown menu items in a new tab (old and new Boomi UI)
-- Reverse modal button order (OK/Cancel instead of Cancel/OK)
+- Reverse modal button order — OK/Cancel instead of Cancel/OK (configurable)
 - Remove sticky revision notification from the build view
 - Adjust connection operation screen sizing
 - Keep the Boomi footer bar always visible (configurable)
 
 PROCESS REPORTING
-- Custom auto-refresh interval
-- Table text wrapping (always / never / toggle on header hover)
+- Custom auto-refresh interval (configurable)
+- Table text wrapping — always / never / toggle on header hover (configurable)
 - Auto-updating pending executions clock
 - Default dashboard view set to 7 days
 
 OTHER
-- Icon set selection for shapes (Legacy, Modern, Minimal, etc.)
-- Old-style play/pause icons in deployed processes
+- Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
+- Old-style play/pause icons in deployed processes (configurable)
 - Copy component ID/URL from the build canvas
+- Replace the Boomi Logo brand logo with a BoomiXcel Logo (configurable)
 - Automatically rename downloaded documents to `_.`
-- Post-deployment schedule reminder
+- Post-deployment schedule reminder (configurable)
 - Platform status check on every page
-- Tab names simplified (account name removed, configurable)
-- Page-specific favicons for each Boomi subdomain (AtomSphere, MdmSphere, ApiSphere, Flow)
-- Auto-check default build filters (Process, Process Property, Cross Reference Table, API Service)
+- Tab names simplified — account name removed (configurable)
+- Page-specific favicons for each Boomi subdomain (configurable)
+- Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
 

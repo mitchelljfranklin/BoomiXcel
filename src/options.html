@@ -26,7 +26,15 @@
                                         <h1 class="h2 mb-1 text-dark">Extension Options</h1> 
                                         <p class="mb-4">Adjust to suit your needs.</p> 
                                         <form> 
-                                            <div class="mb-3"> 
+                                            <div class="mb-3">
+                                                <label for="brand_logo">Replace Boomi Brand Logo:</label>
+                                                <select id="brand_logo" name="brand_logo" class="option form-select">
+                                                    <option value="off" selected>Off (Default)</option>
+                                                    <option value="on">On — Replace with custom logo</option>
+                                                </select>
+                                                <small>Replaces the Boomi logo in the masthead with a custom brand image.</small>
+                                            </div>
+                                            <div class="mb-3">
                                                 <label for="shape_icon_styling">Shape Icon Styling:</label>
                                                 <select id="shape_icon_styling" name="shape_icon_styling" class="option form-select" aria-label="Shape Icon Styling">
                                                     <option value="off">Off (Default)</option>

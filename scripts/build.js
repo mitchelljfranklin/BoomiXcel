@@ -41,6 +41,7 @@ const CONTENT_ORDER = [
   "connectionOperations.js",
   "versionNotification.js",
   "dbsqlEditor.js",
+  "brandLogo.js",
   "shortcut.js",
 ];
 

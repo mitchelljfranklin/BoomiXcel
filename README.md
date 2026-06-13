@@ -1,7 +1,7 @@
 <br />
 <p align="center">
-  <a href="logo/extensionLogo.png">
-    <img src="logo/extensionLogo.png" alt="Logo" width="80" height="80">
+  <a href="logo/XcelLogo.png">
+    <img src="logo/XcelLogo.png" alt="Logo" height="80">
   </a>
 
   <h3 align="center">Boomi Xcel <br> The Boomi Integration Platform Extension!</h3>
@@ -73,17 +73,17 @@
 
 🎨 **Build Canvas**
 - Capture the entire process flow as a PNG (with transparency, zoom, and note-expansion options)
-- Remove the canvas dot grid (works well with dark mode)
+- Remove the canvas dot grid — works well with dark mode (configurable)
 - Double-click to add shapes via a quick-shape popup
 - Restored old-style shape connector palette
-- Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape
-- Trace path highlighting during test execution
+- Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape (configurable)
+- Trace path highlighting during test execution (configurable)
 - Note group overlays — colored semi-transparent bounding boxes created from process notes
 - View in Process Reporting quick-link icon next to the Description link
 
 ✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
-- Markdown rendering in process descriptions and notes
+- Markdown rendering in process descriptions and notes (configurable)
 - Resizable SQL editor in Database Operation shapes
 - Copy raw document content from the Document Viewer dialog
 
@@ -92,27 +92,28 @@
 - Collapse-all-folders button in Process Reporting and Deployed Process screens
 - Single-click anywhere on a process folder/title to expand (instead of the tiny icon)
 - Open dropdown menu items in a new tab (old and new Boomi UI)
-- Reverse modal button order (OK/Cancel instead of Cancel/OK)
+- Reverse modal button order — OK/Cancel instead of Cancel/OK (configurable)
 - Remove sticky revision notification from the build view
 - Adjust connection operation screen sizing
 - Keep the Boomi footer bar always visible (configurable)
 
 📊 **Process Reporting**
-- Custom auto-refresh interval
-- Table text wrapping (always / never / toggle on header hover)
+- Custom auto-refresh interval (configurable)
+- Table text wrapping — always / never / toggle on header hover (configurable)
 - Auto-updating pending executions clock
 - Default dashboard view set to 7 days
 
 ⭐ **Other**
-- Icon set selection for shapes (Legacy, Modern, Minimal, etc.)
-- Old-style play/pause icons in deployed processes
+- Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
+- Old-style play/pause icons in deployed processes (configurable)
 - Copy component ID/URL from the build canvas
+- Replace the Boomi Logo brand logo with a BoomiXcel Logo (configurable)
 - Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
-- Post-deployment schedule reminder
+- Post-deployment schedule reminder (configurable)
 - Platform status check on every page
-- Tab names simplified (account name removed, configurable)
-- Page-specific favicons for each Boomi subdomain (AtomSphere, MdmSphere, ApiSphere, Flow)
-- Auto-check default build filters (Process, Process Property, Cross Reference Table, API Service)
+- Tab names simplified — account name removed (configurable)
+- Page-specific favicons for each Boomi subdomain (configurable)
+- Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
 
@@ -263,7 +264,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (32 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (33 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -298,6 +299,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
 | `content/dbsqlEditor.js` | content | Enables flexible panel resizing for the SQL editor |
+| `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image |
 | `page/fullscreen.js` | page | Full-screen toggle (page context required) |
 | `options.js` | options | Options page save/restore |
 | `background.js` | background | Service worker: download rename + options-page-open message |

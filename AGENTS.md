@@ -119,6 +119,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
 | `content/dbsqlEditor.js` | content | Enables flex panel resizing for the inline SQL editor |
+| `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image |
 | `page/fullscreen.js` | page | Full-screen toggle via keyboard shortcut (page context required) |
 | `options.js` | (options page) | Options page save/restore logic |
 | `background.js` | background | MV3 service worker: handles download renaming and options-page-open message |
