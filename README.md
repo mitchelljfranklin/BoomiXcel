@@ -8,14 +8,23 @@
   <h6 align="center">A New Name for a New Age</h6>
 
   <p align="center">
+    <img src="logo/BoomiXcelSlim50.png" alt="Boomi Xcel">
+  </p>
+
+  <p align="center">
     A Browser extension that enhances the Boomi Integration Platform web UI
     <br />
     <br />
-    <a href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko">Chrome Store</a>
-    ·
-    <a href="https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active">Firefox Add-ons</a>
-    ·
-    <a href="https://github.com/matt-flaig/Boomi-Platform-Extension/issues">Request a Feature</a>
+    <a href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko">
+      <img src="https://img.shields.io/badge/Chrome-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store">
+    </a>
+    &nbsp;
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active">
+      <img src="https://img.shields.io/badge/Firefox-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white" alt="Firefox Add-ons">
+    </a>
+    <br />
+    <br />
+    <a href="https://github.com/matt-flaig/Boomi-Platform-Extension/issues">🐛 Request a Feature</a>
   </p>
 </p>
 
@@ -24,14 +33,26 @@
 
 ---
 
+## Contents
+
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Installing](#installing)
+- [Development](#development)
+- [Contributing](#contributing)
+- [Discussion](#discussion)
+- [License](#license)
+
+---
+
 ## Features
 
-**Keyboard Shortcuts**
+🔧 **Keyboard Shortcuts**
 - `Ctrl+Alt+S` — Save the current flow
 - `Ctrl+Alt+T` — Test the current flow
 - Configurable shortcut for full-screen toggle (default: `~`)
 
-**Build Canvas**
+🎨 **Build Canvas**
 - Capture the entire process flow as a PNG (with transparency, zoom, and note-expansion options)
 - Remove the canvas dot grid (works well with dark mode)
 - Double-click to add shapes via a quick-shape popup
@@ -40,12 +61,12 @@
 - Trace path highlighting during test execution
 - Note group overlays — colored semi-transparent bounding boxes created from process notes
 
-**Editing**
+✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
 - Markdown rendering in process descriptions and notes
 - Resizable SQL editor in Database Operation shapes
 
-**Navigation & Layout**
+🧭 **Navigation & Layout**
 - Hide the header to reclaim build space
 - Collapse-all-folders button in Process Reporting and Deployed Process screens
 - Single-click anywhere on a process folder/title to expand (instead of the tiny icon)
@@ -54,13 +75,13 @@
 - Remove sticky revision notification from the build view
 - Adjust connection operation screen sizing
 
-**Process Reporting**
+📊 **Process Reporting**
 - Custom auto-refresh interval
 - Table text wrapping (always / never / toggle on header hover)
 - Auto-updating pending executions clock
 - Default dashboard view set to 7 days
 
-**Other**
+⭐ **Other**
 - Icon set selection for shapes (Legacy, Modern, Minimal, etc.)
 - Old-style play/pause icons in deployed processes
 - Copy component ID/URL from the build canvas
@@ -76,10 +97,20 @@
 
 ## Screenshots
 
-![](WebStore%20images/Image1.png)
-![](WebStore%20images/Image2.png)
-![](WebStore%20images/Image3.png)
-![](WebStore%20images/Image4.png)
+<p align="center">
+  <img src="WebStore%20images/Image1.png" alt="Build canvas with enhanced shape palette, trace path highlighting, and endpoint glow" width="700">
+  <br /><sub>🎨 Build canvas — enhanced shape palette, trace path highlighting, and endpoint glow</sub>
+</p>
+
+<p align="center">
+  <img src="WebStore%20images/Image2.png" alt="Extension options panel" width="700">
+  <br /><sub>⚙️ Extension options — toggle features, set refresh intervals, and configure shortcuts</sub>
+</p>
+
+<p align="center">
+  <img src="WebStore%20images/Image3.png" alt="Process reporting with auto-refresh and table wrap" width="700">
+  <br /><sub>📊 Process reporting — custom auto-refresh, table text wrapping, and collapse-all-folders</sub>
+</p>
 
 ---
 
