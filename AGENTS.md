@@ -176,7 +176,19 @@ Every form control on `options.html` **must** have both:
 
 If you add a new option toggle on the options page, you must also add the corresponding key read in `listenerGlobal.js` for it to take effect on the Boomi platform pages.
 
-The options.html SVG logo contains a large inline `data:image/png;base64,…` — be careful when editing that file, as some tools may truncate it.
+The options.html logo uses an `<img src="logo/XcelLogo.png">` tag — `*.png` is covered by `web_accessible_resources`.
+
+## Options page styling
+
+All options page CSS **must** be added to `library/css/boomi.css` under the `/* Options page */` section. Do **not** add inline `<style>` blocks or `style=""` attributes to `options.html`, and do **not** set element styles in `options.js`. If the options page needs a new visual rule, it goes in `boomi.css`.
+
+The options page loads `boomi.css` in its `<head>`.
+
+When adding new option controls, prefer the existing patterns:
+
+- **Toggle switches** — use `<div class="toggle-row"><label class="toggle-label-row">...<input type="checkbox" class="option form-check-input toggle-switch">`. The `options.js` serializes `.toggle-switch` checkboxes as `"on"`/`"off"` strings.
+- **Selects / inputs** — use standard `.mb-3` blocks with `.form-select` or `.form-control` and a `data-default` attribute for reset support.
+- **Helper text** — use `<small class="helper">` for option descriptions.
 
 ## Rebuild scope
 

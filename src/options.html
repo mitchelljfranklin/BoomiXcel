@@ -8,7 +8,9 @@
     </head>     
     <body class="options-page"> 
         <div class="options-card">
-            <button type="button" class="btn btn-danger d-block w-100 fw-bold disclaimer-btn" data-bs-toggle="popover" title="Extension Disclaimer" data-bs-content="Boomi has no affiliation with this extension and does not support it, endorse its use, or provide any promises or warranties (as per legal requirements)">Click for Disclaimer</button>
+            <div class="alert alert-warning text-center py-2 mb-3 small" role="alert">
+                Boomi is not affiliated with this extension and does not endorse its use, make any promises or guarantees regarding this extension.
+            </div>
             <div class="text-center mb-3">
                 <img src="logo/XcelLogo.png" alt="Boomi Xcel" style="height: 60px;">
             </div>
@@ -36,7 +38,6 @@
                         <label for="brand_logo" class="toggle-label-row mb-0">Replace Boomi Brand Logo</label>
                         <input type="checkbox" id="brand_logo" name="brand_logo" class="option form-check-input toggle-switch" data-default="off">
                     </div>
-                    <small class="helper">Replaces the Boomi masthead logo with a custom brand image.</small>
                     <div class="toggle-row">
                         <label for="schedule_icon" class="toggle-label-row mb-0">Old-Style Play/Pause Icons</label>
                         <input type="checkbox" id="schedule_icon" name="schedule_icon" class="option form-check-input toggle-switch" data-default="off">
@@ -140,9 +141,6 @@
                 <strong>Success!</strong> Settings saved. Reload the Boomi platform tab for changes to take effect.
             </div>                                         
         </div>
-        <script src="library/inject/popper.min.js"></script>         
-        <script src="library/inject/bootstrap.min.js"></script>         
-        <script src="library/jquery/jquery-3.7.1.min.js"></script>         
         <script src="library/boomiapp/options.js"></script>         
     </body>     
 </html>

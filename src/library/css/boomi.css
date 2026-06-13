@@ -517,4 +517,3 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 .dirty-dot.visible { display: inline-block; }
 .btn-reset { border: 1px solid #dee2e6; background: #fff; color: #6c757d; white-space: nowrap; }
 .btn-reset:hover { background: #f8d7da; border-color: #dc3545; color: #dc3545; }
-.disclaimer-btn { margin-bottom: 2rem; }

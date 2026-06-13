@@ -108,10 +108,3 @@ function reset_defaults() {
 document.addEventListener("DOMContentLoaded", restore_options);
 document.getElementById("save").addEventListener("click", save_options);
 document.getElementById("reset").addEventListener("click", reset_defaults);
-
-var popoverTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-toggle="popover"]'),
-);
-var popoverList = popoverTriggerList.map(function (el) {
-  return new bootstrap.Popover(el);
-});
