@@ -22,7 +22,7 @@
             "run_at": "document_start",
             "js": [
                 "library/inject/arrive.min.js",
-                "library/jquery/jquery-3.7.1.min.js",
+                "library/jquery/jquery-4.0.0.min.js",
                 "library/inject/showdown.min.js",
                 "library/inject/rasterizeHTML.min.js",
                 "library/inject/cm/codemirror.js",

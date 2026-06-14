@@ -55,6 +55,18 @@ OTHER
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
 
+## Installing
+
+Visit one of the browser stores:
+
+      
+      
+
+      
+      
+
+Click Install — the extension auto-enables on `https://platform.boomi.com/*`.
+
 ---
 
 All features are configurable via the extension options page.

@@ -195,7 +195,7 @@ src/
       options.js             ← options page logic
     css/                     ← injected stylesheets
     inject/                  ← third-party libs (CodeMirror, arrive.js, etc.)
-    jquery/                  ← jQuery 3.7.1
+    jquery/                  ← jQuery 4.0
 scripts/
   build.js                   ← esbuild bundler + manifest generator + zipper
 build/                       ← release zips (output)
@@ -244,7 +244,7 @@ Three storage backends are used:
 - **Options page form contract** — every form control on `options.html` must have both `class="option"` and a `name` attribute. `options.js` discovers controls via `.option` and uses `name` as the `chrome.storage.sync` key. New toggles also need a corresponding key read in `listenerGlobal.js`. Each control should have a `data-default` attribute for the Reset button. On/off options use toggle switches (`.toggle-switch` checkboxes) serialized as `"on"`/`"off"` strings.
 - **Options page CSS** — all options page styling lives in `library/css/boomi.css` under `/* Options page */`. Never add inline `<style>` blocks or `style=""` attributes to `options.html`, and never set element styles in `options.js`. The options page loads `boomi.css` in its `<head>`.
 - **arrive.js cleanup** — scripts using `document.arrive()` on a reusable selector should call `document.unbindArrive(selector)` after the first match to prevent duplicate handlers
-- **jQuery** — use 3.7.1. Loaded at `document_start` in the isolated context
+- **jQuery** — use 4.0. Loaded at `document_start` in the isolated context
 - **Keep the README updated** — when adding or removing a feature, update the Features section. When adding, removing, or renaming a script file, update the Script Reference table. When changing the build process, update the Build section.
 
 ### Debugging
@@ -317,7 +317,7 @@ npm run build
 ### Built With
 
 - **[esbuild](https://esbuild.github.io/)** — content-script bundling
-- **[jQuery 3.7](https://jquery.com/)** — DOM manipulation
+- **[jQuery 4.0](https://jquery.com/)** — DOM manipulation
 - **[CodeMirror](https://codemirror.net/)** — code editor for Message/Notify shapes
 - **[arrive.js](https://github.com/uzairfarooq/arrive)** — DOM mutation observer
 - **[showdown](https://github.com/showdownjs/showdown)** — Markdown rendering
