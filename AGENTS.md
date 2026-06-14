@@ -93,7 +93,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
 | `content/dashboard.js` | content | Dashboard-specific enhancements |
-| `content/shortCuts.js` | content | Ctrl+Alt+S (save), Ctrl+Alt+T (test) |
+| `content/keyboardShortcuts.js` | content | Ctrl+Alt+S (save) |
 | `content/updateNotification.js` | content | Per-version update changelog dialog (uses `localStorage` to suppress after first view) |
 | `content/shapePalette.js` | content | Restores old-style build shape connector palette |
 | `content/messageEditor.js` | content | CodeMirror-based editor for Message/Notify/Command shapes |

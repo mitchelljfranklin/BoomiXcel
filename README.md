@@ -283,7 +283,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, nav listeners |
 | `content/dashboard.js` | content | Dashboard-specific enhancements |
-| `content/shortCuts.js` | content | Keyboard shortcuts — Ctrl+Alt+S save, Ctrl+Alt+T test |
+| `content/keyboardShortcuts.js` | content | Ctrl+Alt+S save |
 | `content/messageEditor.js` | content | CodeMirror editor for Message/Notify/Command shapes |
 | `content/shapePalette.js` | content | Restored old-style shape connector palette |
 | `content/scheduleIcons.js` | content | Old play/pause icons in deployed processes |
