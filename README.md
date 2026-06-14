@@ -290,7 +290,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/scheduleIcons.js` | content | Old play/pause icons in deployed processes |
 | `content/buildFilters.js` | content | Default process filters |
 | `content/filterButtons.js` | content | Collapse-all-folders, single-click tree navigation |
-| `content/quickclickComponent.js` | content | Double-click quick-shape popup |
+| `content/shapePopup.js` | content | Double-click quick-shape popup |
 | `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menus (old and new Boomi UI) |
 | `content/copyDocument.js` | content | Clipboard-copy button in the Document Viewer dialog |
 | `content/downloadRename.js` | content | Intercepts document downloads for auto-renamed filenames |
@@ -309,7 +309,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/groups.js` | content | Note group overlays on canvas |
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
-| `content/dbsqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
+| `content/sqlEditor.js` | content | CodeMirror SQL editor |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |

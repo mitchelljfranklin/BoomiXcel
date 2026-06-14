@@ -25,7 +25,7 @@ const CONTENT_ORDER = [
   "reminders.js",
   "buildFilters.js",
   "filterButtons.js",
-  "quickclickComponent.js",
+  "shapePopup.js",
   "menuOpen.js",
   "copyDocument.js",
   "downloadRename.js",
@@ -42,7 +42,7 @@ const CONTENT_ORDER = [
   "groups.js",
   "connectionOperations.js",
   "versionNotification.js",
-  "dbsqlEditor.js",
+  "sqlEditor.js",
   "brandLogo.js",
 ];
 

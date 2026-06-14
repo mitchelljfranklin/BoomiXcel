@@ -102,7 +102,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/headerActions.js` | content | Header show/hide toggle, copy component ID/URL, update overlay close |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/filterButtons.js` | content | Collapse-all-folders buttons, single-click tree navigation |
-| `content/quickclickComponent.js` | content | Double-click quick-shape popup on process panel |
+| `content/shapePopup.js` | content | Double-click quick-shape popup on process panel |
 | `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menu items (old and new Boomi UI with shadow DOM) |
 | `content/copyDocument.js` | content | Clipboard-copy button in Document Viewer dialog |
 | `content/downloadRename.js` | content | Intercepts document downloads, sends context to background for auto-rename |
@@ -118,7 +118,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/groups.js` | content | Note group overlays on process canvas |
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
-| `content/dbsqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
+| `content/sqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
 | `content/svgAssets.js` | content | Shared SVG icon strings used across multiple content scripts |
 | `content/modalHelper.js` | content | Shared Boomi-style modal dialog renderer and cleanup utilities |
