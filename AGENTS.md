@@ -22,6 +22,11 @@ esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` d
 
 The `listenerGlobal.js` sets a `var BoomiPlatform = {}` in the bundle scope, reads config from `chrome.storage.sync.get()`, and all other scripts reference `BoomiPlatform.key` from this shared IIFE-scoped variable.
 
+Some listener callbacks referenced by `listenerGlobal.js` are defined as no-op stubs in `build.js` because the real implementations run in a different context or were removed:
+- `add_fullscreen_listener` — real implementation in `page/fullscreen.js` (page context)
+- `add_notecontent_listener` — feature removed (Boomi platform now handles markdown natively)
+- `add_dialog_listener` — defined in `listenerGlobal.js` but incomplete (captures dialog info but has no active behavior)
+
 ## Two execution contexts — enforced by directory structure
 
 The code is split into two directories under `src/library/boomiapp/`:
@@ -107,7 +112,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/copyDocument.js` | content | Clipboard-copy button in Document Viewer dialog |
 | `content/downloadRename.js` | content | Intercepts document downloads, sends context to background for auto-rename |
 | `content/iconSets.js` | content | Icon set data objects referenced by `listenerGlobal` |
-| `content/listenerGlobal.js` | content | Reads config from `chrome.storage.sync`, caches in bundle scope, orchestrates feature listeners via MutationObserver + poller |
+| `content/listenerGlobal.js` | content | Reads config from `chrome.storage.sync`, caches in bundle scope, orchestrates feature listeners via MutationObserver + poller. Also handles shape icon styling injection. |
 | `content/canvas.js` | content | Canvas grid toggle (reads `BoomiPlatform.canvas_grid`) |
 | `content/customRefresh.js` | content | Custom process-reporting refresh interval |
 | `content/shapes.js` | content | Trace path highlight during test execution |

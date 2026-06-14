@@ -105,7 +105,7 @@
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
 - Old-style play/pause icons in deployed processes (configurable)
 - Copy component ID/URL from the build canvas
-- Replace the Boomi Logo brand logo with a BoomiXcel Logo (configurable)
+- Replace the Boomi masthead brand logo with the BoomiXcel logo (configurable)
 - Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
 - Post-deployment schedule reminder (configurable)
 - Platform status check on every page
@@ -187,18 +187,28 @@ All manifests are generated from `src/manifest.json` — the single source of tr
 
 ```
 src/
-  manifest.json              ← Chrome V3 base manifest
-  library/
-    boomiapp/
-      content/               ← content-script context (bundled → bundle.js)
-      page/                  ← page context (individually injected)
-      options.js             ← options page logic
-    css/                     ← injected stylesheets
-    inject/                  ← third-party libs (CodeMirror, arrive.js, etc.)
-    jquery/                  ← jQuery 4.0
+├── manifest.json              # Chrome V3 base manifest
+├── options.html               # Extension options page
+├── background.js              # MV3 service worker
+├── library/
+│   ├── boomiapp/
+│   │   ├── content/           # Content-script context (bundled)
+│   │   ├── page/              # Page context (fullscreen.js only)
+│   │   └── options.js         # Options page logic
+│   ├── css/
+│   │   └── boomi.css          # All extension styles (single stylesheet)
+│   ├── inject/                # Third-party libraries
+│   │   ├── arrive.min.js
+│   │   ├── showdown.min.js
+│   │   ├── rasterizeHTML.min.js
+│   │   └── cm/                # CodeMirror files
+│   └── jquery/
+│       ├── jquery-4.0.0.min.js
+│       └── jquery-3.6.min.js  # Unused, kept for reference
+├── logo/                      # Extension icons and brand images
+├── icon16.png, icon48.png, icon128.png
 scripts/
-  build.js                   ← esbuild bundler + manifest generator + zipper
-build/                       ← release zips (output)
+└── build.js                   # esbuild bundler + manifest generator + zipper
 ```
 
 
