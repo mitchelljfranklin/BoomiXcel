@@ -23,6 +23,7 @@ function updateNotificationCheck() {
     }
   }
 
+  //Add Notification Details HERE!
   function updateNotificationAlert() {
     var changelog = [
       "Bugfix: Fixed an issue where the icon overrides stopped working in Chrome.",
@@ -36,10 +37,10 @@ function updateNotificationCheck() {
     let updateHtml = renderBoomiModal({
       overlayClass: "BoomiUpdateOverlay",
       body:
-        '<h1>Boomi Platform Enhancer Extension Updates</h1>' +
-        '<p>Check out the following new features and or bug fixes for the Boomi Platform Enhancer Extension:</p>' +
+        '<h1>BoomiXcel Extension Updates</h1>' +
+        '<p>Explore the latest additions to the BoomiXcel Extension, including new features and bug fixes:</p>' +
         htmlUpdateContents +
-        '<p>For more detail on what each feature does and how to use it visit the <a href="https://github.com/matt-flaig/Boomi-Platform-Extension/wiki" target="_blank">Extension Wiki</a></p>',
+        '<p>For more information about the BoomiXcel Extension, visit the <a href="https://github.com/mitchelljfranklin/BoomiXcel" target="_blank">Extensions GitHub page</a>.</p>',
       buttons: [{ id: "closeUpdate", className: "gwt-Button", text: "Close" }],
     });
 

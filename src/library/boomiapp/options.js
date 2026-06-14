@@ -37,29 +37,6 @@ function updateDirtyIndicator() {
 document.addEventListener("change", updateDirtyIndicator);
 document.addEventListener("input", updateDirtyIndicator);
 
-function showToast(message, duration) {
-  duration = duration || 3000;
-  var container = document.getElementById("toast-container");
-  var toast = document.createElement("div");
-  toast.className = "toast-popup";
-  toast.innerHTML = message;
-  container.appendChild(toast);
-  requestAnimationFrame(function () { toast.classList.add("show"); });
-  setTimeout(function () {
-    toast.classList.remove("show");
-    setTimeout(function () { toast.remove(); }, 300);
-  }, duration);
-}
-
-function save_options() {
-  var options = getFormState();
-  chrome.storage.sync.set(options, function () {
-    SAVED_STATE = getFormState();
-    updateDirtyIndicator();
-    showToast("<strong>Saved!</strong> Reload the Boomi platform tab for changes to take effect.");
-  });
-}
-
 function restore_options() {
   var defaults = {};
   document.querySelectorAll(".option").forEach(function (el) {
@@ -109,6 +86,15 @@ function reset_defaults() {
   });
   updateDirtyIndicator();
   showToast("<strong>Defaults restored.</strong> Click Save to apply.", 4000);
+}
+
+function save_options() {
+  var options = getFormState();
+  chrome.storage.sync.set(options, function () {
+    SAVED_STATE = getFormState();
+    updateDirtyIndicator();
+    showToast("<strong>Saved!</strong> Reload the Boomi platform tab for changes to take effect.");
+  });
 }
 
 document.addEventListener("DOMContentLoaded", restore_options);

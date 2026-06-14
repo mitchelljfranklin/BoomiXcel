@@ -122,6 +122,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
 | `content/svgAssets.js` | content | Shared SVG icon strings used across multiple content scripts |
 | `content/modalHelper.js` | content | Shared Boomi-style modal dialog renderer and cleanup utilities |
+| `content/toastHelper.js` | content | Shared toast notification utility used across content scripts and the options page |
 | `page/fullscreen.js` | page | Full-screen toggle via keyboard shortcut (page context required) |
 | `options.js` | (options page) | Options page save/restore logic |
 | `background.js` | background | MV3 service worker: handles download renaming and options-page-open message |
@@ -181,6 +182,8 @@ All CSS rules **must** be added to `library/css/boomi.css`. Do **not**:
 If JavaScript needs to apply a style, add or remove a **class** (`element.classList.add` / `remove`) and define the style for that class in `boomi.css`. This keeps all visual rules in one auditable place and avoids CSP issues with inline styles in content scripts.
 
 **Modal dialogs** — all Boomi-style modal/notification dialogs must use `renderBoomiModal()` from `content/modalHelper.js`. Do not write inline modal HTML. See the JSDoc in `modalHelper.js` for parameter documentation.
+
+**Toast notifications** — use `showToast(message, duration, type)` from `content/toastHelper.js` for transient notifications. Available in content scripts (via bundle) and the options page (via direct `<script>` tag). Do not write inline toast HTML or use `alert()`.
 
 ## No linter / formatter / test suite
 

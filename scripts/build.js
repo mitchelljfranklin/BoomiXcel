@@ -14,6 +14,7 @@ const CONTENT_ORDER = [
   "global.js",
   "svgAssets.js",
   "modalHelper.js",
+  "toastHelper.js",
   "pageInit.js",
   "favicon.js",
   "headerActions.js",
