@@ -1,7 +1,7 @@
 function updateNotificationCheck() {
-  let integration = document.getElementsByClassName(
-    "qm-c-servicenav__service-name",
-  )[0];
+  // Check both old and new Boomi UI for the integration service name
+  var integration = document.getElementsByClassName("qm-c-servicenav__service-name")[0]
+    || document.querySelector('[data-testid="header-masthead-brand-logo"]');
 
   if (integration) {
     let currentAppver = chrome.runtime.getManifest().version;
