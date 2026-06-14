@@ -24,16 +24,14 @@ function updateNotificationCheck() {
   }
 
   function updateNotificationAlert() {
-    let htmlUpdateContents = `
-        <ul>
-        <li>
-        <p><strong>Bugfix:</strong> Fixed an issue where the icon overrides stopped working in Chrome.</p>
-        </li>
-        <li>
-        <p><strong>Bugfix:</strong> Fixed an issue where note content might overflow the note area.</p>
-        </li>
-        </ul>
-        `;
+    var changelog = [
+      "Bugfix: Fixed an issue where the icon overrides stopped working in Chrome.",
+      "Bugfix: Fixed an issue where note content might overflow the note area.",
+    ];
+
+    var htmlUpdateContents = "<ul>" + changelog.map(function (item) {
+      return "<li><p>" + item + "</p></li>";
+    }).join("") + "</ul>";
 
     let updateHtml = renderBoomiModal({
       overlayClass: "BoomiUpdateOverlay",
