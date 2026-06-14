@@ -13,6 +13,7 @@ const CONTENT_ORDER = [
   "contentScript.js",
   "global.js",
   "svgAssets.js",
+  "modalHelper.js",
   "pageInit.js",
   "favicon.js",
   "headerActions.js",

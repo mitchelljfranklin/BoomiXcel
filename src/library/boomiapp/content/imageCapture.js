@@ -21,52 +21,33 @@ const process_to_image = (process) => {
     nav
       .querySelector(".bph-capture-process")
       .addEventListener("click", (event) => {
-        let alert_html = `<div class="BoomiPlatformOverlay center_panel" id="popup_on_popup_content" role="dialog" aria-modal="true"
-            style="left: 663px; top: 379px; visibility: visible; position: absolute; overflow: visible;">
-            <div class="popupContent bph-load-done">
-                <div class="modal modal_top">
-                    <div class="modal_contents">
-                        <div class="margin_popup_contents" style="width: 550px;">
-                            <div class="form_header" style="">
-                                <div class="form_title no_required">
-                                    <div class="form_title_top"> <img class="no_display form_header_image">
-                                        <h2 class="form_title_label">Process Image Capture</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="qm-c-alert qm-c-alert--none" style="max-height: 600px; overflow: auto;"><span
-                                    class="qm-c-alert__icon"></span>
-                                <div class="qm-c-alert__text">
-                                    
-                                    <p>This will capture an image of your full process canvas and export to a file.</p>
-                                    <br>
-                                    <div>
-                                        <label>
-                                            <input type="checkbox" class="transparent" style="vertical-align: middle;"/>Use Transparent Background
-                                        </label>
-                                        <select class="uiscale gwt-ListBox" style="padding-left: 10px; margin-left: 10px;">
-                                            <option value="1.0" selected>1x (normal size)</option>
-                                            <option value="1.5">1.5x</option>
-                                            <option value="2.0">2x</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <input type="checkbox" class="expandNotes" style="vertical-align: middle;"/>Expand Notes
-                                        </label>
-                                    </div>
-                                </div>                     </div>
-                        </div>
-                    </div>
-                    <div class="button_set">
-                        <div class="button_spinner_panel no_display"> <i
-                                class="font_icon icon-spinner before-animate-spin spinner"></i> </div><button type="button"
-                            class="gwt-Button qm-button--primary-action action_button" title="Run Capture Process">Capture Process Flow</button>
-                            <button type="button" class="gwt-Button"  data-locator="link-cancel"; onclick="javascript:document.querySelector('.BoomiPlatformOverlay').remove();">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+        let alert_html = renderBoomiModal({
+          overlayClass: "BoomiPlatformOverlay",
+          width: "550px",
+          title: "Process Image Capture",
+          showInfoIcon: false,
+          alertVariant: "qm-c-alert--none",
+          extraBodyClasses: "",
+          extraPopupClasses: "bph-load-done",
+          body:
+            '<p>This will capture an image of your full process canvas and export to a file.</p>' +
+            '<br>' +
+            '<div>' +
+            '<label><input type="checkbox" class="transparent" style="vertical-align: middle;"/>Use Transparent Background</label>' +
+            '<select class="uiscale gwt-ListBox" style="padding-left: 10px; margin-left: 10px;">' +
+            '<option value="1.0" selected>1x (normal size)</option>' +
+            '<option value="1.5">1.5x</option>' +
+            '<option value="2.0">2x</option>' +
+            '</select>' +
+            '</div>' +
+            '<div>' +
+            '<label><input type="checkbox" class="expandNotes" style="vertical-align: middle;"/>Expand Notes</label>' +
+            '</div>',
+          buttons: [
+            { className: "gwt-Button qm-button--primary-action action_button", text: "Capture Process Flow", attrs: ' title="Run Capture Process"' },
+            { className: "gwt-Button", text: "Cancel", attrs: ' data-locator="link-cancel" onclick="javascript:document.querySelector(\'.BoomiPlatformOverlay\').remove();"' },
+          ],
+        });
 
         let overlay = document.querySelector(".BoomiPlatformOverlay");
         if (overlay) overlay.remove();
