@@ -168,7 +168,7 @@ When splitting, renaming, or moving code between files:
 When adding, removing, or renaming a script file:
 - Update the **Script responsibilities** table and **CONTENT_ORDER** list
 - Update the **README.md** Script Reference table and Features list
-- When adding or removing a feature (even without script changes), update the README Features section
+- When adding or removing a feature (even without script changes), update the README Features section and the **USER_GUIDE.md** with a description of what the feature does and how users interact with it
 - Run `npm run build` to verify nothing is broken
 
 ## Code style — human-readable formatting
