@@ -40,7 +40,7 @@ function updateNotificationCheck() {
         '<h1>BoomiXcel Extension Updates</h1>' +
         '<p>Explore the latest additions to the BoomiXcel Extension, including new features and bug fixes:</p>' +
         htmlUpdateContents +
-        '<p>For more information about the BoomiXcel Extension, visit the <a href="https://github.com/mitchelljfranklin/BoomiXcel" target="_blank">Extensions GitHub page</a>.</p>',
+        '<p>For more information about the BoomiXcel Extension, visit the <a href="https://github.com/mitchelljfranklin/BoomiXcel/blob/master/USER_GUIDE.md" target="_blank">Extensions GitHub user guide page</a>.</p>',
       buttons: [{ id: "closeUpdate", className: "gwt-Button", text: "Close" }],
     });
 
