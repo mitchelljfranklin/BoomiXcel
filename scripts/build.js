@@ -18,7 +18,6 @@ const CONTENT_ORDER = [
   "headerActions.js",
   "dashboard.js",
   "shapePalette.js",
-  "shortcut.js",
   "shortCuts.js",
   "updateNotification.js",
   "messageEditor.js",

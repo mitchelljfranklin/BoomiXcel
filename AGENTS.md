@@ -156,6 +156,14 @@ When splitting, renaming, or moving code between files:
 - **Verify before committing** — after any file split or rename, test the affected features on `platform.boomi.com` to confirm they still work.
 - **When in doubt, don't refactor** — a slightly messy but working file is better than a clean but broken one.
 
+## Documentation — keep it in sync
+
+When adding, removing, or renaming a script file:
+- Update the **Script responsibilities** table and **CONTENT_ORDER** list
+- Update the **README.md** Script Reference table and Features list
+- When adding or removing a feature (even without script changes), update the README Features section
+- Run `npm run build` to verify nothing is broken
+
 ## Code style — human-readable formatting
 
 All code must be written in a human-readable format — this applies equally to hand-written and AI-generated code. Avoid minified, obfuscated, or machine-optimized code in any source files.

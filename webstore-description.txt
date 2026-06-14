@@ -8,7 +8,6 @@ A browser extension that enhances the Boomi Integration Platform web UI at platf
 KEYBOARD SHORTCUTS
 
   - `Ctrl + Alt + S`: Save the current flow
-  - `Ctrl + Alt + T`: Test the current flow
   - Configurable (default `~`): Toggle full-screen mode
 
 BUILD CANVAS
