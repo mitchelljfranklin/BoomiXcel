@@ -197,9 +197,9 @@ npm run watch        # rebuild content scripts on file changes
 
 | File | Manifest | Notes |
 |------|----------|-------|
-| `boomi-platform-enhancer-X.Y.Z-Chrome.zip` | V3 | includes `update_url` |
-| `boomi-platform-enhancer-X.Y.Z-Firefox.zip` | V2 | flat `web_accessible_resources` |
-| `boomi-platform-enhancer-X.Y.Z-Edge.zip` | V3 | no `update_url` |
+| `boomi-xcel-X.Y.Z-Chrome.zip` | V3 | includes `update_url` |
+| `boomi-xcel-X.Y.Z-Firefox.zip` | V2 | flat `web_accessible_resources` |
+| `boomi-xcel-X.Y.Z-Edge.zip` | V3 | no `update_url` |
 
 All manifests are generated from `src/manifest.json` — the single source of truth, with version injected from `package.json`.
 
@@ -248,7 +248,7 @@ The extension runs scripts in two separate contexts:
 **Rule of thumb:**
 | If the script... | Place it in... |
 |---|---|
-| Uses `chrome.*`, `document.arrive()`, `CodeMirror`, or `shortcut.add()` | `content/` |
+| Uses `chrome.*`, `document.arrive()`, or `CodeMirror` | `content/` |
 | Needs Fullscreen API (`element.requestFullscreen`) | `page/` |
 
 ### Configuration flow
@@ -356,7 +356,6 @@ npm run build
 - **[arrive.js](https://github.com/uzairfarooq/arrive)** — DOM mutation observer
 - **[showdown](https://github.com/showdownjs/showdown)** — Markdown rendering
 - **[rasterizeHTML.js](https://github.com/cburgmer/rasterizeHTML.js)** — process flow image capture
-- **[shortcut.js](https://github.com/jkup/shortcut)** — keyboard shortcut handling (bundled)
 
 ---
 

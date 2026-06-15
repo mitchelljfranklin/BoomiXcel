@@ -2,7 +2,7 @@
 
 ## Project summary
 
-Boomi Platform Enhancer — a browser extension (Chrome + Firefox) that injects JS/CSS into `https://platform.boomi.com/*` to enhance the Boomi integration platform's web UI.
+BoomiXcel — a browser extension (Chrome + Firefox) that injects JS/CSS into `https://platform.boomi.com/*` to enhance the Boomi integration platform's web UI.
 
 ## Build step
 
@@ -76,7 +76,6 @@ content/*.js (in bundle)
 - **jQuery 4.0** — actively used for DOM manipulation. Loaded via content_scripts at `document_start` for the isolated context. The old `jquery-3.6.min.js` file is preserved in the repo for reference but not loaded.
 - **CodeMirror** — the custom code editor used in Message/Notify shapes (loaded at `document_start` in the isolated context)
 - **arrive.js** — mutation-observer library for DOM insertion detection (`document.arrive()`). Only available in the isolated context.
-- **shortcut.js** — keyboard shortcut library (bundled into `content/bundle.js`)
 - **showdown.min.js**, **rasterizeHTML.min.js** — loaded at `document_start` in the isolated context (used by content scripts for markdown rendering and image capture)
 
 ### arrive.js cleanup pattern
@@ -142,7 +141,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
    - **Chrome** — copied as-is (V3, includes `update_url`)
    - **Firefox** — downgraded to V2, `web_accessible_resources` flattened to string array, `update_url` removed
    - **Edge** — same as Chrome but without `update_url`
-4. Packages each into `build/boomi-platform-enhancer-{version}-{Browser}.zip`
+4. Packages each into `build/boomi-xcel-{version}-{Browser}.zip`
 
 The **version** is read from `package.json` and injected into all manifests. To release:
 1. Bump `version` in `package.json`
@@ -166,10 +165,30 @@ When splitting, renaming, or moving code between files:
 ## Documentation — keep it in sync
 
 When adding, removing, or renaming a script file:
-- Update the **Script responsibilities** table and **CONTENT_ORDER** list
+- Update the **Script responsibilities** table (this file) and **CONTENT_ORDER** in `scripts/build.js`
 - Update the **README.md** Script Reference table and Features list
-- When adding or removing a feature (even without script changes), update the README Features section and the **USER_GUIDE.md** with a description of what the feature does and how users interact with it
 - Run `npm run build` to verify nothing is broken
+
+When adding or removing a feature (even without script changes):
+- Update the **README.md** Features section
+- Update the **USER_GUIDE.md** with a description of what the feature does and how users interact with it
+
+When adding or removing a third-party library:
+- Update the **Key libraries** section (this file)
+- Update the **README.md** Built With section
+- If the library changes execution-context rules, update the architecture table in README.md
+
+When documentation sections are added or removed:
+- Update the **README.md** table of contents (Contents list)
+- If the new section replaces or overlaps with existing content, remove the stale content to avoid duplication
+
+When browser support changes:
+- Update the **README.md** Supported Browsers table
+- Update the **USER_GUIDE.md** Installation section if store links change
+
+After every change:
+- Re-read the files you edited and look for any stale or contradictory information they may now contain — fix it proactively
+- If an old library, tool, or approach is no longer in use, remove all references to it from all `.md` files
 
 ## Code style — human-readable formatting
 

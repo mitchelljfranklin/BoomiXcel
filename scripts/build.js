@@ -193,7 +193,7 @@ function copyDir(src, dest) {
 
 async function createPackage(browserName, manifest, version) {
   const tmpDir = path.join(BUILD_DIR, `.tmp-${browserName}`);
-  const outZip = path.join(BUILD_DIR, `boomi-platform-enhancer-${version}-${browserName}.zip`);
+  const outZip = path.join(BUILD_DIR, `boomi-xcel-${version}-${browserName}.zip`);
 
   // Clean
   fs.rmSync(tmpDir, { recursive: true, force: true });
@@ -221,7 +221,7 @@ async function createPackage(browserName, manifest, version) {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 
   const sizeKB = Math.round(fs.statSync(outZip).size / 1024);
-  console.log(`  Created: build/boomi-platform-enhancer-${version}-${browserName}.zip (${sizeKB} KB)`);
+  console.log(`  Created: build/boomi-xcel-${version}-${browserName}.zip (${sizeKB} KB)`);
 }
 
 async function main() {
@@ -245,7 +245,7 @@ async function main() {
   }
 
   const version = getVersion();
-  console.log(`Boomi Platform Enhancer v${version}\n`);
+  console.log(`BoomiXcel v${version}\n`);
 
   // Step 1: Bundle content scripts
   await bundleContent();

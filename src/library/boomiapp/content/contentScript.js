@@ -37,7 +37,7 @@ let wait_for_load = setInterval(() => {
         document.getElementById("footer_links").insertAdjacentHTML(
           "afterbegin",
           `
-            <li><a class="alternate_link" target="_blank" href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko/">Boomi Platform Enhancer v${chrome.runtime.getManifest().version} loaded</a> [<a class="alternate_link" href="#" id="bph-options-link">options</a>]</li>
+            <li><a class="alternate_link" target="_blank" href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko/">BoomiXcel v${chrome.runtime.getManifest().version} loaded</a> [<a class="alternate_link" href="#" id="bph-options-link">options</a>]</li>
             `,
         );
 
@@ -89,7 +89,7 @@ chrome.storage.onChanged.addListener((e) => {
     overlayClass: "BoomiUpdateOverlay",
     body:
       "<h1>Settings Changed.</h1>" +
-      "<p>The Boomi Platform Enhancer Extension options have been adjusted, please reload the page for the changes to apply.</p>",
+      "<p>The BoomiXcel extension options have been adjusted, please reload the page for the changes to apply.</p>",
     buttons: [
       { id: "closeUpdate", className: "gwt-Button", text: "Close Message" },
       { id: "reloadPage", className: "gwt-Button", text: "Reload" },
