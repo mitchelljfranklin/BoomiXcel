@@ -230,4 +230,4 @@ After deploying a component, you'll receive a reminder to schedule it if appropr
 ## Footer & Branding
 
 ### Extension Footer Link
-A "BoomiXcel vX.Y.Z loaded [options]" link appears in the Boomi footer bar, showing the current version and providing quick access to the options page.
+A "BoomiXcel vX.Y.Z · Options" link appears in the Boomi footer bar, showing the current version and providing quick access to the options page.

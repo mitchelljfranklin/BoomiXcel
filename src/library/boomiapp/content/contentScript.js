@@ -37,7 +37,7 @@ let wait_for_load = setInterval(() => {
         document.getElementById("footer_links").insertAdjacentHTML(
           "afterbegin",
           `
-            <li><a class="alternate_link" target="_blank" href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko/">BoomiXcel v${chrome.runtime.getManifest().version} loaded</a> [<a class="alternate_link" href="#" id="bph-options-link">options</a>]</li>
+            <li><a class="alternate_link" target="_blank" href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko/">BoomiXcel v${chrome.runtime.getManifest().version}</a> · <a class="alternate_link" href="#" id="bph-options-link">Options</a></li>
             `,
         );
 
