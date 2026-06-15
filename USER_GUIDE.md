@@ -7,6 +7,7 @@ BoomiXcel enhances the Boomi Integration Platform (`platform.boomi.com`) with po
 ## Table of Contents
 
 - [Installation](#installation)
+- [Quick Settings (Popup)](#quick-settings-popup)
 - [Options Page](#options-page)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Build Canvas](#build-canvas)
@@ -32,9 +33,28 @@ BoomiXcel enhances the Boomi Integration Platform (`platform.boomi.com`) with po
 
 ---
 
+## Quick Settings (Popup)
+
+Click the BoomiXcel icon in your browser toolbar to open a compact settings popup. This gives you instant access to the most-used feature toggles without leaving the Boomi platform:
+
+| Toggle | Effect |
+|--------|--------|
+| Show Canvas Grid | Removes the dot grid from the build canvas |
+| Replace Boomi Brand Logo | Shows the BoomiXcel logo in the masthead |
+| Old-Style Play/Pause Icons | Restores legacy play/pause icons in deployed processes |
+| Reverse Modal Buttons (OK/Cancel) | Swaps Cancel/OK to OK/Cancel order |
+| Show Boomi Footer | Prevents the footer bar from being hidden |
+| Unique Page Titles & Favicons | Simplified tab names + page-specific favicons |
+| Default Process Filters | Auto-checks Process, Process Properties, Cross Reference, API Service filters |
+| Post-Deployment Schedule Reminder | Reminds you to schedule after deploying |
+
+Changes save immediately. Click **Reload Page** to apply them to the current Boomi tab, or **Full Settings** to open the complete options page.
+
+---
+
 ## Options Page
 
-Right-click the extension icon → **Options**, or click the `[options]` link in the Boomi footer bar.
+Right-click the extension icon → **Options**, click the `[options]` link in the Boomi footer bar, or use the **Full Settings** button in the popup.
 
 The options page groups settings into collapsible sections. Changes take effect after clicking **Save** and reloading the Boomi platform tab. A toast notification confirms each save.
 

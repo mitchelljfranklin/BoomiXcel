@@ -4,6 +4,16 @@
 
 BoomiXcel — a browser extension (Chrome + Firefox) that injects JS/CSS into `https://platform.boomi.com/*` to enhance the Boomi integration platform's web UI.
 
+## Popup
+
+Clicking the extension toolbar icon opens a popup (`src/popup/popup.html`) with quick-access toggle switches for the most-used settings. Changes save immediately to `chrome.storage.sync`. The popup has three elements:
+
+- **Toggle list** — rendered by `popup.js` from `TOGGLE_LIST` (on/off string values written directly to `chrome.storage.sync`)
+- **Full Settings** button — calls `chrome.runtime.openOptionsPage()` to open the full options page
+- **Reload Page** button — reloads the active Boomi tab so settings take effect
+
+When adding a new on/off toggle, add its `{ key, label, defaultVal }` to `TOGGLE_LIST` in `popup.js`.
+
 ## Build step
 
 ```bash
@@ -172,6 +182,7 @@ When adding, removing, or renaming a script file:
 When adding or removing a feature (even without script changes):
 - Update the **README.md** Features section
 - Update the **USER_GUIDE.md** with a description of what the feature does and how users interact with it
+- If the feature has a toggle, add it to `TOGGLE_LIST` in `src/popup/popup.js`
 
 When adding or removing a third-party library:
 - Update the **Key libraries** section (this file)
@@ -224,6 +235,8 @@ Every form control on `options.html` **must** have both:
 - a `name` attribute — becomes the `chrome.storage.sync` key
 
 If you add a new option toggle on the options page, you must also add the corresponding key read in `listenerGlobal.js` for it to take effect on the Boomi platform pages.
+
+If the new option is a simple on/off toggle (`toggle-switch`), add it to `TOGGLE_LIST` in `src/popup/popup.js` so it appears in the quick-settings popup.
 
 The options.html logo uses an `<img src="logo/XcelLogo.png">` tag — `*.png` is covered by `web_accessible_resources`.
 
