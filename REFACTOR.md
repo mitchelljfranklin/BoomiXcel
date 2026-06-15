@@ -158,7 +158,7 @@ Content scripts are now bundled by esbuild into a single file instead of loading
 
 I added a bunch of docs to help contributors:
 
-- **AGENTS.md** — developer reference for AIagents covering architecture, conventions, script responsibilities, build process, and rules for keeping docs in sync
+- **AGENTS.md** — developer reference for AI Agent use to help others wanting to use AI covering architecture, conventions, script responsibilities, build process, and rules for keeping docs in sync
 - **USER_GUIDE.md** — end-user guide explaining every feature
 - **PRIVACY.md** — privacy policy and data handling
 - **SECURITY.md** — how to report vulnerabilities
