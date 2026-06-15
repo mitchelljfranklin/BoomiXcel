@@ -1,6 +1,6 @@
 # BoomiXcel v1.8.0.0 — Refactor & Change Log
 
-A detailed technical comparison of the OLD project (`/root/github/OLD`, version 1.7.4.8) against the current BoomiXcel codebase (version 1.8.0.0). Every architectural change, feature addition, bug fix, documentation improvement, code cleanup, and structural difference is documented below with file paths and technical context.
+A detailed technical comparison of the existing project against the current BoomiXcel codebase (version 1.8.0.0). Every architectural change, feature addition, bug fix, documentation improvement, code cleanup, and structural difference is documented below with file paths and technical context.
 
 ---
 
