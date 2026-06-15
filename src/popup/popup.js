@@ -35,7 +35,9 @@ function renderToggles() {
         var newVal = this.checked ? "on" : "off";
         var data = {};
         data[item.key] = newVal;
-        chrome.storage.sync.set(data);
+        chrome.storage.local.set({ bph_suppress_reload_dialog: true }, function () {
+          chrome.storage.sync.set(data);
+        });
         showSavedToast();
       });
       var slider = document.createElement("span");

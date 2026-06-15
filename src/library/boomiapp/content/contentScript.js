@@ -84,21 +84,28 @@ chrome.storage.onChanged.addListener((e) => {
     return;
   }
 
-  let alert_html = renderBoomiModal({
-    overlayClass: "BoomiUpdateOverlay",
-    body:
-      "<h1>Settings Changed.</h1>" +
-      "<p>The BoomiXcel extension options have been adjusted, please reload the page for the changes to apply.</p>",
-    buttons: [
-      { id: "closeUpdate", className: "gwt-Button", text: "Close Message" },
-      { id: "reloadPage", className: "gwt-Button", text: "Reload" },
-    ],
+  chrome.storage.local.get(["bph_suppress_reload_dialog"], function (local) {
+    if (local.bph_suppress_reload_dialog) {
+      chrome.storage.local.remove("bph_suppress_reload_dialog");
+      return;
+    }
+
+    let alert_html = renderBoomiModal({
+      overlayClass: "BoomiUpdateOverlay",
+      body:
+        "<h1>Settings Changed.</h1>" +
+        "<p>The BoomiXcel extension options have been adjusted, please reload the page for the changes to apply.</p>",
+      buttons: [
+        { id: "closeUpdate", className: "gwt-Button", text: "Close Message" },
+        { id: "reloadPage", className: "gwt-Button", text: "Reload" },
+      ],
+    });
+
+    removeBoomiOverlay("BoomiUpdateOverlay");
+    document
+      .getElementsByTagName("body")[0]
+      .insertAdjacentHTML("beforeend", alert_html);
+
+    updateFullscreenConfig();
   });
-
-  removeBoomiOverlay("BoomiUpdateOverlay");
-  document
-    .getElementsByTagName("body")[0]
-    .insertAdjacentHTML("beforeend", alert_html);
-
-  updateFullscreenConfig();
 });
