@@ -197,9 +197,9 @@ npm run watch        # rebuild content scripts on file changes
 
 | File | Manifest | Notes |
 |------|----------|-------|
-| `boomi-platform-enhancer-X.Y.Z-Chrome.zip` | V3 | includes `update_url` |
-| `boomi-platform-enhancer-X.Y.Z-Firefox.zip` | V2 | flat `web_accessible_resources` |
-| `boomi-platform-enhancer-X.Y.Z-Edge.zip` | V3 | no `update_url` |
+| `boomi-xcel-X.Y.Z-Chrome.zip` | V3 | includes `update_url` |
+| `boomi-xcel-X.Y.Z-Firefox.zip` | V2 | flat `web_accessible_resources` |
+| `boomi-xcel-X.Y.Z-Edge.zip` | V3 | no `update_url` |
 
 All manifests are generated from `src/manifest.json` — the single source of truth, with version injected from `package.json`.
 

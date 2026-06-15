@@ -204,7 +204,7 @@ After deploying a component, you'll receive a reminder to schedule it if appropr
 ## Footer & Branding
 
 ### Extension Footer Link
-A "Boomi Platform Enhancer vX.Y.Z loaded [options]" link appears in the Boomi footer bar, showing the current version and providing quick access to the options page.
+A "BoomiXcel vX.Y.Z loaded [options]" link appears in the Boomi footer bar, showing the current version and providing quick access to the options page.
 
 ### Brand Logo
 The BoomiXcel logo replaces the Boomi masthead logo when enabled in the options (configurable).

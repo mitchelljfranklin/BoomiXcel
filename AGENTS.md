@@ -2,7 +2,7 @@
 
 ## Project summary
 
-Boomi Platform Enhancer — a browser extension (Chrome + Firefox) that injects JS/CSS into `https://platform.boomi.com/*` to enhance the Boomi integration platform's web UI.
+BoomiXcel — a browser extension (Chrome + Firefox) that injects JS/CSS into `https://platform.boomi.com/*` to enhance the Boomi integration platform's web UI.
 
 ## Build step
 
@@ -141,7 +141,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
    - **Chrome** — copied as-is (V3, includes `update_url`)
    - **Firefox** — downgraded to V2, `web_accessible_resources` flattened to string array, `update_url` removed
    - **Edge** — same as Chrome but without `update_url`
-4. Packages each into `build/boomi-platform-enhancer-{version}-{Browser}.zip`
+4. Packages each into `build/boomi-xcel-{version}-{Browser}.zip`
 
 The **version** is read from `package.json` and injected into all manifests. To release:
 1. Bump `version` in `package.json`
