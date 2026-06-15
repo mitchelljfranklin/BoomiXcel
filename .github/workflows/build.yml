@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Verify build artifacts
+        run: |
+          test -f build/boomi-xcel-*-Chrome.zip || (echo "Missing Chrome zip" && exit 1)
+          test -f build/boomi-xcel-*-Firefox.zip || (echo "Missing Firefox zip" && exit 1)
+          test -f build/boomi-xcel-*-Edge.zip || (echo "Missing Edge zip" && exit 1)
+
+      - name: Validate Firefox manifest
+        run: |
+          unzip -p build/boomi-xcel-*-Firefox.zip manifest.json | python3 -c "
+          import json, sys
+          m = json.load(sys.stdin)
+          assert m['manifest_version'] == 2, 'Firefox manifest must be MV2'
+          assert 'browser_action' in m or 'action' not in m, 'Firefox MV2 must use browser_action'
+          assert 'scripts' in m.get('background', {}), 'Firefox MV2 must use background.scripts'
+          assert 'https://platform.boomi.com/*' in m.get('permissions', []), 'Host permission missing'
+          print('Firefox manifest OK')
+          "

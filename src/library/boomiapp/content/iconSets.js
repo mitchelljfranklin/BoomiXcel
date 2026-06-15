@@ -223,7 +223,6 @@ var minimalInvertedIconStyleColorCodes = {
   "Flow Control": "#A16123",
   "Business Rules": "#A16123",
   "Try/Catch": "#127B87",
-  Connector: "#1B72C3",
   // "Map": "#9E559C",
   // "Set Properties": "#A16123",
   // "Message": "#9E559C",
