@@ -1,5 +1,4 @@
 document.arrive(".filter_popup", function (filteredScreen) {
-  //debugger
   var processFilter;
   var processPropFilter;
   var CrossFilter;

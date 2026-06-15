@@ -77,8 +77,6 @@ function InitCollapsiblePanel(p) {
 var resizeObserver = new ResizeObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.contentRect.width == 700) {
-      console.log("Old Shape Palette Expand Detected");
-
       ExpandPalette(true, entry.target);
     }
     //Change control display based on width (44 = closed)

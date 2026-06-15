@@ -6,7 +6,6 @@ function updateNotificationCheck() {
   if (integration) {
     let currentAppver = chrome.runtime.getManifest().version;
     if (typeof Storage !== "undefined") {
-      localStorage.getItem("boomiplatenhanUpdateNot" + currentAppver);
       if (
         localStorage.getItem("boomiplatenhanUpdateNot" + currentAppver) ===
           null ||

@@ -39,7 +39,6 @@ document.arrive("[data-locator='button-schedules']", function (schedulebutton) {
 // allow sidebar items to be clicked anywhere to open and components to be opened with a single click
 // maybe this should probably be an option you can turn on or turn off at some point?
 document.arrive(".rail.simplify .gwt-FastTree .treeItemContent", function (el) {
-  //document.querySelectorAll(".treeItemContent").forEach((el) => {
   if (!el.onclick) {
     el.onclick = function (e) {
       // turn single-click to double-click
@@ -64,7 +63,6 @@ document.arrive(".rail.simplify .gwt-FastTree .treeItemContent", function (el) {
     clickEvent.initEvent("dblclick", true, true);
     targetNode.dispatchEvent(clickEvent);
   }
-  //})
 });
 
 $(document).on("click", "#collapseDeployedFolders", function () {

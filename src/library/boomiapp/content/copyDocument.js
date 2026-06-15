@@ -12,48 +12,21 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
   var copyBtn = document.createElement('button');
   copyBtn.id = 'bph-copy-document-btn';
   copyBtn.type = 'button';
+  copyBtn.className = 'bph-copy-btn';
   copyBtn.innerHTML = SVG_COPY_ICON;
-  copyBtn.style.cssText = [
-    'position: absolute',
-    'bottom: 8px',
-    'right: 8px',
-    'background: none',
-    'border: none',
-    'padding: 4px 6px',
-    'cursor: pointer',
-    'color: inherit',
-    'opacity: 0.6',
-    'display: flex',
-    'align-items: center',
-    'gap: 4px',
-    'font-size: 12px',
-  ].join(';');
 
   var tooltip = document.createElement('div');
+  tooltip.className = 'bph-copy-tooltip';
   tooltip.textContent = 'Copy raw content';
-  tooltip.style.cssText = [
-    'position: absolute',
-    'bottom: calc(100% + 6px)',
-    'right: 0',
-    'background: rgba(0,0,0,0.75)',
-    'color: #fff',
-    'font-size: 11px',
-    'white-space: nowrap',
-    'padding: 3px 7px',
-    'border-radius: 3px',
-    'pointer-events: none',
-    'opacity: 0',
-    'transition: opacity 0.15s',
-  ].join(';');
   copyBtn.appendChild(tooltip);
 
   copyBtn.addEventListener('mouseenter', function () {
-    copyBtn.style.opacity = '1';
-    tooltip.style.opacity = '1';
+    copyBtn.classList.add('bph-copy-btn-hover');
+    tooltip.classList.add('bph-copy-tooltip-visible');
   });
   copyBtn.addEventListener('mouseleave', function () {
-    copyBtn.style.opacity = '0.6';
-    tooltip.style.opacity = '0';
+    copyBtn.classList.remove('bph-copy-btn-hover');
+    tooltip.classList.remove('bph-copy-tooltip-visible');
   });
 
   copyBtn.addEventListener('click', function (e) {
@@ -66,10 +39,10 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
 
     function onCopied() {
       copyBtn.innerHTML = SVG_CHECK_ICON + '<span>Copied</span>';
-      copyBtn.style.opacity = '1';
+      copyBtn.classList.add('bph-copy-btn-hover');
       setTimeout(function () {
         copyBtn.innerHTML = SVG_COPY_ICON;
-        copyBtn.style.opacity = '0.6';
+        copyBtn.classList.remove('bph-copy-btn-hover');
       }, 1500);
     }
 
@@ -85,6 +58,6 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
     });
   });
 
-  formHeader.style.position = 'relative';
+  formHeader.classList.add('bph-copy-container');
   formHeader.appendChild(copyBtn);
 });

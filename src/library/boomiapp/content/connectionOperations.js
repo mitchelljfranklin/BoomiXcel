@@ -26,8 +26,5 @@ const add_connector_list = (conOperation) => {
       }
     }
 
-    //for later
-    //let tableElement1 = document.getElementsByClassName("largeLabels");
-    //let headerElement = tableElement1[2]
   }
 };

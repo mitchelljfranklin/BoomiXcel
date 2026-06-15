@@ -15,13 +15,7 @@ let wait_for_load = setInterval(() => {
 
     updateFullscreenConfig();
 
-    var platformStatus = document.evaluate(
-      "//a[text()='Platform Status & Announcements']",
-      document,
-      null,
-      XPathResult.FIRST_ORDERED_NODE_TYPE,
-      null,
-    ).singleNodeValue;
+    var platformStatus = document.querySelector('a[href*="status.boomi.com"]');
     fetch("https://status.boomi.com/api/v2/status.json")
       .then((res) => res.json())
       .then((out) => {
@@ -108,7 +102,3 @@ chrome.storage.onChanged.addListener((e) => {
 
   updateFullscreenConfig();
 });
-
-function openExensionOptionsPage() {
-  window.open(chrome.runtime.getURL("options.html"));
-}

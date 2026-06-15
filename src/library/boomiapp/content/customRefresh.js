@@ -75,7 +75,6 @@ const refreshInterval_listener = (refreshInterval) => {
   function refresh_reporting() {
     if (do_refresh) {
       $("button[data-locator=button-refresh]")[0].click();
-      console.log("Refresh");
       setTimeout(function () {
         refresh_reporting();
       }, BoomiPlatform.refresh_interval * 1000);

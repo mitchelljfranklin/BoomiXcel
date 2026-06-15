@@ -3,7 +3,6 @@
 document.arrive(
   "[data-locator='button-view-deployments']",
   function (deploymentScreen) {
-    //debugger
 
     chrome.storage.sync.get(["reminder_schedule"], function (e) {
       if (e.reminder_schedule === "on") {
