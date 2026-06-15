@@ -52,9 +52,9 @@
 ## 📋 Contents
 
 - [Features](#-features)
-- [Screenshots](#screenshots)
 - [Installing](#-installing)
 - [Supported Browsers](#-supported-browsers)
+- [User Guide](#-user-guide)
 - [Development](#-development)
 - [Contributing](#-contributing)
 - [Discussion](#-discussion)
@@ -120,6 +120,10 @@
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
 
+⚡ **Quick Settings Popup**
+- Click the toolbar icon for instant access to the most-used feature toggles — no need to open the full options page
+- Changes save immediately; reload the page to apply
+
 <p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
 
 
@@ -158,6 +162,12 @@ Click **Install** — the extension auto-enables on `https://platform.boomi.com/
 > All Chromium-based browsers (Brave, Opera, Arc, Vivaldi, etc.) can install the extension from the Chrome Web Store.
 
 <p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
+
+---
+
+## 📘 User Guide
+
+For detailed usage instructions, see the full [USER_GUIDE.md](USER_GUIDE.md).
 
 ---
 
@@ -214,6 +224,10 @@ src/
 ├── manifest.json              # Chrome V3 base manifest
 ├── options.html               # Extension options page
 ├── background.js              # MV3 service worker
+├── popup/
+│   ├── popup.html             # Toolbar popup
+│   ├── popup.js               # Quick-settings toggle logic
+│   └── popup.css              # Popup styles
 ├── library/
 │   ├── boomiapp/
 │   │   ├── content/           # Content-script context (bundled)
@@ -267,7 +281,7 @@ content/contentScript.js
 Three storage backends are used:
 - **`chrome.storage.sync`** — user preferences (feature toggles, refresh interval, shortcuts). Read directly by `listenerGlobal.js` and cached.
 - **`chrome.storage.local`** — transient UI state (header visibility toggle)
-- **`localStorage`** — per-version changelog suppression (`boomiplatenhanUpdateNot{version}`)
+- **`localStorage`** — per-version changelog suppression (`boomiplatenhanUpdateNot{version}`, legacy key from the old "Boomi Platform Enhancer" name)
 
 ### Conventions
 
@@ -275,7 +289,7 @@ Three storage backends are used:
 - **CSS convention** — all styling goes in `library/css/boomi.css`. Never use inline `style=""` attributes, `element.style.*` in JS, or `<style>` blocks. Use classes (`element.classList.add`/`remove`) and define the rules in `boomi.css`. This applies to every file — options page, content scripts, everything.
 - **Modal dialogs** — use `renderBoomiModal()` from `content/modalHelper.js` for all Boomi-style notification and dialog modals. Do not write inline modal HTML.
 - **Toast notifications** — use `showToast()` from `content/toastHelper.js` for transient notifications. Available everywhere. Do not write inline toast HTML or use `alert()`.
-- **Options page form contract** — every form control on `options.html` must have both `class="option"` and a `name` attribute. `options.js` discovers controls via `.option` and uses `name` as the `chrome.storage.sync` key. New toggles also need a corresponding key read in `listenerGlobal.js`. Each control should have a `data-default` attribute for the Reset button. On/off options use toggle switches (`.toggle-switch` checkboxes) serialized as `"on"`/`"off"` strings.
+- **Options page form contract** — every form control on `options.html` must have both `class="option"` and a `name` attribute. `options.js` discovers controls via `.option` and uses `name` as the `chrome.storage.sync` key. New toggles also need a corresponding key read in `listenerGlobal.js`. Each control should have a `data-default` attribute for the Reset button. On/off options use toggle switches (`.toggle-input` checkboxes wrapped in `.toggle` labels) serialized as `"on"`/`"off"` strings.
 - **Options page CSS** — all options page styling lives in `library/css/boomi.css` under `/* Options page */`. Never add inline `<style>` blocks or `style=""` attributes to `options.html`, and never set element styles in `options.js`. The options page loads `boomi.css` in its `<head>`.
 - **arrive.js cleanup** — scripts using `document.arrive()` on a reusable selector should call `document.unbindArrive(selector)` after the first match to prevent duplicate handlers
 - **jQuery** — use 4.0. Loaded at `document_start` in the isolated context
@@ -288,7 +302,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (40 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (39 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -329,6 +343,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/toastHelper.js` | content | Toast notification utility |
 | `page/fullscreen.js` | page | Full-screen toggle (page context required) |
 | `options.js` | options | Options page save/restore |
+| `popup.js` | popup | Quick-settings popup with feature toggles |
 | `background.js` | background | Service worker: download rename + options-page-open message |
 
 > `.Old Scripts but want to keep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
@@ -378,7 +393,7 @@ Contributions are welcome. Please [open an issue](https://github.com/mitchelljfr
 
 ## 💬 Discussion
 
-Join the [Boomi Discord — #extension-enhancer](https://discord.gg/XcXRrYHVUa) for updates and discussion.
+Join the [Boomi Discord — #boomi-xcel](https://discord.gg/XcXRrYHVUa) for updates and discussion.
 
 ---
 

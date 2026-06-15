@@ -28,7 +28,7 @@ Content scripts in `src/library/boomiapp/content/` are bundled by esbuild into a
 
 ### Bundle scope behavior
 
-esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` declarations are scoped to that IIFE — they are shared between all content scripts inside the bundle but are **not** on `window`. This is how `global.js` functions (`getUrlpath()`, `dashboardDays()`, `getUrlParameter()`, `getGWTPageName()`, `showInformationAlertDialog()`) are callable from `boomi.js`, `dashboard.js`, and other content scripts.
+esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` declarations are scoped to that IIFE — they are shared between all content scripts inside the bundle but are **not** on `window`. This is how `global.js` functions (`getUrlpath()`, `dashboardDays()`, `getUrlParameter()`, `getGWTPageName()`, `showInformationAlertDialog()`) are callable from `dashboard.js`, `pageInit.js`, and other content scripts.
 
 The `listenerGlobal.js` sets a `var BoomiPlatform = {}` in the bundle scope, reads config from `chrome.storage.sync.get()`, and all other scripts reference `BoomiPlatform.key` from this shared IIFE-scoped variable.
 
@@ -79,7 +79,7 @@ content/*.js (in bundle)
 
 - **`chrome.storage.sync`** — user preferences from the options page (feature toggles, refresh interval, shortcut keys, filter choices). Read directly by `listenerGlobal.js` and cached in bundle-scope `BoomiPlatform`.
 - **`chrome.storage.local`** — `headerVisible` state (show/hide toggle). Separate from sync because it's transient UI state, not a preference.
-- **`localStorage`** — version-tracking key (`boomiplatenhanUpdateNot{version}`) used by `content/updateNotification.js` to suppress the changelog popup after first view.
+- **`localStorage`** — version-tracking key (`boomiplatenhanUpdateNot{version}`) used by `content/updateNotification.js` to suppress the changelog popup after first view. The key uses the old "Boomi Platform Enhancer" abbreviation — retained for backward compatibility.
 
 ## Key libraries / third-party code
 
@@ -236,7 +236,7 @@ Every form control on `options.html` **must** have both:
 
 If you add a new option toggle on the options page, you must also add the corresponding key read in `listenerGlobal.js` for it to take effect on the Boomi platform pages.
 
-If the new option is a simple on/off toggle (`toggle-switch`), add it to `TOGGLE_LIST` in `src/popup/popup.js` so it appears in the quick-settings popup.
+If the new option is a simple on/off toggle, add it to `TOGGLE_LIST` in `src/popup/popup.js` so it appears in the quick-settings popup.
 
 The options.html logo uses an `<img src="logo/XcelLogo.png">` tag — `*.png` is covered by `web_accessible_resources`.
 
@@ -248,7 +248,7 @@ The options page loads `boomi.css` in its `<head>`.
 
 When adding new option controls, prefer the existing patterns:
 
-- **Toggle switches** — use `<div class="toggle-row"><label class="toggle-label-row">...<input type="checkbox" class="option form-check-input toggle-switch">`. The `options.js` serializes `.toggle-switch` checkboxes as `"on"`/`"off"` strings.
+- **Toggle switches** — use `<div class="toggle-row"><label class="toggle-label-row">...<label class="toggle"><input type="checkbox" class="option toggle-input" data-default="on"><span class="slider"></span></label>`. The `options.js` serializes `.toggle-input` checkboxes as `"on"`/`"off"` strings.
 - **Selects / inputs** — use standard `.mb-3` blocks with `.form-select` or `.form-control` and a `data-default` attribute for reset support.
 - **Helper text** — use `<small class="helper">` for option descriptions.
 
