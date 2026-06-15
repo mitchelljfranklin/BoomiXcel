@@ -1,6 +1,6 @@
 # BoomiXcel v1.8.0.0 — What's New
 
-Ilcome to BoomiXcel 1.8.0.0! This release is a complete overhaul — a new name, a new look, and a ton of improvements under the hood. Here's everything that changed.
+Welcome to BoomiXcel 1.8.0.0! This release is a complete overhaul — a new name, a new look, and a ton of improvements under the hood. Here's everything that changed.
 
 ---
 
@@ -18,7 +18,7 @@ Ilcome to BoomiXcel 1.8.0.0! This release is a complete overhaul — a new name,
 
 ## A New Name
 
-You may have known us as "Boomi Platform Enhancer." I're now **BoomiXcel**. Same extension, same features, just a cleaner name. You'll see it in your footer bar, the options page, and the toolbar popup.
+You may have known it as "Boomi Platform Enhancer." I'm now **BoomiXcel**. Same extension, same features, just a cleaner name. You'll see it in your footer bar, the options page, and the toolbar popup.
 
 ---
 
@@ -54,7 +54,7 @@ No more squinting at the footer text — the dot says it all.
 
 The footer now reads simply: `BoomiXcel v1.8.0.0 · Options`
 
-I dropped the "loaded" noise and the square brackets. Clicking the version takes you to the Chrome Ib Store. Clicking "Options" opens your settings.
+I dropped the "loaded" noise and the square brackets. Clicking the version takes you to the Chrome Web Store. Clicking "Options" opens your settings.
 
 ### Brand Logo Replacement
 
@@ -106,9 +106,9 @@ I rewrote how favicons update so they actually refresh in your browser tab. Prev
 
 If you're a Firefox user, the extension had some behind-the-scenes issues with how it packaged itself for Firefox's extension format. That's fixed — the Firefox build now generates correctly.
 
-### webstore-description.txt Is Finally Generated Properly
+### Web Store Description Generated Properly
 
-A build issue caused the store listing text to come out garbled. Now it correctly pulls the feature list from the README and formats it cleanly. (This matters when I submit updates to the Chrome Ib Store and Firefox Add-ons.)
+A build issue caused the store listing text to come out garbled. Now it correctly pulls the feature list from the README and formats it cleanly. (This matters when I submit updates to the Chrome Web Store and Firefox Add-ons.)
 
 ---
 
@@ -199,7 +199,7 @@ I established clear conventions:
 A few things changed that you'll never see but make the extension better:
 
 - **esbuild now bundles everything.** Instead of 21 separate network requests for content scripts, your browser loads one optimized file. This means faster load times and fewer points of failure.
-- **jQuery 4.0.** I're now on the latest jQuery release with better performance and modern browser support.
+- **jQuery 4.0.** I'm now on the latest jQuery release with better performance and modern browser support.
 - **Firefox builds are properly validated.** The CI pipeline checks that the Firefox manifest is structurally correct before I ship.
 - **The platform status check is more robust.** Instead of relying on the exact link text (which Boomi could change), I look for the link by its URL pattern. More future-proof.
 - **Permissions are tighter.** I removed an unused permission and dramatically reduced the number of internal scripts exposed to web pages. The extension now has a smaller surface area for potential issues.

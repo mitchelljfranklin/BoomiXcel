@@ -171,6 +171,9 @@ Process Reporting tables can wrap text instead of cutting it off. Three modes av
 ### Dashboard Default
 The dashboard view defaults to **7 days** instead of the standard 1 hour.
 
+### Pending Executions Clock
+When auto-refresh is enabled, a real-time elapsed time counter appears on the Process Reporting page for active processes, showing exactly how long each one has been running.
+
 ---
 
 ## Appearance
@@ -214,7 +217,13 @@ It detects the file type by analyzing the document content (JSON, XML, EDI, CSV,
 ## Notifications
 
 ### Platform Status
-Every page shows the current Boomi platform status in the footer (All Operational / issue description). Links to the [Boomi Status page](https://status.boomi.com/).
+Every page shows the current Boomi platform status in the footer with a colored dot for at-a-glance visibility:
+- Green dot = All Systems Operational
+- Orange dot = Partial Service Disruption
+- Red dot = Major Outage
+- Blue dot = Under Maintenance
+
+Links to the [Boomi Status page](https://status.boomi.com/).
 
 ### Settings Changed
 When you change extension options from another tab, a dialog appears prompting you to reload the page for the changes to take effect. Includes a **Reload** button.

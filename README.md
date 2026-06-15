@@ -224,7 +224,7 @@ It depends on your organization's browser policies. Some IT departments block th
 |-----------|--------|
 | `storage` | Save your preferences and sync them across browsers |
 | `downloads` | Rename downloaded documents to `<ProcessName>_<timestamp>.<ext>` |
-| Host: `platform.boomi.com` | The extension only runs on Boomi pages |
+| Host: `https://platform.boomi.com/*` | The extension only runs on Boomi pages |
 
 No other sites are accessed.
 </details>
@@ -412,7 +412,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/toastHelper.js` | content | Toast notification utility |
 | `page/fullscreen.js` | page | Full-screen toggle (page context required) |
 | `options.js` | options | Options page save/restore |
-| `popup.js` | popup | Quick-settings popup with feature toggles |
+| `popup/popup.js` | popup | Quick-settings popup with feature toggles |
 | `background.js` | background | Service worker: download rename + options-page-open message |
 
 > `.Old Scripts but want to keep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
