@@ -54,12 +54,14 @@
 - [Features](#-features)
 - [Screenshots](#screenshots)
 - [Installing](#-installing)
+- [Supported Browsers](#-supported-browsers)
 - [Development](#-development)
 - [Contributing](#-contributing)
 - [Discussion](#-discussion)
 - [Contributors](#-contributors)
 - [Privacy](#-privacy)
 - [Security](#-security)
+- [FAQ](#-faq)
 - [License](#-license)
 
 ---
@@ -137,6 +139,25 @@ Visit one of the browser stores:
 </a>
 
 Click **Install** — the extension auto-enables on `https://platform.boomi.com/*`.
+
+<p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
+
+---
+
+## 🌐 Supported Browsers
+
+| Browser     | Minimum Version | Manifest | Store Listing                                                                                                          |
+| -------------| -----------------| ----------| ------------------------------------------------------------------------------------------------------------------------|
+| **Chrome**  | 88+             | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
+| **Firefox** | 109+            | V2       | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active)                       |
+| **Edge**    | 88+             | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
+| **Brave**   | 1.45+           | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
+| **Opera**   | 74+             | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
+| **Arc**     | 1.0+            | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
+
+> All Chromium-based browsers (Brave, Opera, Arc, Vivaldi, etc.) can install the extension from the Chrome Web Store.
+
+<p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
 
 ---
 
@@ -371,6 +392,69 @@ Join the [Boomi Discord — #extension-enhancer](https://discord.gg/XcXRrYHVUa) 
 ## 🔐 Security
 
 Found a vulnerability? Please **do not** open a public issue. See [SECURITY.md](SECURITY.md) for responsible disclosure.
+
+<p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
+
+---
+
+## ❓ FAQ
+
+<details>
+<summary><b>Is Boomi Xcel associated with Boomi?</b></summary>
+
+No. Boomi Xcel is an independent, community-built extension. Boomi has no affiliation with this project and does not endorse or support it.
+</details>
+
+<details>
+<summary><b>Does it collect or transmit any data?</b></summary>
+
+No. The extension runs entirely in your browser — no analytics, no telemetry, no external servers. Your preferences are stored locally via `chrome.storage.sync` and synced across your signed-in browsers. See [PRIVACY.md](PRIVACY.md) for full details.
+</details>
+
+<details>
+<summary><b>How do I access the settings?</b></summary>
+
+Right-click the extension icon and select **Options**, or click the `[options]` link in the Boomi footer bar. Changes take effect after clicking **Save** and reloading the Boomi platform tab.
+</details>
+
+<details>
+<summary><b>How do I report a bug or request a feature?</b></summary>
+
+[Open an issue](https://github.com/mitchelljfranklin/BoomiXcel/issues) on GitHub, or join the [Boomi Discord](https://discord.gg/XcXRrYHVUa) to discuss.
+</details>
+
+<details>
+<summary><b>Why aren't my changes taking effect?</b></summary>
+
+After changing options, click **Save** in the options page, then reload any open Boomi platform tabs. A settings-changed dialog will also prompt you to reload if changes are detected from another tab.
+</details>
+
+<details>
+<summary><b>How do I update the extension?</b></summary>
+
+Updates are handled automatically by your browser. Chrome, Firefox, and Edge check for updates periodically and install them without any action needed. You can check your current version in the extension footer bar or in `chrome://extensions`.
+</details>
+
+<details>
+<summary><b>Can I use this on my work-managed browser?</b></summary>
+
+It depends on your organization's browser policies. Some IT departments block third-party extensions or restrict Chrome Web Store access. Contact your IT team if the install is blocked.
+</details>
+
+<details>
+<summary><b>What permissions does it need and why?</b></summary>
+
+| Permission | Reason |
+|-----------|--------|
+| `storage` | Save your preferences and sync them across browsers |
+| `downloads` | Rename downloaded documents to `<ProcessName>_<timestamp>.<ext>` |
+| `scripting` | Inject code to enhance the Boomi Platform pages |
+| Host: `platform.boomi.com` | The extension only runs on Boomi pages |
+
+No other sites are accessed.
+</details>
+
+<p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
 
 ---
 
