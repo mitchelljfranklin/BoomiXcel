@@ -254,6 +254,7 @@ npm install          # install dependencies (esbuild, archiver)
 ```bash
 npm run build        # bundle content scripts, generate browser manifests, create zips
 npm run watch        # rebuild content scripts on file changes
+npm run release      # build + create a GitHub release with auto-generated notes
 ```
 
 `npm run build` (via `scripts/build.js`) performs these steps in order:
@@ -417,10 +418,18 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 
 ```bash
 # 1. Bump version in package.json
-# 2. Build
-npm run build
+# 2. Create release (builds zips + creates GitHub release)
+npm run release
 # 3. Upload zips from build/ to each browser store
 ```
+
+`npm run release` (alias for `node scripts/build.js --release`) does everything `npm run build` does, plus creates a GitHub release tagged `v{version}` with:
+
+- **Auto-generated release notes** — git commit messages since the last `v*` tag, grouped by category (`feat:`, `fix:`, `docs:`, `style:`, `chore:`, etc.)
+- **Attached assets** — all three browser zips uploaded to the release
+- **Full changelog link** — compare URL from the previous tag to the new version
+
+Requires `gh` CLI authentication (`gh auth login` or `GITHUB_TOKEN` environment variable).
 
 ### Built With
 
