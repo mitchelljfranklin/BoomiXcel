@@ -204,6 +204,12 @@ After every change:
 - Re-read the files you edited and look for any stale or contradictory information they may now contain — fix it proactively
 - If an old library, tool, or approach is no longer in use, remove all references to it from all `.md` files
 
+When modifying the build script (`scripts/build.js`):
+- **All regex operations must handle both `\n` and `\r\n` line endings** — always normalize input with `.replace(/\r\n/g, "\n")` before any regex-based text processing, or use `\r?\n` in patterns. The build must produce identical output on Windows, macOS, and Linux.
+- **Test on Windows before merging** — PowerShell execution policy may block `npm`. Use `cmd /c "npm run build"` as a fallback.
+- If you change manifest structure (add/remove keys), update all three browser generators (Chrome, Firefox, Edge) in `scripts/build.js` to handle the new keys correctly.
+- If you change zip naming or output paths, update the corresponding documentation in README.md and AGENTS.md.
+
 ## Code style — human-readable formatting
 
 All code must be written in a human-readable format — this applies equally to hand-written and AI-generated code. Avoid minified, obfuscated, or machine-optimized code in any source files.
