@@ -49,19 +49,20 @@
 
 ---
 
-## Contents
+## 📋 Contents
 
-- [Features](#features)
+- [Features](#-features)
 - [Screenshots](#screenshots)
-- [Installing](#installing)
-- [Development](#development)
-- [Contributing](#contributing)
-- [Discussion](#discussion)
-- [License](#license)
+- [Installing](#-installing)
+- [Development](#-development)
+- [Contributing](#-contributing)
+- [Discussion](#-discussion)
+- [Contributors](#-contributors)
+- [License](#-license)
 
 ---
 
-## Features
+## ✨ Features
 
 🔧 **Keyboard Shortcuts**
 
@@ -115,10 +116,10 @@
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
 
-<p align="right"><sub><a href="#contents">↑ Back to top</a></sub></p>
+<p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
 
 
-## Installing
+## 🚀 Installing
 
 Visit one of the browser stores:
 
@@ -137,7 +138,7 @@ Click **Install** — the extension auto-enables on `https://platform.boomi.com/
 
 ---
 
-## Development
+## 🛠️ Development
 
 ### Setup
 
@@ -320,7 +321,7 @@ npm run build
 # 3. Upload zips from build/ to each browser store
 ```
 
-<p align="right"><sub><a href="#contents">↑ Back to top</a></sub></p>
+<p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>
 
 ---
 
@@ -336,7 +337,7 @@ npm run build
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome. Please [open an issue](https://github.com/mitchelljfranklin/BoomiXcel/issues) before starting substantial work to discuss the change.
 
@@ -353,24 +354,40 @@ Contributions are welcome. Please [open an issue](https://github.com/mitchelljfr
 
 ---
 
-## Discussion
+## 💬 Discussion
 
 Join the [Boomi Discord — #extension-enhancer](https://discord.gg/XcXRrYHVUa) for updates and discussion.
 
 ---
 
-## License
+## 📄 License
 
 Distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for details.
 
-## Acknowledgements
+## 👥 Contributors
 
-- **Mitch Franklin** — Original Extension Developer
-- **Tony Banik** — Boomi Tools developer, source of many ideas
-- [**Baptiste BIEBER**](https://github.com/baptistebieber) — Boomi Extension developer
-- **Noah Skelton** — Build Pallet Fix script
-- [**Matthew Flaig**](https://github.com/matt-flaig) — Contributor and maintainer
-- [**bbendick**](https://github.com/bbendick) — Contributor
-- [**Fernando Martín**](https://github.com/Fermartyni) — Contributor
-- [**The Boomi Community**](https://community.boomi.com/)
-- [**The Boomi Discord Community**](https://discord.gg/XcXRrYHVUa)
+Thanks to everyone who has contributed to making Boomi Xcel better!
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/mitchelljfranklin"><img src="https://github.com/mitchelljfranklin.png" width="80px" alt=""/><br /><sub><b>Mitch Franklin</b></sub></a><br /><sub>💻 📖 🚧</sub></td>
+    <td align="center"><a href="https://github.com/baptistebieber"><img src="https://github.com/baptistebieber.png" width="80px" alt=""/><br /><sub><b>Baptiste BIEBER</b></sub></a><br /><sub>💻</sub></td>
+    <td align="center"><a href="https://github.com/matt-flaig"><img src="https://github.com/matt-flaig.png" width="80px" alt=""/><br /><sub><b>Matthew Flaig</b></sub></a><br /><sub>💻</sub></td>
+    <td align="center"><a href="https://github.com/bbendick"><img src="https://github.com/bbendick.png" width="80px" alt=""/><br /><sub><b>bbendick</b></sub></a><br /><sub>💻</sub></td>
+    <td align="center"><a href="https://github.com/Fermartyni"><img src="https://github.com/Fermartyni.png" width="80px" alt=""/><br /><sub><b>Fernando Martín</b></sub></a><br /><sub>💻</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>Tony Banik</b></sub><br /><sub>💡</sub></td>
+    <td align="center"><sub><b>Noah Skelton</b></sub><br /><sub>💻</sub></td>
+    <td align="center"><a href="https://community.boomi.com/"><sub><b>The Boomi Community</b></sub></a><br /><sub>💬</sub></td>
+    <td align="center"><a href="https://discord.gg/XcXRrYHVUa"><sub><b>Boomi Discord</b></sub></a><br /><sub>💬</sub></td>
+  </tr>
+</table>
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Want to see your name here? Check out the [Contributing](#-contributing) section.
