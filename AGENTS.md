@@ -20,7 +20,10 @@ When adding a new on/off toggle, add its `{ key, label, defaultVal }` to `TOGGLE
 npm install          # install esbuild
 npm run build        # bundle content scripts → content/bundle.js + browser zips
 npm run watch        # rebuild on file changes
+npm run release      # same as build + creates a GitHub release with the zips
 ```
+
+The `--release` flag (or `npm run release`) creates a GitHub release using the `gh` CLI. The release is tagged `v{version}` from `package.json`, with release notes auto-extracted from the README Features section and all build zips attached as assets. Requires `gh auth login` or a `GITHUB_TOKEN` environment variable.
 
 Content scripts in `src/library/boomiapp/content/` are bundled by esbuild into a single `src/library/boomiapp/content/bundle.js`, which is the only content-script entry in every manifest. The bundle order is defined in `scripts/build.js > CONTENT_ORDER`. If you add a new content script, add it to that array and run `npm run build`.
 

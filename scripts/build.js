@@ -2,6 +2,7 @@ const esbuild = require("esbuild");
 const path = require("path");
 const fs = require("fs");
 const archiver = require("archiver");
+const { execFileSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const SRC_DIR = path.join(ROOT, "src");
@@ -224,6 +225,49 @@ async function createPackage(browserName, manifest, version) {
   console.log(`  Created: build/boomi-xcel-${version}-${browserName}.zip (${sizeKB} KB)`);
 }
 
+function createGitHubRelease(version) {
+  const tag = `v${version}`;
+  const title = `BoomiXcel v${version}`;
+  const zipFiles = fs.readdirSync(BUILD_DIR)
+    .filter(f => f.startsWith(`boomi-xcel-${version}`) && f.endsWith(".zip"))
+    .map(f => path.join(BUILD_DIR, f));
+
+  if (zipFiles.length === 0) {
+    console.error("  No zip files found for release. Skipping.");
+    return;
+  }
+
+  // Build release notes from the README Features section
+  let notes = "";
+  const readmePath = path.join(ROOT, "README.md");
+  if (fs.existsSync(readmePath)) {
+    const readme = fs.readFileSync(readmePath, "utf-8");
+    const featuresMatch = readme.match(/## ✨ Features\n([\s\S]*?)\n---/);
+    if (featuresMatch) {
+      notes = featuresMatch[1]
+        .replace(/<[^>]*>/g, "")
+        .replace(/<p align="right">[\s\S]*?<\/p>/g, "")
+        .trim();
+    }
+  }
+  if (!notes) notes = "See the README for full feature details.";
+
+  console.log(`\n  Creating GitHub release ${tag}...`);
+
+  try {
+    execFileSync("gh", [
+      "release", "create", tag,
+      "--title", title,
+      "--notes", notes,
+      ...zipFiles,
+    ], { stdio: "inherit" });
+    console.log(`  Release ${tag} created successfully.`);
+  } catch (err) {
+    console.error("  Release creation failed. Ensure gh CLI is installed and authenticated.");
+    console.error("  Run: gh auth login   or   export GITHUB_TOKEN=<your-token>");
+  }
+}
+
 async function main() {
   const isWatch = process.argv.includes("--watch") || process.argv.includes("-w");
 
@@ -263,6 +307,11 @@ async function main() {
   }
 
   console.log(`\nDone. Upload zips from build/ to the respective browser stores.`);
+
+  // Step 4: Create GitHub release if --release flag is set
+  if (process.argv.includes("--release")) {
+    createGitHubRelease(version);
+  }
 }
 
 main().catch((err) => {
