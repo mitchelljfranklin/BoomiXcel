@@ -45,7 +45,7 @@ OTHER
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
 - Old-style play/pause icons in deployed processes (configurable)
 - Copy component ID/URL from the build canvas
-- Replace the Boomi Logo brand logo with a BoomiXcel Logo (configurable)
+- Replace the Boomi masthead brand logo with the BoomiXcel logo (configurable)
 - Automatically rename downloaded documents to `_.`
 - Post-deployment schedule reminder (configurable)
 - Platform status check on every page
@@ -55,7 +55,11 @@ OTHER
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
 
-## Installing
+QUICK SETTINGS POPUP
+- Click the toolbar icon for instant access to the most-used feature toggles — no need to open the full options page
+- Changes save immediately; reload the page to apply
+
+##  Installing
 
 Visit one of the browser stores:
 

@@ -36,7 +36,9 @@ let wait_for_load = setInterval(() => {
             '</a>';
         }
 
-        document.getElementById("footer_links").insertAdjacentHTML(
+        var footerLinks = document.getElementById("footer_links");
+        if (footerLinks) {
+          footerLinks.insertAdjacentHTML(
           "afterbegin",
           `
             <li><a class="alternate_link" target="_blank" href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko/">BoomiXcel v${chrome.runtime.getManifest().version}</a> · <a class="alternate_link" href="#" id="bph-options-link">Options</a></li>
@@ -47,6 +49,7 @@ let wait_for_load = setInterval(() => {
           e.preventDefault();
           chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" });
         });
+        }
 
         chrome.storage.sync.get(["mastfoot_show"], function (result) {
           if (result.mastfoot_show === "off") return;

@@ -224,7 +224,6 @@ It depends on your organization's browser policies. Some IT departments block th
 |-----------|--------|
 | `storage` | Save your preferences and sync them across browsers |
 | `downloads` | Rename downloaded documents to `<ProcessName>_<timestamp>.<ext>` |
-| `scripting` | Inject code to enhance the Boomi Platform pages |
 | Host: `platform.boomi.com` | The extension only runs on Boomi pages |
 
 No other sites are accessed.

@@ -71,7 +71,7 @@ function generateWebstoreDescription(version) {
   const readme = fs.readFileSync(readmePath, "utf-8");
 
   // Extract the Features section (from "## Features" to next "---" divider)
-  const featuresMatch = readme.match(/## Features\n([\s\S]*?)\n---/);
+  const featuresMatch = readme.match(/## [^\n]*Features\n([\s\S]*?)\n---/);
   if (!featuresMatch) {
     console.log("  Skipping webstore description: Features section not found");
     return;
@@ -146,6 +146,25 @@ function generateFirefoxManifest(base) {
   const manifest = clone(base);
   manifest.manifest_version = 2;
   delete manifest.update_url;
+
+  // action → browser_action (MV3→MV2)
+  if (manifest.action) {
+    manifest.browser_action = manifest.action;
+    delete manifest.action;
+  }
+
+  // background.service_worker → background.scripts (MV3→MV2)
+  if (manifest.background?.service_worker) {
+    manifest.background = { scripts: [manifest.background.service_worker] };
+  }
+
+  // Merge host_permissions into permissions (MV3→MV2)
+  if (manifest.host_permissions) {
+    manifest.permissions = (manifest.permissions || []).concat(manifest.host_permissions);
+    delete manifest.host_permissions;
+  }
+
+  // Flatten web_accessible_resources from MV3 object array to MV2 string array
   if (manifest.web_accessible_resources?.[0]?.resources) {
     manifest.web_accessible_resources = manifest.web_accessible_resources[0].resources;
   }

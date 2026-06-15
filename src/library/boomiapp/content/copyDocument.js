@@ -1,12 +1,3 @@
-var copySvg = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-</svg>`;
-
-var checkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-  <polyline points="20 6 9 17 4 12"></polyline>
-</svg>`;
-
 document.arrive('[data-locator="link-download-original-document"]', { existing: true }, function (downloadBtn) {
   var dialog =
     downloadBtn.closest('[role="dialog"]') ||
@@ -21,7 +12,7 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
   var copyBtn = document.createElement('button');
   copyBtn.id = 'bph-copy-document-btn';
   copyBtn.type = 'button';
-  copyBtn.innerHTML = copySvg;
+  copyBtn.innerHTML = SVG_COPY_ICON;
   copyBtn.style.cssText = [
     'position: absolute',
     'bottom: 8px',
@@ -74,10 +65,10 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
     if (!content) return;
 
     function onCopied() {
-      copyBtn.innerHTML = checkSvg + '<span>Copied</span>';
+      copyBtn.innerHTML = SVG_CHECK_ICON + '<span>Copied</span>';
       copyBtn.style.opacity = '1';
       setTimeout(function () {
-        copyBtn.innerHTML = copySvg;
+        copyBtn.innerHTML = SVG_COPY_ICON;
         copyBtn.style.opacity = '0.6';
       }, 1500);
     }

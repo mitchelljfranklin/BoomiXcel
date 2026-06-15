@@ -36,10 +36,6 @@
 .bph-status-dot.bph-status-critical { background: #c62828; }
 .bph-status-dot.bph-status-maintenance { background: #1565c0; }
 
-  height: 30px !important;
-  width: auto !important;
-}
-
 .qm-c-servicenav {
     height: 2.5em !important;
 }

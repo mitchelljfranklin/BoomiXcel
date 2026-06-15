@@ -4,7 +4,7 @@
 
 - The extension runs entirely in your browser. No data ever leaves your machine.
 - No analytics, no telemetry, no tracking, no external servers.
-- No third-party services are contacted at runtime (the only external requests made are those already present on your Boomi platform page).
+- The only external request made by the extension is a single call to `status.boomi.com` to display the Boomi platform operational status in the footer. No data is sent in this request.
 - The only data stored is your feature-toggle preferences, saved locally via `chrome.storage.sync` so they follow you across browsers you're signed into.
 - Permission `storage` is required to save your preferences.
 - Permission `downloads` is used solely for the auto-rename documents feature — it intercepts download filenames to include process names and timestamps.
