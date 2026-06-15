@@ -4,7 +4,7 @@ function getFormState() {
   var state = {};
   document.querySelectorAll(".option").forEach(function (el) {
     if (el.type === "checkbox") {
-      if (el.classList.contains("toggle-switch")) {
+      if (el.classList.contains("toggle-input")) {
         state[el.name] = el.checked ? "on" : "off";
       } else {
         state[el.name] = el.checked ? el.value : false;
@@ -42,7 +42,7 @@ function restore_options() {
   document.querySelectorAll(".option").forEach(function (el) {
     var def = el.getAttribute("data-default");
     if (def !== null) {
-      defaults[el.name] = el.type === "checkbox" && !el.classList.contains("toggle-switch")
+      defaults[el.name] = el.type === "checkbox" && !el.classList.contains("toggle-input")
         ? def === "true"
         : def;
     }
@@ -54,7 +54,7 @@ function restore_options() {
       if (val === undefined) val = defaults[el.name];
 
       if (el.type === "checkbox") {
-        if (el.classList.contains("toggle-switch")) {
+        if (el.classList.contains("toggle-input")) {
           el.checked = val === "on" || val === true;
         } else {
           el.checked = val === true || val === el.value;
@@ -75,7 +75,7 @@ function reset_defaults() {
     if (def === null) return;
 
     if (el.type === "checkbox") {
-      if (el.classList.contains("toggle-switch")) {
+      if (el.classList.contains("toggle-input")) {
         el.checked = def === "on" || def === "true";
       } else {
         el.checked = def === "true";
