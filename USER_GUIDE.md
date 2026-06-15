@@ -1,6 +1,6 @@
 # BoomiXcel User Guide
 
-BoomiXcel enhances the Boomi Integration Platform (`platform.boomi.com`) with powerful productivity tools, visual improvements, and workflow optimizations. All features are configurable via the extension options page.
+BoomiXcel enhances the Boomi Integration Platform (`platform.boomi.com`) with powerful productivity tools, visual improvements, and workflow optimizations. All features are configurable via the quick-settings popup or the extension options page.
 
 ---
 
@@ -149,6 +149,12 @@ Swap the Cancel/OK order to OK/Cancel, matching the side panel button layout (co
 ### Remove Revision Notification
 The sticky yellow "revision" notification on the build page gets a close button.
 
+### Copy Component ID/URL
+A copy button appears on the build canvas header, letting you quickly copy a component's ID or URL to your clipboard.
+
+### Adjust Connection Operation Screen
+The connection operation screen is resized to give you more room for the configuration panel.
+
 ---
 
 ## Process Reporting
@@ -225,6 +231,3 @@ After deploying a component, you'll receive a reminder to schedule it if appropr
 
 ### Extension Footer Link
 A "BoomiXcel vX.Y.Z loaded [options]" link appears in the Boomi footer bar, showing the current version and providing quick access to the options page.
-
-### Brand Logo
-The BoomiXcel logo replaces the Boomi masthead logo when enabled in the options (configurable).
