@@ -98,26 +98,22 @@ function changeFaviconToEmoji(emoji) {
 }
 
 function changeFaviconToSVG(svgIcon) {
-  var iconHrefData = "data:image/svg+xml, " + svgIcon;
+  var iconHrefData = "data:image/svg+xml," + svgIcon;
   changeFaviconImage(iconHrefData);
 }
 
 function changeFaviconImage(link) {
-  // creates or updates the favicon based on what page you're on
-  var faviconIcon =
-    document
-      .getElementsByTagName("head")[0]
-      .querySelector("link[rel~='icon']") ||
-    document
-      .getElementsByTagName("head")[0]
-      .querySelector("link[rel='shortcut icon']");
+  var head = document.getElementsByTagName("head")[0];
 
-  if (!faviconIcon) {
-    faviconIcon = document.createElement("link");
-    faviconIcon.rel = "icon";
-    document.getElementsByTagName("head")[0].appendChild(faviconIcon);
+  // Remove any existing extension-set favicon links to force browser refresh
+  var existing = head.querySelectorAll("link[data-bph-favicon]");
+  for (var i = 0; i < existing.length; i++) {
+    existing[i].remove();
   }
-  if (faviconIcon) {
-    faviconIcon.href = link;
-  }
+
+  var faviconIcon = document.createElement("link");
+  faviconIcon.rel = "icon";
+  faviconIcon.setAttribute("data-bph-favicon", "true");
+  faviconIcon.href = link;
+  head.appendChild(faviconIcon);
 }
