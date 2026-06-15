@@ -70,14 +70,17 @@ function generateWebstoreDescription(version) {
 
   const readme = fs.readFileSync(readmePath, "utf-8");
 
+  // Normalize line endings for cross-platform consistency
+  let features = readme.replace(/\r\n/g, "\n");
+
   // Extract the Features section (from heading to next ## heading, handles \r\n and \n)
-  const featuresMatch = readme.match(/## [^\r\n]*Features\r?\n([\s\S]*?)\r?\n(?=## )/);
+  const featuresMatch = features.match(/## [^\n]*Features\n([\s\S]*?)\n(?=## )/);
   if (!featuresMatch) {
     console.log("  Skipping webstore description: Features section not found");
     return;
   }
 
-  let features = featuresMatch[1];
+  features = featuresMatch[1];
 
   // Convert markdown to plain text
   features = features
