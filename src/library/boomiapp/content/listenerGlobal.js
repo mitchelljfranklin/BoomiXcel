@@ -7,6 +7,8 @@ const add_dialog_listener = (dialog) => {
 };
 
 var BoomiPlatform = {};
+
+var dynamicShapeIconStyleData = "";
 let bt_init = false;
 
 const BoomiPlatform_Init = () => {

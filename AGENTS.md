@@ -212,6 +212,11 @@ When modifying the build script (`scripts/build.js`):
 
 ## Code style — human-readable formatting
 
+**Variable declarations across files:**
+- Top-level declarations that are referenced by OTHER files in the bundle **must** use `var`. This is the contract that makes cross-file references work inside the esbuild IIFE. Examples: `var BoomiPlatform`, `var getUrlpath`, `var renderBoomiModal`, `var showToast`, all SVG icon variables.
+- Top-level declarations used only within their own file **should** use `const` or `let` for clarity, but `var` is acceptable if the file already uses it consistently.
+- Never use implicit globals (assignment without `var`/`let`/`const`). In non-strict mode these become `window` properties and will break if strict mode is ever enabled.
+
 All code must be written in a human-readable format — this applies equally to hand-written and AI-generated code. Avoid minified, obfuscated, or machine-optimized code in any source files.
 
 The **only** minification happens in the build step (`npm run build`). All `.js`, `.css`, and `.html` files in `src/` must remain unminified and readable.
