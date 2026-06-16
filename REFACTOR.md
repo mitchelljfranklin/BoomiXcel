@@ -62,7 +62,7 @@ Want the BoomiXcel logo in your masthead instead of the standard Boomi one? Ther
 
 ### Better Favicons for Every Page
 
-If you have Unique Page Titles & Favicons enabled, you'll now see distinct favicons for every Boomi subdomain — AtomSphere, MdmSphere, ApiSphere, and Flow. I also fixed them so they actually show up on the new Boomi interface.
+If you have Unique Page Titles & Favicons enabled, you'll now see distinct colored favicons for every Boomi page — Build (blue), Deploy (green), Dashboard (coral), Runtime Management (coral atom icon), Process Reporting (purple), MdmSphere (teal), ApiSphere (deep blue), BoomiAI (magenta), and Flow (orange). I also fixed them so they actually show up on the new Boomi interface.
 
 ### Copy Document Content
 
@@ -121,6 +121,10 @@ Every on/off option in both the popup and the full settings page now uses the sa
 ### Better Favicon Reliability
 
 I rewrote how favicons update so they actually refresh in your browser tab. Previously the browser would sometimes cache the old icon and ignore the change. Now it always updates.
+
+### Favicon Color Overhaul
+
+The favicon system got a complete rewrite: SVG assets moved to `svgAssets.js` for maintainability, dead code removed, an `"onhashchange"` typo bug fixed, and every page now gets a unique color — no two pages share the same hue. Added favicons for previously uncovered pages: Build, Deploy, Dashboard, Process Reporting, and BoomiAI.
 
 ### Masthead Options Gear Icon
 

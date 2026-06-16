@@ -110,7 +110,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/contentScript.js` | content | Entry point. Detects page load via title change, injects `fullscreen.js`, injects masthead options gear icon, sets up platform status check, update notification dialog |
 | `content/global.js` | content | Utility functions: URL parsing, `dashboardDays()` (configurable dashboard time-range auto-selector), alert dialog helper |
 | `content/pageInit.js` | content | Page-load detection, triggers navigation change and update notification checks |
-| `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
+| `content/favicon.js` | content | Page-specific favicons with distinct colors per page, unique page titles, navigation state listeners |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S (save) |
 | `content/updateNotification.js` | content | Per-version update changelog dialog — reads changelog from bundle-embedded `UPDATE_CHANGELOG_HTML` (generated from `updateNotification.md` at build time). Uses single localStorage key `bph_update_notification_version` with legacy key cleanup. |
 | `content/shapePalette.js` | content | Restores old-style build shape connector palette |

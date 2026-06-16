@@ -110,7 +110,7 @@
 - Old-style play/pause icons in deployed processes (configurable)
 - Replace the Boomi masthead brand logo with the BoomiXcel logo (configurable)
 - Tab names simplified — account name removed (configurable)
-- Page-specific favicons for each Boomi subdomain (configurable)
+- Page-specific favicons with distinct colors per page — Build (blue), Deploy (green), Dashboard (coral), Runtime (coral atom), Reporting (purple), MdmSphere (teal), ApiSphere (deep blue), BoomiAI (magenta), Flow (orange) (configurable)
 
 📬 **Notifications &amp; Reminders**
 - Platform status check on every page
