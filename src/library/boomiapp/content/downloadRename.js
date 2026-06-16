@@ -11,8 +11,22 @@ function detectTypeFromText(raw) {
   if (t.startsWith('<'))                       return 'xml';
   if (t.startsWith('ISA'))                     return 'edi';
   if (t.startsWith('UNA') || t.startsWith('UNB')) return 'edi';
+  if (isBinaryContent(t))                      return null;
   if (/^[\x20-\x7E]/.test(t))                 return t.includes(',') ? 'csv' : 'txt';
   return null;
+}
+
+function isBinaryContent(str) {
+  if (str.includes('\x00')) return true;
+  var nonPrintable = 0;
+  var sampleSize = Math.min(str.length, 500);
+  for (var i = 0; i < sampleSize; i++) {
+    var code = str.charCodeAt(i);
+    if (code > 0x7E || (code < 0x20 && code !== 0x09 && code !== 0x0A && code !== 0x0D)) {
+      nonPrintable++;
+    }
+  }
+  return (nonPrintable / sampleSize) > 0.05;
 }
 
 // ── Execution timestamp from build-page date cells ───────────────────────────

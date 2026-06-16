@@ -216,7 +216,7 @@ When you download a document from Boomi, the extension automatically renames the
 
 For example: `MyProcess_20240614_143052.json`
 
-It detects the file type by analyzing the document content (JSON, XML, EDI, CSV, TXT).
+It detects the file type by analyzing the document content (JSON, XML, EDI, CSV, TXT). Binary files (ZIP, PDF, images) are identified and left with their original extension.
 
 ---
 

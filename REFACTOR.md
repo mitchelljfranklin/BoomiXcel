@@ -149,6 +149,7 @@ Here's the full list of bugs I squashed:
 - **Fragile DOM index for elapsed-time cell.** The counter code used `div[11]` to find the cell — added a null guard so it won't crash if Boomi changes their DOM structure.
 - **Hashchange listener was stacking.** Each re-entry into the refresh listener added another `hashchange` handler. Moved to module level so it registers once.
 - **Elapsed time counter red text not displaying.** The counter used inline `element.style.color = "red"` which Boomi's platform CSS can override with `!important` rules. Replaced with a CSS class (`bph-elapsed-active`) using `!important` at the extension stylesheet level, matching Boomi's cascade tier.
+- **Download renamer corrupted ZIP/binary files.** The `detectTypeFromText()` function misidentified binary content as CSV/TXT because the ASCII-range regex matched binary magic bytes (e.g., ZIP headers). Added `isBinaryContent()` helper that checks for null bytes and high ratio of non-printable characters — binary files now return `null`, so `background.js` falls back to the original extension from the download URL.
 - **Elapsed time counter visual overhaul.** Added a red left accent bar on active rows (`bph-processing-row`), a gradient red badge on the elapsed cell (`bph-elapsed-badge`), and a per-second scale bounce animation (`bph-elapsed-tick`) so the counter feels live.
 
 ---

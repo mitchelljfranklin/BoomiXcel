@@ -388,7 +388,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/shapePopup.js` | content | Double-click quick-shape popup |
 | `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menus (old and new Boomi UI) |
 | `content/copyDocument.js` | content | Clipboard-copy button in the Document Viewer dialog |
-| `content/downloadRename.js` | content | Intercepts document downloads for auto-renamed filenames |
+| `content/downloadRename.js` | content | Intercepts document downloads, detects file type, auto-renames — binary-safe |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/headerActions.js` | content | Header show/hide toggle, copy component ID/URL, update overlay close |
 | `content/updateNotification.js` | content | Per-version changelog popup |
