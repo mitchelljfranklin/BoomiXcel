@@ -17,42 +17,52 @@ document.addEventListener("click", function (clickEvent) {
   if (!row) return;
   var label = row.querySelector('.gwt-Label[title]');
   bphReportingProcessName = label ? label.getAttribute("title") : null;
-}, true);
-
-document.arrive('[data-locator="link-execute-process"]', { existing: true }, function (executeLink) {
-  var menuGroup = executeLink.closest("ul");
-  if (!menuGroup || menuGroup.querySelector(".bph-reporting-item")) return;
   if (!bphReportingProcessName) return;
 
-  var accountId = getUrlParameter("accountId");
-  if (!accountId) return;
+  // GWT reuses the context menu — it clears and repopulates the ul on every click.
+  // Poll until the execute link appears, then inject our menu item.
+  var menuInjectionAttempts = 0;
+  function injectMenuItem() {
+    menuInjectionAttempts++;
+    if (menuInjectionAttempts > 20) return;
 
-  var separator = document.createElement("li");
-  separator.className = "bph-reporting-separator";
+    var menuGroup = document.querySelector(".context_menu .menu_item_group");
+    if (!menuGroup) { setTimeout(injectMenuItem, 100); return; }
+    var executeLink = menuGroup.querySelector('[data-locator="link-execute-process"]');
+    if (!executeLink) { setTimeout(injectMenuItem, 100); return; }
+    if (menuGroup.querySelector(".bph-reporting-item")) return;
 
-  var listItem = document.createElement("li");
-  listItem.className = "bph-reporting-item";
-  listItem.innerHTML =
-    '<a class="gwt-Anchor list_anchor_text" href="javascript:;">' +
-    '<svg class="bph-reporting-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none">' +
-    '<title>View in Process Reporting</title>' +
-    '<path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-    '</svg>' +
-    "View in Process Reporting" +
-    "</a>";
+    var accountId = getUrlParameter("accountId");
+    if (!accountId) return;
 
-  listItem.querySelector("a").addEventListener("click", function (clickEvent) {
-    clickEvent.preventDefault();
-    localStorage.setItem("bph_reporting_process", bphReportingProcessName);
-    window.open(
-      "https://platform.boomi.com/AtomSphere.html#reporting;accountId=" + accountId,
-      "_blank",
-    );
-  });
+    var separator = document.createElement("li");
+    separator.className = "bph-reporting-separator";
 
-  menuGroup.appendChild(separator);
-  menuGroup.appendChild(listItem);
-});
+    var listItem = document.createElement("li");
+    listItem.className = "bph-reporting-item";
+    listItem.innerHTML =
+      '<a class="gwt-Anchor list_anchor_text" href="javascript:;">' +
+      '<svg class="bph-reporting-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none">' +
+      '<title>View in Process Reporting</title>' +
+      '<path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>' +
+      "View in Process Reporting" +
+      "</a>";
+
+    listItem.querySelector("a").addEventListener("click", function (clickEvent) {
+      clickEvent.preventDefault();
+      localStorage.setItem("bph_reporting_process", bphReportingProcessName);
+      window.open(
+        "https://platform.boomi.com/AtomSphere.html#reporting;accountId=" + accountId,
+        "_blank",
+      );
+    });
+
+    menuGroup.appendChild(separator);
+    menuGroup.appendChild(listItem);
+  }
+  setTimeout(injectMenuItem, 150);
+}, true);
 
 // ── Process Reporting page: auto-apply process name filter ────────────────────
 
