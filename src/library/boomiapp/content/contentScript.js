@@ -120,14 +120,14 @@ document.arrive('[data-testid="product-switcher-button"]', { existing: true }, f
 
   link.addEventListener("click", function (clickEvent) {
     clickEvent.preventDefault();
-    chrome.runtime.openOptionsPage();
+    chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" });
   });
 
   listItem.appendChild(link);
 
-  var accountNameDiv = addonsList.querySelector('.styles-module_header__nav__account-name__Lswvo');
-  if (accountNameDiv) {
-    addonsList.insertBefore(listItem, accountNameDiv);
+  var firstItem = addonsList.querySelector("li");
+  if (firstItem) {
+    addonsList.insertBefore(listItem, firstItem);
   } else {
     addonsList.appendChild(listItem);
   }
