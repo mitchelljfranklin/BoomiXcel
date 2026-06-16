@@ -3,7 +3,13 @@ document.arrive(".filter_panel_dialog_popup_panel", function (filterpanel) {
     var buttonBar = document.getElementsByClassName("button-bar");
     buttonBar[0].insertAdjacentHTML(
       "beforeend",
-      '<button id="collapseFolders" type="button" class="gwt-Button">Collapse All Folders</button>',
+      '<button id="collapseFolders" type="button" class="gwt-Button bph-collapse-btn">' +
+      '<svg class="collapse-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<polyline points="11 17 6 12 11 7"/>' +
+      '<polyline points="18 17 13 12 18 7"/>' +
+      '</svg>' +
+      'Collapse All' +
+      '</button>',
     );
   }
 });
@@ -32,7 +38,13 @@ document.arrive("[data-locator='button-schedules']", function (schedulebutton) {
   //Add Collapse All Button
   schedulebutton.parentNode.insertAdjacentHTML(
     "beforeend",
-    '<button type="button" id="collapseDeployedFolders" class="gwt-Button drop_button qm-button--primary-action closeall_doing_action" style="position: absolute">Collapse All Folders</button>',
+    '<button type="button" id="collapseDeployedFolders" class="gwt-Button drop_button qm-button--primary-action closeall_doing_action bph-collapse-btn">' +
+    '<svg class="collapse-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+    '<polyline points="11 17 6 12 11 7"/>' +
+    '<polyline points="18 17 13 12 18 7"/>' +
+    '</svg>' +
+    'Collapse All' +
+    '</button>',
   );
 });
 

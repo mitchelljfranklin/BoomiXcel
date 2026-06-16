@@ -29,19 +29,20 @@ var process_to_image = (process) => {
           alertVariant: "qm-c-alert--none",
           extraBodyClasses: "",
           extraPopupClasses: "bph-load-done",
+          modern: true,
           body:
             '<p>This will capture an image of your full process canvas and export to a file.</p>' +
             '<br>' +
-            '<div>' +
-            '<label><input type="checkbox" class="transparent" style="vertical-align: middle;"/>Use Transparent Background</label>' +
+            '<div class="bph-capture-options">' +
+            '<div class="bph-capture-toggle-row">' +
+            '<label class="toggle"><input type="checkbox" class="transparent"><span class="slider"></span></label>' +
+            '<span>Use Transparent Background</span>' +
+            '</div>' +
             '<select class="uiscale gwt-ListBox" style="padding-left: 10px; margin-left: 10px;">' +
             '<option value="1.0" selected>1x (normal size)</option>' +
             '<option value="1.5">1.5x</option>' +
             '<option value="2.0">2x</option>' +
             '</select>' +
-            '</div>' +
-            '<div>' +
-            '<label><input type="checkbox" class="expandNotes" style="vertical-align: middle;"/>Expand Notes</label>' +
             '</div>',
           buttons: [
             { className: "gwt-Button qm-button--primary-action action_button", text: "Capture Process Flow", attrs: ' title="Run Capture Process"' },
@@ -64,9 +65,6 @@ var process_to_image = (process) => {
             let uiscale =
               document.querySelector(".BoomiPlatformOverlay .uiscale").value ||
               "1.0";
-            let expandNotes = document.querySelector(
-              ".BoomiPlatformOverlay .expandNotes",
-            ).checked;
 
             document.querySelector(".BoomiPlatformOverlay").remove();
 
@@ -89,26 +87,6 @@ var process_to_image = (process) => {
               process.style.backgroundImage = "none";
             } else {
               process.style.backgroundColor = "white";
-            }
-
-            if (expandNotes) {
-              window.noteExpandInterval = setInterval(function () {
-                if (
-                  document.getElementsByTagName("body")[0].style.marginTop ==
-                  "99999px"
-                ) {
-                  // expand all note dialogs
-                  [...document.querySelectorAll(".note-preview")].forEach(
-                    (div) => {
-                      div.parentNode.parentNode.style.setProperty(
-                        "display",
-                        "",
-                        "important",
-                      );
-                    },
-                  );
-                }
-              }, 50);
             }
 
             [

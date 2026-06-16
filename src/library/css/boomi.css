@@ -178,18 +178,47 @@
 
 .gwt-EndPoint .BoomiPlatformEndpointMenu {
     display: none;
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    width: max-content;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 2px 0;
+    margin-bottom: 6px;
 }
 
-.gwt-EndPoint.disconnected:hover .BoomiPlatformEndpointMenu {
+.gwt-EndPoint.disconnected:hover .BoomiPlatformEndpointMenu,
+.BoomiPlatformEndpointMenu:hover {
     display: block;
 }
 
+.BoomiPlatformEndpointMenu::before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+
 .BoomiPlatformEndpointMenu .gwt-ClickableLabel {
-    background: #808080;
+    background: transparent;
+    padding: 5px 14px;
+    color: #333;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.15s ease;
 }
 
 .BoomiPlatformEndpointMenu .gwt-ClickableLabel:hover {
-    background: #d6d4d4 !important
+    background: #f0f0f0 !important;
+    color: #000 !important;
 }
 
 .mastfoot .footer_msg {
@@ -393,15 +422,7 @@
 }
 
 .closeall_doing_action {
-    background-color: #2ac07a !important;
-    border-color: #2ac07a !important;
-    color: #2e2c2c !important;
-}
-
-.closeall_doing_action:hover {
-    background-color: #107755 !important;
-    border-color: #107755 !important;
-    color: #2e2c2c !important;
+    position: absolute;
 }
 
 
@@ -522,20 +543,33 @@ div[style*="position: relative; height: 250px; width: 250px;"] {
 }
 
 
-#bph-close-notification {
-    float:right;
-    display:inline-block;
-    padding:2px 5px;
-    background:#ccc;
+#bph-close-notification,
+.bph-close-notification {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    color: #999;
+    border-radius: 4px;
+    transition: color 0.2s ease, background 0.2s ease;
+    line-height: 1;
 }
 
+#bph-close-notification:hover,
+.bph-close-notification:hover {
+    color: #333;
+    background: rgba(0, 0, 0, 0.06);
+}
 
-#bph-close-notification:hover {
-    float:right;
-    display:inline-block;
-    padding:2px 5px;
-    background:#ccc;
-    color:#fff;
+#bph-close-notification svg,
+.bph-close-notification svg {
+    display: block;
+    width: 14px;
+    height: 14px;
 }
 
 /* Reduce the padding on the new sidebar design */
@@ -819,4 +853,108 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 .bph-gpt-link-active {
     opacity: 1 !important;
     pointer-events: auto;
+}
+
+/* ── Collapse All button ── */
+
+.bph-collapse-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 5px;
+    border-radius: 20px !important;
+    padding: 4px 14px !important;
+    font-weight: 500;
+    background: linear-gradient(135deg, #2ac07a, #1a9e5e) !important;
+    color: #2e2c2c !important;
+    border: none !important;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+.bph-collapse-btn:hover {
+    background: linear-gradient(135deg, #35d088, #20ae6a) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bph-collapse-btn .collapse-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+}
+
+/* ── Reminder badge ── */
+
+.bph-reminder-badge {
+    color: #e65100;
+    background: #fff3e0;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border-left: 3px solid #e65100;
+    font-size: 0.9em;
+}
+
+/* ── Monitor link hover transition ── */
+
+.bph-monitor-link {
+    color: #8C8C8C;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.bph-monitor-link:hover {
+    color: #1B72C3;
+    transform: scale(1.1);
+}
+
+.bph-monitor-link svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+/* ── Image capture checkboxes ── */
+
+.bph-capture-options {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.bph-capture-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.bph-capture-toggle-row span {
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* ── Modern modal styling ── */
+
+.bph-modern-modal .popupContent {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.bph-modern-modal .form_header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+}
+
+.bph-modern-modal .qm-c-alert {
+    padding: 16px 20px;
+}
+
+.bph-modern-modal .button_set {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px 16px;
 }

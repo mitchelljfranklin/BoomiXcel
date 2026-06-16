@@ -17,7 +17,6 @@ BUILD CANVAS
 - Restored old-style shape connector palette
 - Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape (configurable)
 - Trace path highlighting during test execution (configurable)
-- Note group overlays — colored semi-transparent bounding boxes created from process notes
 
 EDITING
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)

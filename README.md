@@ -82,7 +82,6 @@
 - Restored old-style shape connector palette
 - Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape (configurable)
 - Trace path highlighting during test execution (configurable)
-- Note group overlays — colored semi-transparent bounding boxes created from process notes
 
 ✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
@@ -411,7 +410,6 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel order |
 | `content/imageCapture.js` | content | Process flow → PNG capture |
-| `content/groups.js` | content | Note group overlays on canvas |
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor |

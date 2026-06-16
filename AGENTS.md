@@ -29,6 +29,8 @@ Content scripts in `src/library/boomiapp/content/` are bundled by esbuild into a
 
 `bundle.js` is a build artifact — it's gitignored. The only page-context script is `page/fullscreen.js` (Fullscreen API requires page context); it is loaded individually via `loadScript()`.
 
+The build also reads `updateNotification.md` and injects its changelog items as `var UPDATE_CHANGELOG_HTML` into the bundle. Edit this file before a release to update the in-app update notification content.
+
 ### Bundle scope behavior
 
 esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` declarations are scoped to that IIFE — they are shared between all content scripts inside the bundle but are **not** on `window`. This is how `global.js` functions (`getUrlpath()`, `dashboardDays()`, `getUrlParameter()`, `getGWTPageName()`, `showInformationAlertDialog()`) are callable from `pageInit.js`, `headerActions.js`, and other content scripts.
@@ -82,7 +84,7 @@ content/*.js (in bundle)
 
 - **`chrome.storage.sync`** — user preferences from the options page (feature toggles, refresh interval, shortcut keys, filter choices). Read directly by `listenerGlobal.js` and cached in bundle-scope `BoomiPlatform`.
 - **`chrome.storage.local`** — `headerVisible` state (show/hide toggle). Separate from sync because it's transient UI state, not a preference.
-- **`localStorage`** — version-tracking key (`boomiplatenhanUpdateNot{version}`) used by `content/updateNotification.js` to suppress the changelog popup after first view. The key uses the old "Boomi Platform Enhancer" abbreviation — retained for backward compatibility.
+- **`localStorage`** — version-tracking key (`bph_update_notification_version`) used by `content/updateNotification.js` to suppress the changelog popup after first view. Legacy keys (`boomiplatenhanUpdateNot{version}`) from the old approach are auto-cleaned on first run.
 
 ## Key libraries / third-party code
 
@@ -110,7 +112,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S (save) |
-| `content/updateNotification.js` | content | Per-version update changelog dialog (uses `localStorage` to suppress after first view) |
+| `content/updateNotification.js` | content | Per-version update changelog dialog — reads changelog from bundle-embedded `UPDATE_CHANGELOG_HTML` (generated from `updateNotification.md` at build time). Uses single localStorage key `bph_update_notification_version` with legacy key cleanup. |
 | `content/shapePalette.js` | content | Restores old-style build shape connector palette |
 | `content/messageEditor.js` | content | CodeMirror-based editor for Message/Notify/Command shapes |
 | `content/scheduleIcons.js` | content | Restore old play/pause icons in deployed processes |
@@ -134,7 +136,6 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel button order |
 | `content/imageCapture.js` | content | Capture process flow to PNG |
-| `content/groups.js` | content | Note group overlays on process canvas |
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |

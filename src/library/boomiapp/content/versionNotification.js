@@ -9,7 +9,9 @@ var add_notification_close = (boomirevision) => {
       if (notinav) {
         notipanel[index].children[1].children[1].insertAdjacentHTML(
           "afterend",
-          '<span id="bph-close-notification" onclick="this.parentNode.parentNode.querySelector(\'.component_header\').style.background=\'#f5e4c2\';this.parentNode.remove();return false;" style="cursor:pointer;position: absolute; right: 0; top: 0; margin: 2px">x</span>',
+          '<span id="bph-close-notification" class="bph-close-notification" onclick="this.parentNode.parentNode.querySelector(\'.component_header\').style.background=\'#f5e4c2\';this.parentNode.remove();return false;">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+          '</span>',
         );
       }
     }

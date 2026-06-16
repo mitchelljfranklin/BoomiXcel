@@ -6,7 +6,7 @@ var add_endpoint_listener = (endpoint) => {
   }
 
   let endpointmenu_html = `
-    <div class="BoomiPlatformEndpointMenu" tabindex="0" style="z-index: 5;position: absolute;left: -130%;top: -230%; width: max-content;" aria-hidden="true">
+    <div class="BoomiPlatformEndpointMenu" tabindex="0" aria-hidden="true">
         <div>
             <div class="hover-menu-hidden-hotspot">
                 <div class="hover-menu">

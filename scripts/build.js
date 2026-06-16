@@ -43,7 +43,6 @@ const CONTENT_ORDER = [
   "endpointGlow.js",
   "tableWrap.js",
   "imageCapture.js",
-  "groups.js",
   "connectionOperations.js",
   "versionNotification.js",
   "sqlEditor.js",
@@ -53,14 +52,38 @@ const CONTENT_ORDER = [
 ];
 
 function getConcatenatedSource() {
+  const changelogHtml = extractUpdateChangelog();
+
   const stubs = `// content-context stubs — real implementations elsewhere or feature removed
 const add_fullscreen_listener = () => {};
 const add_notecontent_listener = () => {};
+${changelogHtml}
 `;
   return stubs + CONTENT_ORDER.map((filename) => {
     const filePath = path.join(CONTENT_DIR, filename);
     return `// ${filePath}\n${fs.readFileSync(filePath, "utf-8")}\n`;
   }).join("");
+}
+
+function extractUpdateChangelog() {
+  const changelogPath = path.join(ROOT, "updateNotification.md");
+  if (!fs.existsSync(changelogPath)) return "";
+
+  const content = fs.readFileSync(changelogPath, "utf-8").replace(/\r\n/g, "\n");
+  const lines = content.split("\n");
+  const items = [];
+
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (line.startsWith("- ")) {
+      items.push("<li><p>" + line.substring(2) + "</p></li>");
+    }
+  }
+
+  if (items.length === 0) return "";
+
+  var html = "<ul>" + items.join("") + "</ul>";
+  return "var UPDATE_CHANGELOG_HTML = " + JSON.stringify(html) + ";\n";
 }
 
 function generateWebstoreDescription(version) {
