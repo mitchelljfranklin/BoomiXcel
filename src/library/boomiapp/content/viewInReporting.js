@@ -11,9 +11,11 @@ function slugifyProcessName(name) {
 // Capture process name from tree row when chevron is clicked, before the
 // separate popup menu renders elsewhere in the DOM.
 document.addEventListener("click", function (clickEvent) {
-  var chevron = clickEvent.target.closest('.treeItemContent [data-locator="link"]');
-  if (!chevron) return;
-  var label = chevron.closest(".treeItemContent").querySelector('.gwt-Label[title]');
+  var chevronLink = clickEvent.target.closest('a[data-locator="link"]');
+  if (!chevronLink) return;
+  var row = chevronLink.closest("tr");
+  if (!row) return;
+  var label = row.querySelector('.gwt-Label[title]');
   bphReportingProcessName = label ? label.getAttribute("title") : null;
 }, true);
 
