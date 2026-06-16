@@ -221,6 +221,12 @@ It detects the file type by analyzing the document content (JSON, XML, EDI, CSV,
 ### DB Document Table Viewer
 When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table. Click column headers to sort, use the search box to filter, and navigate with page buttons (25 rows per page). A **maximize** button next to the toggle lets you expand the dialog to fill the screen for easier viewing.
 
+### Copy Document Content
+In the Document Viewer dialog, a copy button appears in the header. Click to copy the raw document content to your clipboard — works for JSON, XML, CSV, TXT, and even when the DB table view is active.
+
+### Copy Component XML
+When viewing a component's XML in the build page popup, a copy button appears in the header. Click to copy the clean XML to your clipboard — the button decodes HTML-encoded entities (`<br>` → newline, `&nbsp;` → space) so the pasted XML is ready to use.
+
 ---
 
 ## Notifications

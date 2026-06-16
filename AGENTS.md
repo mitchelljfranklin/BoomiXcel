@@ -120,7 +120,8 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/filterButtons.js` | content | Collapse-all-folders buttons, single-click tree navigation |
 | `content/shapePopup.js` | content | Double-click quick-shape popup on process panel |
 | `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menu items (old and new Boomi UI with shadow DOM) |
-| `content/copyDocument.js` | content | Clipboard-copy button in Document Viewer dialog |
+| `content/copyDocument.js` | content | Defines `createCopyButton()` shared factory. Clipboard-copy button in Document Viewer dialog. |
+| `content/copyXml.js` | content | Clipboard-copy button in Component XML popup — decodes HTML-encoded XML and writes clean XML to clipboard. Uses shared `createCopyButton()` factory. |
 | `content/downloadRename.js` | content | Intercepts document downloads, detects file type from content, sends context to background for auto-rename. Binary detection prevents misidentification of ZIP files as CSV/TXT. |
 | `content/documentViewer.js` | content | DB document table viewer — "See table" toggle switch renders a sortable, searchable, paginated table from DBSTART| format. Maximize/restore button for the dialog. Shares raw content with copy/download scripts. |
 | `content/iconSets.js` | content | Icon set data objects referenced by `listenerGlobal` |

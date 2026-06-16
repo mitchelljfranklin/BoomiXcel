@@ -24,6 +24,7 @@ EDITING
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
 - Resizable SQL editor in Database Operation shapes
 - Copy raw document content from the Document Viewer dialog
+- Copy clean XML from the Component XML popup (decodes HTML entities)
 - DB document table viewer — sortable, searchable, paginated table with "See table" toggle and maximize button
 
 NAVIGATION & LAYOUT

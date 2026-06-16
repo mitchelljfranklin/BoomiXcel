@@ -89,6 +89,7 @@
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
 - Resizable SQL editor in Database Operation shapes
 - Copy raw document content from the Document Viewer dialog
+- Copy clean XML from the Component XML popup (decodes HTML entities)
 - DB document table viewer — sortable, searchable, paginated table with "See table" toggle and maximize button
 
 🧭 **Navigation & Layout**
@@ -388,7 +389,8 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/filterButtons.js` | content | Collapse-all-folders, single-click tree navigation |
 | `content/shapePopup.js` | content | Double-click quick-shape popup |
 | `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menus (old and new Boomi UI) |
-| `content/copyDocument.js` | content | Clipboard-copy button in the Document Viewer dialog |
+| `content/copyDocument.js` | content | Defines shared `createCopyButton()` + clipboard-copy in Document Viewer |
+| `content/copyXml.js` | content | Clipboard-copy button in Component XML popup — decodes HTML-encoded XML |
 | `content/downloadRename.js` | content | Intercepts document downloads, detects file type, auto-renames — binary-safe |
 | `content/documentViewer.js` | content | DB document table viewer — sortable, searchable, paginated table with toggle + maximize |
 | `content/reminders.js` | content | Post-deployment schedule reminder |

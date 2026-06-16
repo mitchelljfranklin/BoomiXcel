@@ -29,6 +29,7 @@ const CONTENT_ORDER = [
   "shapePopup.js",
   "menuOpen.js",
   "copyDocument.js",
+  "copyXml.js",
   "downloadRename.js",
   "documentViewer.js",
   "scheduleIcons.js",
