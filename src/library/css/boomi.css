@@ -16,6 +16,7 @@
 .bph-masthead-options-item {
     display: flex;
     align-items: center;
+    padding: 0 8px;
 }
 
 .bph-masthead-options-link {
@@ -24,17 +25,17 @@
     justify-content: center;
     color: #fff;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .bph-masthead-options-link:hover {
-    opacity: 0.7;
+    color: #1B72C3;
 }
 
 .bph-masthead-options-link svg {
     display: block;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
 }
 
 /* Platform status dot */
