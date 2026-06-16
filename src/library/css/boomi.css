@@ -791,6 +791,11 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     background: rgba(27, 114, 195, 0.07) !important;
 }
 
+.bph-rev-hooked .gwt-ScrollTable {
+    width: 780px !important;
+    height: 380px !important;
+}
+
 .bph-gpt-link-active {
     opacity: 1 !important;
     pointer-events: auto;
