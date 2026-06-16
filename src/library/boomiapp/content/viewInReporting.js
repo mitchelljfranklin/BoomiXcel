@@ -8,15 +8,18 @@ function slugifyProcessName(name) {
 
 // ── Deployed processes: inject "View in Process Reporting" menu item ─────────
 
+// Capture process name from tree row when chevron is clicked, before the
+// separate popup menu renders elsewhere in the DOM.
+document.addEventListener("click", function (clickEvent) {
+  var chevron = clickEvent.target.closest('.treeItemContent [data-locator="link"]');
+  if (!chevron) return;
+  var label = chevron.closest(".treeItemContent").querySelector('.gwt-Label[title]');
+  bphReportingProcessName = label ? label.getAttribute("title") : null;
+}, true);
+
 document.arrive('[data-locator="link-execute-process"]', { existing: true }, function (executeLink) {
   var menuGroup = executeLink.closest("ul");
   if (!menuGroup || menuGroup.querySelector(".bph-reporting-item")) return;
-
-  var treeItemContent = executeLink.closest(".treeItemContent");
-  if (!treeItemContent) return;
-  var label = treeItemContent.querySelector('.gwt-Label[title]');
-  if (!label) return;
-  bphReportingProcessName = label.getAttribute("title");
   if (!bphReportingProcessName) return;
 
   var accountId = getUrlParameter("accountId");
