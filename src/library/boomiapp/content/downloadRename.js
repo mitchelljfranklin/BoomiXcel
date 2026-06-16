@@ -6,13 +6,13 @@ const DOWNLOAD_BUTTON_SELECTOR = '[data-locator="link-download-original-document
 // ── Type detection from textarea content ──────────────────────────────────────
 
 function detectTypeFromText(raw) {
-  const t = raw.trimStart();
-  if (t.startsWith('{') || t.startsWith('[')) return 'json';
-  if (t.startsWith('<'))                       return 'xml';
-  if (t.startsWith('ISA'))                     return 'edi';
-  if (t.startsWith('UNA') || t.startsWith('UNB')) return 'edi';
-  if (isBinaryContent(t))                      return null;
-  if (/^[\x20-\x7E]/.test(t))                 return t.includes(',') ? 'csv' : 'txt';
+  const trimmed = raw.trimStart();
+  if (trimmed.startsWith('{') || trimmed.startsWith('[')) return 'json';
+  if (trimmed.startsWith('<'))                           return 'xml';
+  if (trimmed.startsWith('ISA'))                         return 'edi';
+  if (trimmed.startsWith('UNA') || trimmed.startsWith('UNB')) return 'edi';
+  if (isBinaryContent(trimmed))                          return null;
+  if (/^[\x20-\x7E]/.test(trimmed))                     return trimmed.includes(',') ? 'csv' : 'txt';
   return null;
 }
 
@@ -32,64 +32,64 @@ function isBinaryContent(str) {
 // ── Execution timestamp from build-page date cells ───────────────────────────
 
 function parseBoomiDate(str) {
-  const m = str.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)$/);
-  if (!m) return null;
-  let hr = parseInt(m[4]);
-  if (m[7] === 'PM' && hr !== 12) hr += 12;
-  if (m[7] === 'AM' && hr === 12) hr = 0;
-  return new Date(+m[1], +m[2] - 1, +m[3], hr, +m[5], +m[6]);
+  const match = str.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)$/);
+  if (!match) return null;
+  let hr = parseInt(match[4]);
+  if (match[7] === 'PM' && hr !== 12) hr += 12;
+  if (match[7] === 'AM' && hr === 12) hr = 0;
+  return new Date(+match[1], +match[2] - 1, +match[3], hr, +match[5], +match[6]);
 }
 
 function formatTimestamp(date) {
   if (!date) return null;
-  const p = n => String(n).padStart(2, '0');
-  return `${date.getFullYear()}${p(date.getMonth()+1)}${p(date.getDate())}_${p(date.getHours())}${p(date.getMinutes())}${p(date.getSeconds())}`;
+  const pad = function (number) { return String(number).padStart(2, '0'); };
+  return date.getFullYear() + pad(date.getMonth() + 1) + pad(date.getDate()) + "_" + pad(date.getHours()) + pad(date.getMinutes()) + pad(date.getSeconds());
 }
 
 function findReportingPageDate() {
-  const timeDt = Array.from(document.querySelectorAll('.property_list dt'))
-    .find(dt => dt.textContent.trim() === 'Time:');
-  if (!timeDt) return null;
-  const text = timeDt.nextElementSibling?.textContent?.trim();
+  const timeDefinitionTerm = Array.from(document.querySelectorAll('.property_list dt'))
+    .find(function (definitionTerm) { return definitionTerm.textContent.trim() === 'Time:'; });
+  if (!timeDefinitionTerm) return null;
+  const text = timeDefinitionTerm.nextElementSibling?.textContent?.trim();
   if (!text) return null;
-  const m = text.match(/^(\d{1,2}) ([A-Za-z]{3}) (\d{4}) (\d{2}):(\d{2}):(\d{2})$/);
-  if (!m) return null;
+  const match = text.match(/^(\d{1,2}) ([A-Za-z]{3}) (\d{4}) (\d{2}):(\d{2}):(\d{2})$/);
+  if (!match) return null;
   const months = { Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11 };
-  const mo = months[m[2]];
-  if (mo === undefined) return null;
-  return new Date(+m[3], mo, +m[1], +m[4], +m[5], +m[6]);
+  const monthIndex = months[match[2]];
+  if (monthIndex === undefined) return null;
+  return new Date(+match[3], monthIndex, +match[1], +match[4], +match[5], +match[6]);
 }
 
 function findEarliestExecutionDate() {
   const dateRe = /^\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2} [AP]M$/;
   const cells = Array.from(document.querySelectorAll('div[__gwt_cell^="cell-gwt-uid-"]'));
   const dates = cells
-    .map(el => el.textContent.trim())
-    .filter(t => dateRe.test(t))
+    .map(function (cellElement) { return cellElement.textContent.trim(); })
+    .filter(function (text) { return dateRe.test(text); })
     .map(parseBoomiDate)
     .filter(Boolean);
   if (dates.length === 0) return null;
-  dates.sort((a, b) => a - b);
+  dates.sort(function (a, b) { return a - b; });
   return dates[0];
 }
 
 // ── Context extraction ────────────────────────────────────────────────────────
 
-function extractDownloadContext(buttonEl) {
+function extractDownloadContext(buttonElement) {
   const dialog =
-    buttonEl.closest('[role="dialog"]') ||
+    buttonElement.closest('[role="dialog"]') ||
     document.getElementById('popup_on_popup_content_DocumentDialogContents') ||
     document.body;
 
   const processLinkEl = Array.from(document.querySelectorAll('[data-locator^="link-process-"]'))
-    .find(el => el.textContent.trimStart().startsWith('Process:'));
+    .find(function (linkElement) { return linkElement.textContent.trimStart().startsWith('Process:'); });
   const processTitleEl = document.querySelector('.form_title_label:not(.no_display)');
   const processName = processLinkEl?.textContent?.trim().replace(/^Process:\s*/i, '')
     ?? processTitleEl?.textContent?.trim()
     ?? null;
 
   const allTextareas = Array.from(dialog.querySelectorAll('.documentViewer textarea.gwt-TextArea'));
-  const textareaContent = allTextareas.map(t => t.value || t.textContent).find(c => c.length > 0) || '';
+  const textareaContent = allTextareas.map(function (textarea) { return textarea.value || textarea.textContent; }).find(function (content) { return content.length > 0; }) || '';
   const content = textareaContent || (documentViewerRawContent || '');
   const fileExt = content ? detectTypeFromText(content) : null;
 
@@ -100,27 +100,26 @@ function extractDownloadContext(buttonEl) {
 
 // ── Download button hook ───────────────────────────────────────────────────────
 
-function hookDownloadButton(btn) {
-  if (btn.dataset.bphDownloadHooked) return;
-  btn.dataset.bphDownloadHooked = 'true';
+function hookDownloadButton(button) {
+  if (button.dataset.bphDownloadHooked) return;
+  button.dataset.bphDownloadHooked = 'true';
   let passing = false;
 
-  btn.addEventListener('click', async (e) => {
+  button.addEventListener('click', async function (event) {
     if (passing) return;
 
     if (!chrome.runtime?.id) {
-      console.warn('[bph] extension context invalidated — reload this tab');
       return;
     }
 
-    e.stopPropagation();
-    e.preventDefault();
+    event.stopPropagation();
+    event.preventDefault();
 
-    const { processName, fileExt, execTimestamp } = extractDownloadContext(btn);
+    const { processName, fileExt, execTimestamp } = extractDownloadContext(button);
     await chrome.runtime.sendMessage({ type: 'DOWNLOAD_CONTEXT', context: { processName, execTimestamp }, fileExt });
 
     passing = true;
-    btn.click();
+    button.click();
     passing = false;
   }, { capture: true });
 }
