@@ -1,5 +1,12 @@
 document.arrive(".filter_popup", function (filteredScreen) {
-    if (BoomiPlatform.apply_process_filters !== "on") return;
+  chrome.storage.sync.get([
+    "Filter_process",
+    "Filter_processProp",
+    "Filter_crossref",
+    "Filter_api_service",
+    "apply_process_filters",
+  ], function (prefs) {
+    if (prefs.apply_process_filters !== "on") return;
       var matchingxref = document.evaluate(
         "//label[contains(text(),'Cross Reference Table')]",
         document,
@@ -29,8 +36,9 @@ document.arrive(".filter_popup", function (filteredScreen) {
         null,
       ).singleNodeValue;
 
-      document.getElementById(matchingprocess.htmlFor).checked = BoomiPlatform.Filter_process;
-      document.getElementById(matchingproprop.htmlFor).checked = BoomiPlatform.Filter_processProp;
-      document.getElementById(matchingxref.htmlFor).checked = BoomiPlatform.Filter_crossref;
-      document.getElementById(matchingapiserv.htmlFor).checked = BoomiPlatform.Filter_api_service;
+      document.getElementById(matchingprocess.htmlFor).checked = prefs.Filter_process;
+      document.getElementById(matchingproprop.htmlFor).checked = prefs.Filter_processProp;
+      document.getElementById(matchingxref.htmlFor).checked = prefs.Filter_crossref;
+      document.getElementById(matchingapiserv.htmlFor).checked = prefs.Filter_api_service;
+  });
 });
