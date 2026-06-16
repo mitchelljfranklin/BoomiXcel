@@ -791,16 +791,8 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     background: rgba(27, 114, 195, 0.07) !important;
 }
 
-.bph-rev-hooked {
-    width: auto !important;
-    max-height: 85vh !important;
-    overflow-y: auto !important;
-}
-
 .bph-rev-hooked .gwt-ScrollTable {
-    width: 780px !important;
-    height: 65vh !important;
-    max-height: 65vh !important;
+    width: 700px !important;
 }
 
 .bph-gpt-link-active {
