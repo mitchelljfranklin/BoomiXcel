@@ -12,6 +12,31 @@
   width: auto !important;
 }
 
+/* Masthead options gear icon */
+.bph-masthead-options-item {
+    display: flex;
+    align-items: center;
+}
+
+.bph-masthead-options-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.bph-masthead-options-link:hover {
+    opacity: 0.7;
+}
+
+.bph-masthead-options-link svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
 /* Platform status dot */
 .bph-status-dot {
   display: inline-block;
