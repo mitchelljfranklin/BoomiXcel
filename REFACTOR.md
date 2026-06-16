@@ -82,7 +82,7 @@ When viewing a database document (DBSTART| format) in the Document Viewer dialog
 
 ### Boomi GPT Revision Compare
 
-Checkboxes now appear in the Revision History modal next to each revision number. Check two revisions and the Boomi GPT panel link updates to "Compare vX and vY →" — clicking it opens BoomiAI with a pre-filled compare prompt for the component's two selected versions. The GPT page auto-injects the prompt into the chat input via the React native value setter and auto-submits. Checking a third revision automatically unchecks the oldest selection, keeping exactly two selections.
+Checkboxes now appear in the Revision History modal next to each revision number. Click anywhere on a revision row to toggle its checkbox. Selected rows get a subtle blue highlight, and checkboxes use the Boomi blue accent color. Check two revisions and the Boomi GPT panel link updates to "Compare vX and vY →" — clicking it opens BoomiAI with a pre-filled compare prompt for the component's two selected versions. The GPT page auto-injects the prompt into the chat input via the React native value setter and auto-submits. Checking a third revision automatically unchecks the oldest selection. The popup also widens slightly (700px) to show more column content.
 
 ### Copy Component XML
 
