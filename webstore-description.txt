@@ -11,7 +11,7 @@ KEYBOARD SHORTCUTS
   - Configurable (default `~`): Toggle full-screen mode
 
 BUILD CANVAS
-- Capture the entire process flow as a PNG (with transparency, zoom, and note-expansion options)
+- Capture the entire process flow as a PNG (with transparency and zoom options)
 - Remove the canvas dot grid — works well with dark mode (configurable)
 - Double-click to add shapes via a quick-shape popup
 - Restored old-style shape connector palette
@@ -26,7 +26,6 @@ EDITING
 - DB document table viewer — sortable, searchable, paginated table with "See table" toggle and maximize button
 
 NAVIGATION & LAYOUT
-- Hide the header to reclaim build space
 - Collapse-all-folders button in Process Reporting and Deployed Process screens
 - Single-click anywhere on a process folder/title to expand (instead of the tiny icon)
 - Open dropdown menu items in a new tab (old and new Boomi UI)

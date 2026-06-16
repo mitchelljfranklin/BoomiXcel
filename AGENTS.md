@@ -109,7 +109,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 |---|---|---|
 | `content/contentScript.js` | content | Entry point. Detects page load via title change, injects `fullscreen.js`, sets up platform status check, update notification dialog |
 | `content/global.js` | content | Utility functions: URL parsing, `dashboardDays()` (configurable dashboard time-range auto-selector), alert dialog helper |
-| `content/pageInit.js` | content | Page-load detection, button injection |
+| `content/pageInit.js` | content | Page-load detection, triggers navigation change and update notification checks |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S (save) |
 | `content/updateNotification.js` | content | Per-version update changelog dialog — reads changelog from bundle-embedded `UPDATE_CHANGELOG_HTML` (generated from `updateNotification.md` at build time). Uses single localStorage key `bph_update_notification_version` with legacy key cleanup. |
@@ -163,8 +163,9 @@ document.arrive(".qm-c-servicenav", function (nav) {
 
 The **version** is read from `package.json` and injected into all manifests. To release:
 1. Bump `version` in `package.json`
-2. Run `npm run build`
-3. Upload the zips from `build/` to the respective stores
+2. Edit `updateNotification.md` with the latest changes
+3. Run `npm run build`
+4. Upload the zips from `build/` to the respective stores
 
 ## Deprecated / archived code
 

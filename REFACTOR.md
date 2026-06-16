@@ -184,6 +184,9 @@ Some things had to go to make room for better approaches:
 - **22 web_accessible_resources reduced to 3** — most of my scripts now run in the extension's sandbox rather than being exposed to web pages. This significantly tightens security without affecting any features.
 - **The `dashboard.js` file** — its logic (calling `dashboardDays()` on page load and hash change) moved to the centralized DOM poller in `listenerGlobal.js`. The file was reduced to comments, then deleted.
 - **The separate polling loop in `dashboardDays()`** — the function had its own `setInterval` watching for dashboard DOM. Now it's a direct function called by the existing centralized 1-second poller, same as every other feature.
+- **The header show/hide toggle** — the Show Header / Hide Header button on the navigation bar has been removed. No longer needed.
+- **The note group feature (`groups.js`)** — Boomi's platform now handles note grouping natively, so the extension's colored bounding boxes and Group button have been removed.
+- **Expand notes from image capture** — the "Expand notes" checkbox in the Process Image Capture dialog has been removed. The auto-expand note logic was tied to the old note system. Only transparency and scale options remain.
 
 ---
 

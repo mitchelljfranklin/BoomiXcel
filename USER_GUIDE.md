@@ -62,7 +62,7 @@ The options page groups settings into collapsible sections. Changes take effect 
 |---------|----------------------|
 | **Appearance** | Shape icons, canvas grid, brand logo, play/pause icons, modal buttons, footer |
 | **Build Canvas** | Endpoint notifications, trace path highlighting, table wrapping |
-| **Process Reporting** | Auto-refresh interval |
+| **Process Reporting** | Auto-refresh interval, dashboard default time range |
 | **Navigation & Shortcuts** | Full-screen shortcut key + modifiers, unique page titles/favicons, default filters |
 | **Reminders** | Post-deployment schedule reminder |
 
@@ -86,7 +86,6 @@ A **↺ Reset** button restores all defaults. A yellow dot appears when you have
 Click the camera icon (📸) in the build toolbar to capture your entire process flow as a PNG image. Options include:
 - **Transparent background** — removes the white background
 - **Scale** — 1x (normal), 1.5x, or 2x resolution
-- **Expand notes** — auto-expands all note elements before capture
 
 ### Shape Connector Palette
 The old-style shape connector palette is restored, showing shapes at their original size with proper spacing.
@@ -125,9 +124,6 @@ When viewing a document in Process Reporting, a clipboard icon (📋) appears in
 ---
 
 ## Navigation & Layout
-
-### Hide/Show Header
-A **Show Header** / **Hide Header** button is added to the navigation bar, giving you more build canvas space.
 
 ### Collapse All Folders
 Buttons to collapse all process folders at once in:

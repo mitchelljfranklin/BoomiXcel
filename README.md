@@ -76,7 +76,7 @@
 | Configurable (default `~`) | Toggle full-screen mode |
 
 🎨 **Build Canvas**
-- Capture the entire process flow as a PNG (with transparency, zoom, and note-expansion options)
+- Capture the entire process flow as a PNG (with transparency and zoom options)
 - Remove the canvas dot grid — works well with dark mode (configurable)
 - Double-click to add shapes via a quick-shape popup
 - Restored old-style shape connector palette
@@ -91,7 +91,6 @@
 - DB document table viewer — sortable, searchable, paginated table with "See table" toggle and maximize button
 
 🧭 **Navigation & Layout**
-- Hide the header to reclaim build space
 - Collapse-all-folders button in Process Reporting and Deployed Process screens
 - Single-click anywhere on a process folder/title to expand (instead of the tiny icon)
 - Open dropdown menu items in a new tab (old and new Boomi UI)
@@ -354,8 +353,8 @@ content/contentScript.js
 
 Three storage backends are used:
 - **`chrome.storage.sync`** — user preferences (feature toggles, refresh interval, shortcuts). Read directly by `listenerGlobal.js` and cached.
-- **`chrome.storage.local`** — transient UI state (header visibility toggle)
-- **`localStorage`** — per-version changelog suppression (`boomiplatenhanUpdateNot{version}`, legacy key from the old "Boomi Platform Enhancer" name)
+- **`chrome.storage.local`** — transient UI state: `bph_custom_refresh_active` for refresh persistence, `bph_suppress_reload_dialog` for suppressing the reload prompt from popup changes
+- **`localStorage`** — version-tracking key (`bph_update_notification_version`) for update changelog suppression. Legacy keys (`boomiplatenhanUpdateNot{version}`) auto-cleaned on first run
 
 ### Conventions
 
@@ -377,13 +376,13 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (38 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (42 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
 | `content/contentScript.js` | content | Entry point — injects fullscreen.js, checks platform status |
 | `content/global.js` | content | Shared utilities — URL parsing, dashboard default, alert dialogs |
-| `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
+| `content/pageInit.js` | content | Page-load detection, triggers navigation change and update notification checks |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, nav listeners |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S save |
 | `content/messageEditor.js` | content | CodeMirror editor for Message/Notify/Command shapes |
@@ -398,7 +397,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/downloadRename.js` | content | Intercepts document downloads, detects file type, auto-renames — binary-safe |
 | `content/documentViewer.js` | content | DB document table viewer — sortable, searchable, paginated table with toggle + maximize |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
-| `content/headerActions.js` | content | Header show/hide toggle, copy component ID/URL, update overlay close |
+| `content/headerActions.js` | content | Copy component ID/URL, update overlay close, settings-changed reload, View in Process Reporting link icon |
 | `content/updateNotification.js` | content | Per-version changelog popup |
 | `content/iconSets.js` | content | Icon set data for shape styling |
 | `content/listenerGlobal.js` | content | Reads config from storage, caches it, runs the DOM poller |
@@ -424,7 +423,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `popup/popup.js` | popup | Quick-settings popup with feature toggles |
 | `background.js` | background | Service worker: download rename + options-page-open message |
 
-> `.Old Scripts but want to keep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
+> `.oldScriptsKeep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
 
 </details>
 
