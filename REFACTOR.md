@@ -72,6 +72,10 @@ When you're viewing a document in Process Reporting, you'll see a copy button in
 
 Unconnected endpoints on your build canvas now glow, making them easy to spot. Hover over one to quickly add a Stop shape. You can control this in Build Canvas settings.
 
+### Configurable Dashboard Default Time Range
+
+The dashboard no longer always defaults to 7 days — you can now choose your preferred time range from the Options page under Process Reporting. Options: 7 Days (default), 1 Month, 3 Months, 6 Months, 1 Year, or Max. It auto-selects your choice whenever the Dashboard page loads.
+
 ### Unsaved Changes Indicator
 
 The options page now shows a yellow dot when you've made changes you haven't saved yet. No more wondering "did I click Save or not?"
@@ -106,6 +110,22 @@ I rewrote how favicons update so they actually refresh in your browser tab. Prev
 
 If you're a Firefox user, the extension had some behind-the-scenes issues with how it packaged itself for Firefox's extension format. That's fixed — the Firefox build now generates correctly.
 
+### Custom Refresh Code Rewritten
+
+The auto-refresh feature on Process Reporting got a thorough cleanup and visual overhaul:
+
+- **Countdown timer** — the button now shows a live countdown ("Refreshing in 14s" → "13s" → ...) so you always know when the next refresh will fire. Seconds are zero-padded for a stable button width.
+- **Visual pulse** — a subtle scale animation plays each time a refresh fires, providing a reassuring visual confirmation without a distracting toast.
+- **Hover tooltip** — shows "Last refreshed at HH:MM:SS" when you hover over the button.
+- **Persistent state** — if you navigate away from Process Reporting while auto-refresh is running, it automatically resumes when you come back. No need to re-click the button.
+- **Visual button overhaul** — pill-shaped button with gradient backgrounds (orange off / green on), an embedded SVG refresh icon, smooth transitions, and a green glow on the active state.
+- **Delegated click handler** — replaced stacked jQuery `.click()` handlers with a single delegated listener, preventing handler accumulation on re-renders.
+- **Re-entrance guard** — won't inject duplicate buttons or orphan intervals if the DOM re-renders.
+
+### Process Duration Split Out
+
+The live elapsed-time counter for in-progress executions now lives in its own file (`processDuration.js`), separated from the auto-refresh logic (`customRefresh.js`). They were two unrelated features sharing one file — now they're cleanly divided with clear responsibilities.
+
 ---
 
 ## Things I Fixed
@@ -124,6 +144,10 @@ Here's the full list of bugs I squashed:
 - **A dead function** with a typo in its name was sitting in the codebase unused. Removed.
 - **The `#close` CSS selector** could potentially collide with other page elements. Renamed to `#bph-close-notification`.
 - **15+ lines of dead/commented code** cleaned up across multiple files for better maintainability.
+- **Dashboard 7-day auto-select never fired.** The guard condition waited for a third `gwt-viz-container` element that never appeared on the current Boomi dashboard. Replaced with a direct check for the time range selector elements, and moved all polling to the centralized DOM listener.
+- **`return false` in setInterval callbacks.** Pointless in this context — changed to plain `return`.
+- **Fragile DOM index for elapsed-time cell.** The counter code used `div[11]` to find the cell — added a null guard so it won't crash if Boomi changes their DOM structure.
+- **Hashchange listener was stacking.** Each re-entry into the refresh listener added another `hashchange` handler. Moved to module level so it registers once.
 
 ---
 
@@ -136,6 +160,8 @@ Some things had to go to make room for better approaches:
 - **Markdown rendering scripts** — Boomi's platform now handles markdown natively in note shapes, so I no longer need to.
 - **The `webRequest` permission** — I wasn't using it, so I dropped it. Fewer permissions means a smaller security footprint.
 - **22 web_accessible_resources reduced to 3** — most of my scripts now run in the extension's sandbox rather than being exposed to web pages. This significantly tightens security without affecting any features.
+- **The `dashboard.js` file** — its logic (calling `dashboardDays()` on page load and hash change) moved to the centralized DOM poller in `listenerGlobal.js`. The file was reduced to comments, then deleted.
+- **The separate polling loop in `dashboardDays()`** — the function had its own `setInterval` watching for dashboard DOM. Now it's a direct function called by the existing centralized 1-second poller, same as every other feature.
 
 ---
 
@@ -179,6 +205,7 @@ I established clear conventions:
 - `const`/`let` for file-local declarations
 - All static CSS goes in `boomi.css` classes (computed/dynamic styles get an exception)
 - No implicit globals
+- **Variable names must be descriptive** — no single-letter or heavily abbreviated names (`el`, `e`, `cb`, `k`, `v`). Function parameters in callbacks must use meaningful names like `function (selector)` not `function (el)`.
 
 ---
 

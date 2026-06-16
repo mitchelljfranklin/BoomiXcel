@@ -31,7 +31,7 @@ Content scripts in `src/library/boomiapp/content/` are bundled by esbuild into a
 
 ### Bundle scope behavior
 
-esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` declarations are scoped to that IIFE — they are shared between all content scripts inside the bundle but are **not** on `window`. This is how `global.js` functions (`getUrlpath()`, `dashboardDays()`, `getUrlParameter()`, `getGWTPageName()`, `showInformationAlertDialog()`) are callable from `dashboard.js`, `pageInit.js`, and other content scripts.
+esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` declarations are scoped to that IIFE — they are shared between all content scripts inside the bundle but are **not** on `window`. This is how `global.js` functions (`getUrlpath()`, `dashboardDays()`, `getUrlParameter()`, `getGWTPageName()`, `showInformationAlertDialog()`) are callable from `pageInit.js`, `headerActions.js`, and other content scripts.
 
 The `listenerGlobal.js` sets a `var BoomiPlatform = {}` in the bundle scope, reads config from `chrome.storage.sync.get()`, and all other scripts reference `BoomiPlatform.key` from this shared IIFE-scoped variable.
 
@@ -106,10 +106,9 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | Script | Context | What it does |
 |---|---|---|
 | `content/contentScript.js` | content | Entry point. Detects page load via title change, injects `fullscreen.js`, sets up platform status check, update notification dialog |
-| `content/global.js` | content | Utility functions: URL parsing, dashboard 7-day default, alert dialog helper |
+| `content/global.js` | content | Utility functions: URL parsing, `dashboardDays()` (configurable dashboard time-range auto-selector), alert dialog helper |
 | `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
-| `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S (save) |
 | `content/updateNotification.js` | content | Per-version update changelog dialog (uses `localStorage` to suppress after first view) |
 | `content/shapePalette.js` | content | Restores old-style build shape connector palette |
@@ -126,7 +125,8 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/iconSets.js` | content | Icon set data objects referenced by `listenerGlobal` |
 | `content/listenerGlobal.js` | content | Reads config from `chrome.storage.sync`, caches in bundle scope, orchestrates feature listeners via MutationObserver + poller. Also handles shape icon styling injection. |
 | `content/canvas.js` | content | Canvas grid toggle (reads `BoomiPlatform.canvas_grid`) |
-| `content/customRefresh.js` | content | Custom process-reporting refresh interval |
+| `content/customRefresh.js` | content | Custom process-reporting refresh interval — injects "Refresh Every XXs" button with live countdown, pulse animation, last-refreshed tooltip, and persisted state across navigation |
+| `content/processDuration.js` | content | Live elapsed-time counter for "In Process" executions on the Process Reporting page. Resets to `0:00` when auto-refresh stops. |
 | `content/shapes.js` | content | Trace path highlight during test execution |
 | `content/endpointGlow.js` | content | Non-connected endpoint glow and quick-add Stop shape |
 | `content/tableWrap.js` | content | Table text-wrap toggles |
@@ -177,6 +177,8 @@ When splitting, renaming, or moving code between files:
 
 ## Documentation — keep it in sync
 
+**Documentation updates are mandatory for every code change.** Any change that adds, removes, or modifies a feature, option, script, or library **must** include corresponding documentation updates. Do not defer this to a later step — it is part of the change.
+
 When adding, removing, or renaming a script file:
 - Update the **Script responsibilities** table (this file) and **CONTENT_ORDER** in `scripts/build.js`
 - Update the **README.md** Script Reference table and Features list
@@ -211,6 +213,12 @@ When modifying the build script (`scripts/build.js`):
 - If you change zip naming or output paths, update the corresponding documentation in README.md and AGENTS.md.
 
 ## Code style — human-readable formatting
+
+**Variable names — use descriptive names, not shorthand:**
+- Variable names must clearly describe what they hold. Avoid single-letter or heavily abbreviated names (`el`, `e`, `cb`, `k`, `v`, `t`, `n`, `o`, `arr`, `obj`, `str`, `num`).
+- Acceptable exceptions: loop index `i` (and `j`/`k` for nested loops), `key`/`value` in object iteration, `err` for caught errors.
+- Function parameters in callbacks must use meaningful names — e.g., `function (selector)` not `function (el)`, `function (element)` not `function (e)`.
+- This rule applies to all code: hand-written, AI-generated, content scripts, options page, popup, and page-context scripts.
 
 **Variable declarations across files:**
 - Top-level declarations that are referenced by OTHER files in the bundle **must** use `var`. This is the contract that makes cross-file references work inside the esbuild IIFE. Examples: `var BoomiPlatform`, `var getUrlpath`, `var renderBoomiModal`, `var showToast`, all SVG icon variables.

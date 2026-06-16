@@ -150,6 +150,7 @@ const BoomiPlatform_Init = () => {
       }
     };
 
+    listenerClass(".time_range_selector", dashboardDays);
     listenerClass(".modal_top", modal_listener);
     listenerClass(".gwt-ProcessPanel", [process_to_image, add_canvas_listener]);
     listenerClass(".gwt-EndPoint", add_endpoint_listener);
@@ -159,7 +160,7 @@ const BoomiPlatform_Init = () => {
     listenerClass(".boomi_standard_table", add_table_listener);
     listenerClass(".build_actionsButton", add_fullscreen_listener);
     listenerClass(".note-content", add_notecontent_listener);
-    listenerClass(".auto_refresh_li", refreshInterval_listener);
+    listenerClass(".auto_refresh_li", [refreshInterval_listener, processDuration_listener]);
     listenerClass(".gwt-DetailAreaInner", add_connector_list);
     listenerClass(".buildMain", add_notification_close);
   }, 1000);

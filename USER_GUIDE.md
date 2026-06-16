@@ -160,7 +160,7 @@ The connection operation screen is resized to give you more room for the configu
 ## Process Reporting
 
 ### Auto-Refresh
-Click the **Refresh Every XX** button on the Process Reporting page to enable automatic refreshing at your configured interval (default: 15 seconds). An elapsed time counter shows how long since the last refresh.
+Click the **Refresh Every XX** button on the Process Reporting page to enable automatic refreshing at your configured interval (default: 15 seconds). The button shows a live countdown ("Refreshing in 10s") so you always know when the next refresh will fire. A subtle pulse animation confirms each refresh, and hovering over the button shows the last refresh timestamp. If you navigate away from Process Reporting while auto-refresh is running, it will automatically resume when you come back.
 
 ### Table Text Wrapping
 Process Reporting tables can wrap text instead of cutting it off. Three modes available:
@@ -168,8 +168,14 @@ Process Reporting tables can wrap text instead of cutting it off. Three modes av
 - **Always** — text wraps to show all content
 - **Toggle on Header Hover** — wrap mode activates when you hover over column headers
 
-### Dashboard Default
-The dashboard view defaults to **7 days** instead of the standard 1 hour.
+### Dashboard Default Time Range
+The dashboard view auto-selects your chosen time range on page load. Configure from the Options page:
+- **7 Days** — default
+- **1 Month**
+- **3 Months**
+- **6 Months**
+- **1 Year**
+- **Max**
 
 ### Pending Executions Clock
 When auto-refresh is enabled, a real-time elapsed time counter appears on the Process Reporting page for active processes, showing exactly how long each one has been running.

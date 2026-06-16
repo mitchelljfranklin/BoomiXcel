@@ -104,7 +104,7 @@
 - Custom auto-refresh interval (configurable)
 - Table text wrapping — always / never / toggle on header hover (configurable)
 - Auto-updating pending executions clock
-- Default dashboard view set to 7 days
+- Dashboard default time range — 7 days / 1 / 3 / 6 months / 1 year / max (configurable)
 
 ⭐ **Other**
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
@@ -379,7 +379,6 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/global.js` | content | Shared utilities — URL parsing, dashboard default, alert dialogs |
 | `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, nav listeners |
-| `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S save |
 | `content/messageEditor.js` | content | CodeMirror editor for Message/Notify/Command shapes |
 | `content/shapePalette.js` | content | Restored old-style shape connector palette |
@@ -396,7 +395,8 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/iconSets.js` | content | Icon set data for shape styling |
 | `content/listenerGlobal.js` | content | Reads config from storage, caches it, runs the DOM poller |
 | `content/canvas.js` | content | Canvas grid toggle |
-| `content/customRefresh.js` | content | Custom process-reporting refresh interval |
+| `content/customRefresh.js` | content | Custom auto-refresh with live countdown, pulse animation, last-refreshed tooltip, and persisted state across navigation |
+| `content/processDuration.js` | content | Live elapsed-time counter for in-progress executions on the Process Reporting page |
 | `content/shapes.js` | content | Trace path highlight |
 | `content/endpointGlow.js` | content | Endpoint glow, quick-add Stop shape |
 | `content/tableWrap.js` | content | Table text-wrap toggles |

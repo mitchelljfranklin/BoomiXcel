@@ -10,27 +10,19 @@ var getUrlpath = function getUrlpath() {
   return sPageURL;
 };
 
-//Function to adjust the Dashboard Grids from default to 7 days
+//Function to adjust the Dashboard Grids from default to chosen time range
 function dashboardDays() {
-  //Only Actions occur once the screen has been fully loaded
-  var accountdashLoaded = setInterval(function () {
-    var information = document.getElementsByClassName("gwt-viz-container")[2];
+  var url = getUrlpath();
+  if (!url || !url.includes("dashboard")) return;
 
-    if (information != undefined) {
-      $(".time_range_selector").each(function () {
-        var dashVal = $(this).text();
-
-        if (dashVal == "7d") {
-          $(this).click();
-        }
-      });
-
-      clearInterval(accountdashLoaded); //clear the interval now that data has been loaded
+  var targetRange = (typeof BoomiPlatform !== "undefined" && BoomiPlatform.dashboard_default_range) || "7d";
+  var timeSelectors = document.querySelectorAll(".time_range_selector");
+  if (timeSelectors.length === 0) return;
+  timeSelectors.forEach(function (selector) {
+    if (selector.textContent.trim() === targetRange) {
+      selector.click();
     }
-
-    //end of execution once
-  }, 1000);
-  //////////
+  });
 }
 
 function getUrlParameter(sParam) {
