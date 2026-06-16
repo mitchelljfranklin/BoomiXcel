@@ -197,7 +197,7 @@ Prevent the Boomi platform from hiding the footer bar (configurable).
 
 ### Page Titles & Favicons
 - **Simplified tab names** — removes the account name prefix
-- **Page-specific favicons** — different favicons for AtomSphere, MdmSphere, ApiSphere, and Flow pages
+- **Page-specific favicons** — distinct colored favicons for each page: Build (blue), Deploy (green), Dashboard (coral), Runtime (coral atom icon), Process Reporting (purple), MdmSphere (teal), ApiSphere (deep blue), BoomiAI (magenta), and Flow (orange)
 
 ---
 
