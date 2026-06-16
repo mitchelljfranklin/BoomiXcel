@@ -1,4 +1,4 @@
-document.arrive(".filter_options", { existing: true }, function (filteredScreen) {
+document.arrive(".filter_options", function (filteredScreen) {
   chrome.storage.sync.get([
     "Filter_process",
     "Filter_processProp",
@@ -7,6 +7,8 @@ document.arrive(".filter_options", { existing: true }, function (filteredScreen)
     "apply_process_filters",
   ], function (prefs) {
     if (prefs.apply_process_filters !== "on") return;
+
+    function tryApplyFilters() {
       var matchingxref = document.evaluate(
         "//label[contains(text(),'Cross Reference Table')]",
         document,
@@ -21,6 +23,12 @@ document.arrive(".filter_options", { existing: true }, function (filteredScreen)
         XPathResult.FIRST_ORDERED_NODE_TYPE,
         null,
       ).singleNodeValue;
+
+      if (!matchingprocess || !matchingxref) {
+        setTimeout(tryApplyFilters, 200);
+        return;
+      }
+
       var matchingproprop = document.evaluate(
         "//label[contains(text(),'Process Property')]",
         document,
@@ -40,5 +48,8 @@ document.arrive(".filter_options", { existing: true }, function (filteredScreen)
       document.getElementById(matchingproprop.htmlFor).checked = prefs.Filter_processProp;
       document.getElementById(matchingxref.htmlFor).checked = prefs.Filter_crossref;
       document.getElementById(matchingapiserv.htmlFor).checked = prefs.Filter_api_service;
+    }
+
+    tryApplyFilters();
   });
 });
