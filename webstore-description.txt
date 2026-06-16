@@ -38,7 +38,7 @@ NAVIGATION & LAYOUT
 PROCESS REPORTING
 - Custom auto-refresh interval (configurable)
 - Table text wrapping — always / never / toggle on header hover (configurable)
-- Auto-updating pending executions clock
+- Live elapsed-time counter with red accent row, gradient badge, and per-second bounce animation
 - Dashboard default time range — 7 days / 1 / 3 / 6 months / 1 year / max (configurable)
 
 OTHER
