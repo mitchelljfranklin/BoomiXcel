@@ -284,3 +284,12 @@ When adding new option controls, prefer the existing patterns:
 - Changes to `src/manifest.json` → must run `npm run build` (generates browser-specific manifests)
 
 To see content-script console output, inspect the page — content scripts log to the main page console in Chrome. To see page-context console output, same approach. Errors from the bundle will show with the source file name in the stack trace (esbuild injects `// src/library/boomiapp/content/...` comments).
+
+## Before committing — mandatory doc verification
+
+After `npm run build` succeeds and **before any git commit**:
+
+1. Read every `.md` file that references the changed feature (grep for script filenames, feature names, option keys)
+2. Update any stale or outdated references
+3. Verify REFACTOR.md, README.md, USER_GUIDE.md, and AGENTS.md are all current
+4. **Do not commit until this is done.** This is a hard stop — the same way `npm run build` is a hard stop before testing.
