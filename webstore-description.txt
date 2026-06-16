@@ -19,6 +19,7 @@ BUILD CANVAS
 - Trace path highlighting during test execution (configurable)
 - Note group overlays — colored semi-transparent bounding boxes created from process notes
 - View in Process Reporting quick-link icon next to the Description link
+- "View in Process Reporting" in deployed process context menus — opens reporting with auto-applied filter
 
 EDITING
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)

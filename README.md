@@ -84,6 +84,7 @@
 - Trace path highlighting during test execution (configurable)
 - Note group overlays — colored semi-transparent bounding boxes created from process notes
 - View in Process Reporting quick-link icon next to the Description link
+- "View in Process Reporting" in deployed process context menus — opens reporting with auto-applied filter
 
 ✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
@@ -413,6 +414,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/sqlEditor.js` | content | CodeMirror SQL editor |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
 | `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
+| `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |
 | `content/toastHelper.js` | content | Toast notification utility |

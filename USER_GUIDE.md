@@ -249,6 +249,9 @@ After each extension update, a changelog dialog appears once showing what's new.
 ### Boomi GPT Revision Compare
 When viewing a component's Revision History, checkboxes appear next to each revision number. Click anywhere on a row to toggle selection — selected rows highlight in blue. Check two revisions and the Boomi GPT panel link updates to "Compare vX and vY →". Click it to open BoomiAI with a pre-filled compare prompt, which auto-submits after the page loads. Checking a third revision auto-unchecks the oldest selection. The revision table is slightly wider to comfortably fit column content.
 
+### View in Process Reporting
+In the chevron context menu on deployed processes (Atom/Runtime), a **View in Process Reporting** item appears with a heartbeat icon and separator line. Click it to open Process Reporting in a new tab — the page automatically filters for the selected process by stepping through Add Filter → Process → type name → select checkbox → Apply.
+
 ### Schedule Reminder
 After deploying a component, you'll receive a reminder to schedule it if appropriate.
 

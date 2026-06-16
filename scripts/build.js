@@ -49,6 +49,7 @@ const CONTENT_ORDER = [
   "sqlEditor.js",
   "brandLogo.js",
   "boomiGpt.js",
+  "viewInReporting.js",
 ];
 
 function getConcatenatedSource() {

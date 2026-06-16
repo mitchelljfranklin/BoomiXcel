@@ -84,6 +84,10 @@ When viewing a database document (DBSTART| format) in the Document Viewer dialog
 
 Checkboxes now appear in the Revision History modal next to each revision number. Click anywhere on a revision row to toggle its checkbox. Selected rows get a subtle blue highlight, and checkboxes use the Boomi blue accent color. Check two revisions and the Boomi GPT panel link updates to "Compare vX and vY →" — clicking it opens BoomiAI with a pre-filled compare prompt for the component's two selected versions. The GPT page auto-injects the prompt into the chat input via the React native value setter and auto-submits. Checking a third revision automatically unchecks the oldest selection. The popup also widens slightly (700px) to show more column content.
 
+### View in Process Reporting from Deployed Processes
+
+A **View in Process Reporting** menu item now appears in the chevron context menu on deployed process lists (Atom/Runtime). It includes a heartbeat SVG icon and a subtle separator line. Clicking it opens the Process Reporting page in a new tab, which auto-applies a process name filter via a polling state machine: Add Filter → Process → type name → select checkbox → Apply. A confirming toast shows "Filtered for: {name}" when the filter is applied.
+
 ### Copy Component XML
 
 A copy button now appears in the header of the Component XML popup on the build page. Clicking it decodes HTML-encoded XML (`<br>` → newline, `&nbsp;` → space) and writes clean XML to the clipboard. The button shares its implementation with the existing document viewer copy button via a shared `createCopyButton()` factory extracted from `copyDocument.js`.

@@ -795,6 +795,27 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     width: 700px !important;
 }
 
+/* ── View in Process Reporting menu item ── */
+
+.bph-reporting-separator {
+    border-top: 1px solid #e0e0e0;
+    height: 4px;
+    margin: 4px 0;
+    pointer-events: none;
+}
+
+.bph-reporting-item a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bph-reporting-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+}
+
 .bph-gpt-link-active {
     opacity: 1 !important;
     pointer-events: auto;
