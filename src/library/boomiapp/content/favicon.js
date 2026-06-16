@@ -48,14 +48,14 @@ function changeFaviconBasedOnPage() {
         svgIcon = FAVICON_DEFAULT_PURPLE;
       }
     } else if (pageName === "MdmSphere") {
-      svgIcon = FAVICON_MDMSPHERE;
+      svgIcon = FAVICON_DEFAULT_TEAL;
     } else if (pageName === "ApiSphere") {
-      svgIcon = FAVICON_APISPHERE;
+      svgIcon = FAVICON_DEFAULT_DEEPB;
     } else if (pageName === "BoomiAI") {
-      svgIcon = FAVICON_DEFAULT_PURPLE;
+      svgIcon = FAVICON_DEFAULT_MAGENTA;
     }
   } else if (subdomain === "flow") {
-    svgIcon = FAVICON_FLOW;
+    svgIcon = FAVICON_DEFAULT_ORANGE;
   }
 
   if (!svgIcon) {
