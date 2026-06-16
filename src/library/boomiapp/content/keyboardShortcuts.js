@@ -2,9 +2,9 @@ document.addEventListener("keydown", function (event) {
   if (!event.ctrlKey || !event.altKey) return;
   if (event.key === "s" || event.keyCode === 83) {
     event.preventDefault();
-    var btns = document.querySelectorAll('[data-locator="button-save"]');
-    for (var i = 0; i < btns.length; i++) {
-      if (btns[i].offsetParent !== null) { btns[i].click(); break; }
+    var saveButtons = document.querySelectorAll('[data-locator="button-save"]');
+    for (var i = 0; i < saveButtons.length; i++) {
+      if (saveButtons[i].offsetParent !== null) { saveButtons[i].click(); break; }
     }
   }
 });

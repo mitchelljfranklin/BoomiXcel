@@ -1,15 +1,15 @@
 // @author   Noah Skelton
 // @description Reverts to older shape sizes on palette and changes the default expand / collapse width.
 
-var psc = 0;
+var panelCount = 0;
 var DefaultPaletteWidth = 250;
 
 function GM_addStyle(cssStr) {
-  var targ =
+  var target =
     document.getElementsByTagName("head")[0] || document.body || document.documentElement;
-  var st = document.createElement("style");
-  st.textContent = cssStr;
-  targ.appendChild(st);
+  var styleElement = document.createElement("style");
+  styleElement.textContent = cssStr;
+  target.appendChild(styleElement);
 }
 
 GM_addStyle(`
@@ -18,60 +18,60 @@ GM_addStyle(`
     .palette_shape_container_with_hover { border: none !important; }
 `);
 
-function DisplayPalette(toggle, el) {
+function DisplayPalette(toggle, element) {
   //Replace Expand Animation
-  el.children[0].children[1].style.display = toggle ? "none" : "";
-  el.children[0].children[1].style.left = toggle ? "-100%" : "0%";
-  el.children[0].children[1].children[0].style.display = toggle ? "none" : "";
+  element.children[0].children[1].style.display = toggle ? "none" : "";
+  element.children[0].children[1].style.left = toggle ? "-100%" : "0%";
+  element.children[0].children[1].children[0].style.display = toggle ? "none" : "";
 
-  el.children[0].children[2].style.display = toggle ? "" : "none";
-  el.children[0].children[2].style.left = toggle ? "0%" : "100%";
-  el.children[0].children[2].children[0].style.display = toggle ? "" : "none";
+  element.children[0].children[2].style.display = toggle ? "" : "none";
+  element.children[0].children[2].style.left = toggle ? "0%" : "100%";
+  element.children[0].children[2].children[0].style.display = toggle ? "" : "none";
 
   //Toggle Buttons
-  el.attributes["ExpandButton"].disabled = toggle;
-  el.attributes["CloseButton"].disabled = !toggle;
+  element.attributes["ExpandButton"].disabled = toggle;
+  element.attributes["CloseButton"].disabled = !toggle;
 }
 
-function ExpandPalette(toggle, el) {
-  var width = toggle ? el.attributes["PaletteWidth"] : 44;
+function ExpandPalette(toggle, element) {
+  var width = toggle ? element.attributes["PaletteWidth"] : 44;
 
-  if (!toggle) el.attributes["PaletteWidth"] = el.clientWidth;
-  el.attributes["ShapePaletteParent"].style.width = width + "px";
-  el.attributes["CollapsibleDragger"].style.left = width + "px";
-  el.attributes["BuildCanvas"].style.inset =
+  if (!toggle) element.attributes["PaletteWidth"] = element.clientWidth;
+  element.attributes["ShapePaletteParent"].style.width = width + "px";
+  element.attributes["CollapsibleDragger"].style.left = width + "px";
+  element.attributes["BuildCanvas"].style.inset =
     "0px 0px 0px " + (width + 12) + "px";
-  el.style.width = width + "px";
+  element.style.width = width + "px";
 }
 
-function InitCollapsiblePanel(p) {
-  var el = p.children[1];
-  var cdp = p.children[2];
-  if (!el || !cdp) return null;
-  var cd = cdp.children[0];
-  if (!cd) return null;
-  var ebt = cd.children[0];
-  var cbt = cd.children[2];
-  if (!ebt || !cbt) return null;
+function InitCollapsiblePanel(panel) {
+  var collapsibleElement = panel.children[1];
+  var draggerPanel = panel.children[2];
+  if (!collapsibleElement || !draggerPanel) return null;
+  var dragger = draggerPanel.children[0];
+  if (!dragger) return null;
+  var expandButton = dragger.children[0];
+  var closeButton = dragger.children[2];
+  if (!expandButton || !closeButton) return null;
 
-  el.attributes["PaletteWidth"] = DefaultPaletteWidth;
-  el.attributes["ShapePaletteParent"] = el.children[0];
-  el.attributes["CollapsibleDragger"] = cdp;
-  el.attributes["BuildCanvas"] = p.children[3];
-  el.attributes["ExpandButton"] = ebt;
-  el.attributes["CloseButton"] = cbt;
+  collapsibleElement.attributes["PaletteWidth"] = DefaultPaletteWidth;
+  collapsibleElement.attributes["ShapePaletteParent"] = collapsibleElement.children[0];
+  collapsibleElement.attributes["CollapsibleDragger"] = draggerPanel;
+  collapsibleElement.attributes["BuildCanvas"] = panel.children[3];
+  collapsibleElement.attributes["ExpandButton"] = expandButton;
+  collapsibleElement.attributes["CloseButton"] = closeButton;
 
-  ebt.onclick = function () {
-    ExpandPalette(true, el);
+  expandButton.onclick = function () {
+    ExpandPalette(true, collapsibleElement);
   };
-  cbt.onclick = function () {
-    ExpandPalette(false, el);
+  closeButton.onclick = function () {
+    ExpandPalette(false, collapsibleElement);
   };
-  cd.ondblclick = function () {
-    ExpandPalette(cbt.disabled, el);
+  dragger.ondblclick = function () {
+    ExpandPalette(closeButton.disabled, collapsibleElement);
   };
 
-  return el;
+  return collapsibleElement;
 }
 
 var resizeObserver = new ResizeObserver((entries) => {
@@ -88,17 +88,17 @@ var docObserver = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (!mutation.addedNodes) return;
 
-    var ps = document.getElementsByClassName("collapsible_base_panel");
+    var panels = document.getElementsByClassName("collapsible_base_panel");
 
-    if (ps && ps.length != psc) {
-      psc = ps.length;
+    if (panels && panels.length != panelCount) {
+      panelCount = panels.length;
 
-      for (var i = 1; i < ps.length; i++) {
-        if (!ps[i].attributes["sizeobserved"]) {
-          var el = InitCollapsiblePanel(ps[i]);
-          if (el) resizeObserver.observe(el);
+      for (var i = 1; i < panels.length; i++) {
+        if (!panels[i].attributes["sizeobserved"]) {
+          var initializedPanel = InitCollapsiblePanel(panels[i]);
+          if (initializedPanel) resizeObserver.observe(initializedPanel);
 
-          ps[i].attributes["sizeobserved"] = true;
+          panels[i].attributes["sizeobserved"] = true;
         }
       }
     }

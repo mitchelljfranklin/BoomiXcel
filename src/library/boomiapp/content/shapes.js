@@ -1,4 +1,4 @@
-const add_shape_listener = (shape) => {
+var add_shape_listener = (shape) => {
   if (BoomiPlatform.path_trace_highlight == "off") return false;
   let rect = shape.getBoundingClientRect();
   if (
@@ -85,7 +85,7 @@ const add_shape_listener = (shape) => {
   }, 250);
 };
 
-const add_path_listener = (path) => {
+var add_path_listener = (path) => {
   if (BoomiPlatform.path_trace_highlight == "off") return false;
   let timer = null;
 

@@ -15,8 +15,8 @@ let boomiPageLoaded = setInterval(() => {
       subHeaderContainerNav.style.display != "none" &&
       !subHeaderContainerNav.classList.contains("no_display")
     ) {
-      chrome.storage.local.get(["headerVisible"], function (e) {
-        if (e.headerVisible == false) {
+      chrome.storage.local.get(["headerVisible"], function (result) {
+        if (result.headerVisible == false) {
           document
             .getElementsByClassName("qm-c-masthead")[0]
             .classList.add("headerHide");

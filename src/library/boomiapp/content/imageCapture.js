@@ -1,4 +1,4 @@
-const process_to_image = (process) => {
+var process_to_image = (process) => {
   let nav = process
     .closest(".component_editor_panel")
     .querySelector(".step_pellete");

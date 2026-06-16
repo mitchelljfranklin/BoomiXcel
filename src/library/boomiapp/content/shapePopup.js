@@ -5,8 +5,8 @@ document.arrive(".gwt-ProcessPanel", function (panel) {
   // --------------------------------------------------
   // Quick Shapes Remove Popup
   // --------------------------------------------------
-  $(panel).on("mousedown", function (e) {
-    e.preventDefault();
+  $(panel).on("mousedown", function (mouseEvent) {
+    mouseEvent.preventDefault();
     $(".bpe-quickshape-popup").each(function () {
       $(this).remove();
     });
@@ -15,8 +15,8 @@ document.arrive(".gwt-ProcessPanel", function (panel) {
   // --------------------------------------------------
   // Quick Shapes on Double Click
   // --------------------------------------------------
-  $(panel).on("dblclick", function (e) {
-    e.preventDefault();
+  $(panel).on("dblclick", function (dblclickEvent) {
+    dblclickEvent.preventDefault();
     // don't open panel if copy_paste_panel is visible, or if in test mode (testModeCover) as it's confusing
     // we check for test mode, by checking if .testModeCover is visible
     // (we have to check through all elements with that class as you could have multiple tabs in test mode)
@@ -25,7 +25,7 @@ document.arrive(".gwt-ProcessPanel", function (panel) {
     if (
       !$(".copy_paste_panel").hasClass("no_display") ||
       !Array.from(document.querySelectorAll(".testModeCover")).every(
-        (el) => el.offsetParent === null,
+        (element) => element.offsetParent === null,
       ) ||
       (typeof window.getSelection != "undefined" && window.getSelection().toString() !== "")
     ){
@@ -34,15 +34,15 @@ document.arrive(".gwt-ProcessPanel", function (panel) {
     $(".bpe-quickshape-popup").each(function () {
       $(this).remove();
     });
-    rendorQuickShapePopup(panel, e.offsetX, e.offsetY, e.clientX, e.clientY);
+    rendorQuickShapePopup(panel, dblclickEvent.offsetX, dblclickEvent.offsetY, dblclickEvent.clientX, dblclickEvent.clientY);
   });
 });
 
 // --------------------------------------------------
 // Render and append quick shapes to panel
 // --------------------------------------------------
-function rendorQuickShapePopup(obj, offsetX, offsetY, clientX, clientY) {
-  quick_shape_added = { added: false, clientX: 0, clientY: 0 };
+function rendorQuickShapePopup(processPanel, offsetX, offsetY, clientX, clientY) {
+  var quick_shape_added = { added: false, clientX: 0, clientY: 0 };
   var shapes_array = {};
   var shapes_array_html = "";
   $(".gwt-Label.base_shape_container_label").each(function () {
@@ -53,7 +53,7 @@ function rendorQuickShapePopup(obj, offsetX, offsetY, clientX, clientY) {
       .attr("src");
   });
 
-  shapes_array_sorted = Object.keys(shapes_array)
+  var shapes_array_sorted = Object.keys(shapes_array)
     .sort()
     .reduce((accumulator, key) => {
       accumulator[key] = shapes_array[key];
@@ -93,19 +93,19 @@ function rendorQuickShapePopup(obj, offsetX, offsetY, clientX, clientY) {
                     </div>
                 </div>`;
 
-  $(obj).append(html);
+  $(processPanel).append(html);
   $("#bpe-quickshape-input").focus();
 
-  $("#bpe-quickshape-input").keyup(function (e) {
+  $("#bpe-quickshape-input").keyup(function (keyEvent) {
     var filter = this.value.toLowerCase();
 
-    if (e.key === "Escape") {
+    if (keyEvent.key === "Escape") {
       $(".bpe-quickshape-popup").each(function () {
         $(this).remove();
       });
       return;
     } else {
-      if (e.key === "Enter") {
+      if (keyEvent.key === "Enter") {
         if (filter?.trim()) {
           var option = $(".component_list")
             .find(".bpe-quickshape-shape")
@@ -119,7 +119,7 @@ function rendorQuickShapePopup(obj, offsetX, offsetY, clientX, clientY) {
             shape.parentElement.parentElement.dispatchEvent(
               new MouseEvent("mousedown"),
             );
-            obj.dispatchEvent(
+            processPanel.dispatchEvent(
               new MouseEvent("mouseup", { clientX: clientX, clientY: clientY }),
             );
           }
@@ -141,9 +141,9 @@ function rendorQuickShapePopup(obj, offsetX, offsetY, clientX, clientY) {
     });
   });
 
-  $(".bpe-quickshape-shape").on("mousedown", function (e) {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
+  $(".bpe-quickshape-shape").on("mousedown", function (mouseEvent) {
+    mouseEvent.stopPropagation();
+    mouseEvent.stopImmediatePropagation();
     var shape = $(this)
       .closest(".component_editor_panel")
       .find(
@@ -152,7 +152,7 @@ function rendorQuickShapePopup(obj, offsetX, offsetY, clientX, clientY) {
     shape.parentElement.parentElement.dispatchEvent(
       new MouseEvent("mousedown"),
     );
-    obj.dispatchEvent(
+    processPanel.dispatchEvent(
       new MouseEvent("mouseup", { clientX: clientX, clientY: clientY }),
     );
     $(".bpe-quickshape-popup").each(function () {

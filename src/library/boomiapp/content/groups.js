@@ -1,14 +1,14 @@
 let currentColor = 0;
 let windowMouseMover = false;
 let dragObj = null;
-const create_note_group = (el) => {
-  let noteForm = el.closest(".note-form");
+var create_note_group = (element) => {
+  let noteForm = element.closest(".note-form");
 
   try {
     if (!noteForm) {
-      var node = el.closest(".note-preview").parentElement.parentElement;
+      var node = element.closest(".note-preview").parentElement.parentElement;
       noteForm = [
-        ...el
+        ...element
           .closest(".gwt-ProcessPanel")
           .querySelectorAll(":not([data-notegroup]"),
       ]

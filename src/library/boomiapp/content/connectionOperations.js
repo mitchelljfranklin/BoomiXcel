@@ -1,4 +1,4 @@
-const add_connector_list = (conOperation) => {
+var add_connector_list = (conOperation) => {
   let connectorList = conOperation.children;
   if (connectorList && connectorList[1] && connectorList[1].children) {
     connectorList[1].children[0].classList.add("boomiConnect");
@@ -8,8 +8,8 @@ const add_connector_list = (conOperation) => {
     for (var i = 0; i < tableElement.length; i++) {
       var currenttableElement = tableElement[i].children;
 
-      for (var b = 0; b < currenttableElement.length; b++) {
-        var itemcurrenttableElement = currenttableElement[b];
+      for (var j = 0; j < currenttableElement.length; j++) {
+        var itemcurrenttableElement = currenttableElement[j];
         itemcurrenttableElement.classList.add("connectorText");
 
         if (itemcurrenttableElement.innerHTML == "Name") {

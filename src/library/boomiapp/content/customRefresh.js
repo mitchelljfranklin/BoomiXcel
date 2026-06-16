@@ -118,7 +118,7 @@ function setButtonOffState() {
   button.removeAttribute("title");
 }
 
-const refreshInterval_listener = function (element) {
+var refreshInterval_listener = function (element) {
   if (BoomiPlatform.refresh_interval === undefined) {
     BoomiPlatform.refresh_interval = 15;
   }

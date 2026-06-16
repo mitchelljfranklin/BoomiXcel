@@ -1,4 +1,4 @@
-const add_canvas_listener = (canvas) => {
+var add_canvas_listener = (canvas) => {
   if (BoomiPlatform.canvas_grid == "off") {
     let xpanel = document.getElementsByClassName("canvas_grid_process_editor");
 

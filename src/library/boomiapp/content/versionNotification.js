@@ -1,4 +1,4 @@
-const add_notification_close = (boomirevision) => {
+var add_notification_close = (boomirevision) => {
   setTimeout(() => {
     let notipanel = document.getElementsByClassName("buildMain");
 

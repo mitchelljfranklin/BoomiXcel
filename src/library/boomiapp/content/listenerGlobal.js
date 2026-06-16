@@ -100,7 +100,7 @@ const BoomiPlatform_Init = () => {
                           let noteForm = node.querySelector(".note-form");
                           if (!noteForm) return false;
 
-                          notegroupbutton_html = `
+                          var notegroupbutton_html = `
                                 <button type="button" class="NoteGroupButton" onclick="create_note_group(this)">Group</button>
                                 `;
                           noteForm
@@ -137,14 +137,14 @@ const BoomiPlatform_Init = () => {
         `${selector}:not(.bph-load-done)`,
       );
       if (elements.length) {
-        [...elements].forEach((el) => {
-          el.classList.add("bph-load-done");
+        [...elements].forEach((element) => {
+          element.classList.add("bph-load-done");
           if (Array.isArray(callback)) {
-            callback.forEach((cb) => {
-              cb(el);
+            callback.forEach((handler) => {
+              handler(element);
             });
           } else {
-            callback(el);
+            callback(element);
           }
         });
       }

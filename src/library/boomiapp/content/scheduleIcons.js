@@ -1,6 +1,6 @@
 document.arrive(".deployed_processes_panel", function (processPanel) {
-  chrome.storage.sync.get(["schedule_icon"], function (e) {
-    if (e.schedule_icon === "on") {
+  chrome.storage.sync.get(["schedule_icon"], function (prefs) {
+    if (prefs.schedule_icon === "on") {
       //Look for images that match process running or pause in schedules and adjust icon to previos version, since it reloads everytime a change is made need to keep doing the do
       setInterval(function () {
         var images = document.querySelectorAll(

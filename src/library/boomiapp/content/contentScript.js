@@ -39,8 +39,8 @@ let wait_for_load = setInterval(() => {
             `,
         );
 
-        document.getElementById("bph-options-link")?.addEventListener("click", function (e) {
-          e.preventDefault();
+        document.getElementById("bph-options-link")?.addEventListener("click", function (clickEvent) {
+          clickEvent.preventDefault();
           chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" });
         });
         }

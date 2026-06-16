@@ -5,8 +5,8 @@ document.arrive(".filter_popup", function (filteredScreen) {
     "Filter_crossref",
     "Filter_api_service",
     "apply_process_filters",
-  ], function (e) {
-    if (e.apply_process_filters !== "on") return;
+  ], function (prefs) {
+    if (prefs.apply_process_filters !== "on") return;
       var matchingxref = document.evaluate(
         "//label[contains(text(),'Cross Reference Table')]",
         document,
@@ -36,9 +36,9 @@ document.arrive(".filter_popup", function (filteredScreen) {
         null,
       ).singleNodeValue;
 
-      document.getElementById(matchingprocess.htmlFor).checked = e.Filter_process;
-      document.getElementById(matchingproprop.htmlFor).checked = e.Filter_processProp;
-      document.getElementById(matchingxref.htmlFor).checked = e.Filter_crossref;
-      document.getElementById(matchingapiserv.htmlFor).checked = e.Filter_api_service;
+      document.getElementById(matchingprocess.htmlFor).checked = prefs.Filter_process;
+      document.getElementById(matchingproprop.htmlFor).checked = prefs.Filter_processProp;
+      document.getElementById(matchingxref.htmlFor).checked = prefs.Filter_crossref;
+      document.getElementById(matchingapiserv.htmlFor).checked = prefs.Filter_api_service;
   });
 });

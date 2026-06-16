@@ -6,8 +6,8 @@
  * All click handlers use a single delegated listener on `document`.
  */
 
-document.addEventListener("click", function (e) {
-  const target = e.target;
+document.addEventListener("click", function (event) {
+  const target = event.target;
 
   // Toggle masthead visibility and persist preference to chrome.storage.local
   if (target.closest("#showHeaderbtn")) {

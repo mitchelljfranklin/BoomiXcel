@@ -1,4 +1,4 @@
-const add_table_listener = (table) => {
+var add_table_listener = (table) => {
   // the "on" clause below is a legacy patch to keep the toggle showing
   // if they haven't selected one of the newer options (toggle, always, never)
   if (

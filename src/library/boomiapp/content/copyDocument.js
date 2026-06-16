@@ -29,12 +29,12 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
     tooltip.classList.remove('bph-copy-tooltip-visible');
   });
 
-  copyBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    e.preventDefault();
+  copyBtn.addEventListener('click', function (event) {
+    event.stopPropagation();
+    event.preventDefault();
 
     var textareas = Array.from(dialog.querySelectorAll('.documentViewer textarea.gwt-TextArea'));
-    var content = textareas.map(function (t) { return t.value || t.textContent; }).find(function (c) { return c.length > 0; }) || '';
+    var content = textareas.map(function (textarea) { return textarea.value || textarea.textContent; }).find(function (content) { return content.length > 0; }) || '';
     if (!content && documentViewerRawContent) content = documentViewerRawContent;
     if (!content) return;
 
@@ -48,13 +48,13 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
     }
 
     navigator.clipboard.writeText(content).then(onCopied).catch(function () {
-      var ta = document.createElement('textarea');
-      ta.value = content;
-      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;';
-      document.body.appendChild(ta);
-      ta.select();
+      var fallbackTextarea = document.createElement('textarea');
+      fallbackTextarea.value = content;
+      fallbackTextarea.style.cssText = 'position:fixed;top:-9999px;left:-9999px;';
+      document.body.appendChild(fallbackTextarea);
+      fallbackTextarea.select();
       document.execCommand('copy');
-      document.body.removeChild(ta);
+      document.body.removeChild(fallbackTextarea);
       onCopied();
     });
   });
