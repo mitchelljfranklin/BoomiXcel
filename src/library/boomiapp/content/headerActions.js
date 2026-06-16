@@ -1,38 +1,13 @@
 /**
- * Boomi header bar actions: show/hide masthead, copy component ID/URL,
+ * Boomi header bar actions: copy component ID/URL,
  * dismiss update notification overlay, and inject copy-menu items into
  * the full-screen dropdown.
  *
  * All click handlers use a single delegated listener on `document`.
  */
 
-document.addEventListener("click", function (e) {
-  const target = e.target;
-
-  // Toggle masthead visibility and persist preference to chrome.storage.local
-  if (target.closest("#showHeaderbtn")) {
-    const masthead = document.querySelector(".qm-c-masthead");
-    if (!masthead) return;
-
-    chrome.storage.local.get(["headerVisible"], function (result) {
-      const showHeaderspan = document.getElementById("showHeaderspan");
-      let headerVisible = result.headerVisible;
-      if (typeof headerVisible === "undefined") {
-        headerVisible = true;
-      }
-      if (headerVisible === true) {
-        masthead.classList.add("headerHide");
-        if (showHeaderspan) showHeaderspan.textContent = "Show Header";
-        headerVisible = false;
-      } else {
-        masthead.classList.remove("headerHide");
-        if (showHeaderspan) showHeaderspan.textContent = "Hide Header";
-        headerVisible = true;
-      }
-      chrome.storage.local.set({ headerVisible: headerVisible });
-    });
-    return;
-  }
+document.addEventListener("click", function (event) {
+  const target = event.target;
 
   // Dashboard date-picker shortcut (7-day default)
   if (target.closest("#gwt-uid-84")) {
@@ -125,7 +100,18 @@ document.arrive('[data-locator="link-description"]', { existing: true }, functio
   link.href = 'https://platform.boomi.com/AtomSphere.html#reporting;accountId=' + accountId + ';processes=' + currentId;
   link.title = 'View in Process Reporting';
   link.target = '_blank';
-  link.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="width: 24px; height: 24px;"><title>View in Process Reporting</title><path d="M22 12H18L15 21L9 3L6 12H2" stroke="#8C8C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  link.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="width: 24px; height: 24px;"><title>View in Process Reporting</title><path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  link.addEventListener('mouseenter', function () {
+    var currentId = getUrlParameter("componentIdOnFocus");
+    if (!currentId) return;
+    var processReportingEl = document.querySelector('[data-locator="link-process-reporting"]');
+    var accountId =
+      getUrlParameter("accountId") ||
+      (processReportingEl && processReportingEl.href.split("=").pop().split(";")[0]);
+    if (!accountId) return;
+    link.href = 'https://platform.boomi.com/AtomSphere.html#reporting;accountId=' + accountId + ';processes=' + currentId;
+  });
 
   descLink.insertAdjacentElement('afterend', link);
 });

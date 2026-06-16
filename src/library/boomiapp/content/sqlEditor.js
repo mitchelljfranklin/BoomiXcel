@@ -22,7 +22,7 @@ document.arrive(
 
       var code = $(textAreaId)[0].value;
 
-      editor = CodeMirror($("#bpe-message-editor")[0], {
+      var editor = CodeMirror($("#bpe-message-editor")[0], {
         value: code,
         mode: "sql",
         lineNumbers: true,

@@ -1,54 +1,37 @@
 function updateNotificationCheck() {
-  // Check both old and new Boomi UI for the integration service name
   var integration = document.getElementsByClassName("qm-c-servicenav__service-name")[0]
     || document.querySelector('[data-testid="header-masthead-brand-logo"]');
 
-  if (integration) {
-    let currentAppver = chrome.runtime.getManifest().version;
-    if (typeof Storage !== "undefined") {
-      if (
-        localStorage.getItem("boomiplatenhanUpdateNot" + currentAppver) ===
-          null ||
-        localStorage.getItem("boomiplatenhanUpdateNot" + currentAppver) === ""
-      ) {
-        localStorage.setItem("boomiplatenhanUpdateNot" + currentAppver, "done");
-        updateNotificationAlert();
-      } else {
-        //No action Required in that its actually already alerted
-        //alert(localStorage.getItem("boomiplatenhanUpdateNot" + currentAppver))
-      }
-    } else {
-      alert("No Access to Local Storage");
+  if (!integration) return;
+
+  var storedVersion = localStorage.getItem("bph_update_notification_version");
+  var currentVersion = chrome.runtime.getManifest().version;
+
+  if (storedVersion === currentVersion) return;
+
+  for (var i = localStorage.length - 1; i >= 0; i--) {
+    var key = localStorage.key(i);
+    if (key && key.indexOf("boomiplatenhanUpdateNot") === 0) {
+      localStorage.removeItem(key);
     }
   }
 
-  //Add Notification Details HERE!
-  function updateNotificationAlert() {
-    var changelog = [
-      "Bugfix: Fixed an issue where the icon overrides stopped working in Chrome.",
-      "Bugfix: Fixed an issue where note content might overflow the note area.",
-    ];
+  localStorage.setItem("bph_update_notification_version", currentVersion);
+  showUpdateChangelog();
 
-    var htmlUpdateContents = "<ul>" + changelog.map(function (item) {
-      return "<li><p>" + item + "</p></li>";
-    }).join("") + "</ul>";
-
-    let updateHtml = renderBoomiModal({
+  function showUpdateChangelog() {
+    var changelogHtml = renderBoomiModal({
       overlayClass: "BoomiUpdateOverlay",
+      modern: true,
       body:
         '<h1>BoomiXcel Extension Updates</h1>' +
         '<p>Explore the latest additions to the BoomiXcel Extension, including new features and bug fixes:</p>' +
-        htmlUpdateContents +
+        UPDATE_CHANGELOG_HTML +
         '<p>For more information about the BoomiXcel Extension, visit the <a href="https://github.com/mitchelljfranklin/BoomiXcel/blob/master/USER_GUIDE.md" target="_blank">Extensions GitHub user guide page</a>.</p>',
       buttons: [{ id: "closeUpdate", className: "gwt-Button", text: "Close" }],
     });
 
     removeBoomiOverlay("BoomiUpdateOverlay");
-
-    setTimeout(() => {
-      document
-        .getElementsByTagName("body")[0]
-        .insertAdjacentHTML("beforeend", updateHtml);
-    }, 1000);
+    document.getElementsByTagName("body")[0].insertAdjacentHTML("beforeend", changelogHtml);
   }
 }

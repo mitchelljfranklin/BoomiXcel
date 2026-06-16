@@ -39,8 +39,8 @@ let wait_for_load = setInterval(() => {
             `,
         );
 
-        document.getElementById("bph-options-link")?.addEventListener("click", function (e) {
-          e.preventDefault();
+        document.getElementById("bph-options-link")?.addEventListener("click", function (clickEvent) {
+          clickEvent.preventDefault();
           chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" });
         });
         }
@@ -81,7 +81,6 @@ const updateFullscreenConfig = () => {
 
 chrome.storage.onChanged.addListener((changes, areaName) => {
   if (areaName !== "sync") return;
-  if (changes.headerVisible) return;
 
   chrome.storage.local.get(["bph_suppress_reload_dialog"], function (local) {
     if (local.bph_suppress_reload_dialog) {

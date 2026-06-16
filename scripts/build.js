@@ -19,7 +19,6 @@ const CONTENT_ORDER = [
   "pageInit.js",
   "favicon.js",
   "headerActions.js",
-  "dashboard.js",
   "shapePalette.js",
   "keyboardShortcuts.js",
   "updateNotification.js",
@@ -30,33 +29,70 @@ const CONTENT_ORDER = [
   "shapePopup.js",
   "menuOpen.js",
   "copyDocument.js",
+  "copyXml.js",
   "downloadRename.js",
+  "documentViewer.js",
   "scheduleIcons.js",
   "iconSets.js",
   "modalButtons.js",
   "listenerGlobal.js",
   "canvas.js",
   "customRefresh.js",
+  "processDuration.js",
   "shapes.js",
   "endpointGlow.js",
   "tableWrap.js",
   "imageCapture.js",
-  "groups.js",
   "connectionOperations.js",
   "versionNotification.js",
   "sqlEditor.js",
   "brandLogo.js",
+  "boomiGpt.js",
+  "viewInReporting.js",
 ];
 
 function getConcatenatedSource() {
+  const changelogHtml = extractUpdateChangelog();
+
   const stubs = `// content-context stubs — real implementations elsewhere or feature removed
 const add_fullscreen_listener = () => {};
 const add_notecontent_listener = () => {};
+${changelogHtml}
 `;
   return stubs + CONTENT_ORDER.map((filename) => {
     const filePath = path.join(CONTENT_DIR, filename);
     return `// ${filePath}\n${fs.readFileSync(filePath, "utf-8")}\n`;
   }).join("");
+}
+
+function extractUpdateChangelog() {
+  const changelogPath = path.join(ROOT, "updateNotification.md");
+  if (!fs.existsSync(changelogPath)) return "";
+
+  const content = fs.readFileSync(changelogPath, "utf-8").replace(/\r\n/g, "\n");
+  const lines = content.split("\n");
+  const items = [];
+  var intro = "";
+
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line) continue;
+    var htmlLine = convertMarkdownLinks(line);
+    if (line.startsWith("- ")) {
+      items.push("<li><p>" + htmlLine.substring(2) + "</p></li>");
+    } else if (!intro) {
+      intro = "<p>" + htmlLine + "</p>";
+    }
+  }
+
+  if (items.length === 0 && !intro) return "";
+
+  var html = intro + (items.length > 0 ? "<ul>" + items.join("") + "</ul>" : "");
+  return "var UPDATE_CHANGELOG_HTML = " + JSON.stringify(html) + ";\n";
+}
+
+function convertMarkdownLinks(text) {
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
 }
 
 function generateWebstoreDescription(version) {

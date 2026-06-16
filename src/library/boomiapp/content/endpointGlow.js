@@ -1,4 +1,4 @@
-const add_endpoint_listener = (endpoint) => {
+var add_endpoint_listener = (endpoint) => {
   if (BoomiPlatform.endpoint_flash == "testing") {
     endpoint.classList.add("bph-endpoint-flash-testonly");
   } else if (BoomiPlatform.endpoint_flash != "off") {
@@ -6,7 +6,7 @@ const add_endpoint_listener = (endpoint) => {
   }
 
   let endpointmenu_html = `
-    <div class="BoomiPlatformEndpointMenu" tabindex="0" style="z-index: 5;position: absolute;left: -130%;top: -230%; width: max-content;" aria-hidden="true">
+    <div class="BoomiPlatformEndpointMenu" tabindex="0" aria-hidden="true">
         <div>
             <div class="hover-menu-hidden-hotspot">
                 <div class="hover-menu">
@@ -58,7 +58,7 @@ const add_endpoint_listener = (endpoint) => {
         setTimeout(() => {
           let sidepanel = [
             ...document.querySelectorAll(".shape_side_panel .form_title_label"),
-          ].find((el) => el.innerText == "Stop Step");
+          ].find((element) => element.innerText == "Stop Step");
           sidepanel = sidepanel.closest(".shape_side_panel");
 
           document.querySelector(".glass_standard").style.display = "none";

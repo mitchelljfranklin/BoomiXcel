@@ -93,30 +93,6 @@ const BoomiPlatform_Init = () => {
                             }, 0);
                         }
 
-                        if(
-                          node !== null &&
-                          "querySelector" in node
-                        ){
-                          let noteForm = node.querySelector(".note-form");
-                          if (!noteForm) return false;
-
-                          notegroupbutton_html = `
-                                <button type="button" class="NoteGroupButton" onclick="create_note_group(this)">Group</button>
-                                `;
-                          noteForm
-                            .querySelector(".button_row")
-                            .insertAdjacentHTML("beforeend", notegroupbutton_html);
-
-                          if (
-                            /\n{0,2}---\n\#BoomiPlatform: \[\"(\d*px)\"\,\"(\d*px)\"\,\"([a-z]*)\"\]/g.test(
-                              noteForm.querySelector("textarea").value,
-                            )
-                          ) {
-                            setTimeout(() => {
-                              create_note_group(noteForm);
-                            }, 100);
-                          }
-                        }
                     } catch (err) {
                         console.error(err);
                     }
@@ -137,29 +113,31 @@ const BoomiPlatform_Init = () => {
         `${selector}:not(.bph-load-done)`,
       );
       if (elements.length) {
-        [...elements].forEach((el) => {
-          el.classList.add("bph-load-done");
+        [...elements].forEach((element) => {
+          element.classList.add("bph-load-done");
           if (Array.isArray(callback)) {
-            callback.forEach((cb) => {
-              cb(el);
+            callback.forEach((handler) => {
+              handler(element);
             });
           } else {
-            callback(el);
+            callback(element);
           }
         });
       }
     };
 
+    listenerClass(".time_range_selector", dashboardDays);
     listenerClass(".modal_top", modal_listener);
     listenerClass(".gwt-ProcessPanel", [process_to_image, add_canvas_listener]);
     listenerClass(".gwt-EndPoint", add_endpoint_listener);
     listenerClass(".gwt-Shape", add_shape_listener);
     listenerClass(".gwt-connectors-svg", add_path_listener);
     listenerClass(".gwt-DialogBox", add_dialog_listener);
+    listenerClass("#popup_on_popup_content_DocumentDialogContents", documentViewer_listener);
     listenerClass(".boomi_standard_table", add_table_listener);
     listenerClass(".build_actionsButton", add_fullscreen_listener);
     listenerClass(".note-content", add_notecontent_listener);
-    listenerClass(".auto_refresh_li", refreshInterval_listener);
+    listenerClass(".auto_refresh_li", [refreshInterval_listener, processDuration_listener]);
     listenerClass(".gwt-DetailAreaInner", add_connector_list);
     listenerClass(".buildMain", add_notification_close);
   }, 1000);

@@ -76,22 +76,21 @@
 | Configurable (default `~`) | Toggle full-screen mode |
 
 🎨 **Build Canvas**
-- Capture the entire process flow as a PNG (with transparency, zoom, and note-expansion options)
+- Capture the entire process flow as a PNG (with transparency and zoom options)
 - Remove the canvas dot grid — works well with dark mode (configurable)
 - Double-click to add shapes via a quick-shape popup
 - Restored old-style shape connector palette
 - Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape (configurable)
 - Trace path highlighting during test execution (configurable)
-- Note group overlays — colored semi-transparent bounding boxes created from process notes
-- View in Process Reporting quick-link icon next to the Description link
 
 ✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
 - Resizable SQL editor in Database Operation shapes
 - Copy raw document content from the Document Viewer dialog
+- Copy clean XML from the Component XML popup (decodes HTML entities)
+- DB document table viewer — sortable, searchable, paginated table with "See table" toggle and maximize button
 
 🧭 **Navigation & Layout**
-- Hide the header to reclaim build space
 - Collapse-all-folders button in Process Reporting and Deployed Process screens
 - Single-click anywhere on a process folder/title to expand (instead of the tiny icon)
 - Open dropdown menu items in a new tab (old and new Boomi UI)
@@ -103,22 +102,28 @@
 📊 **Process Reporting**
 - Custom auto-refresh interval (configurable)
 - Table text wrapping — always / never / toggle on header hover (configurable)
-- Auto-updating pending executions clock
-- Default dashboard view set to 7 days
+- Live elapsed-time counter with red accent row, gradient badge, and per-second bounce animation
+- Dashboard default time range — 7 days / 1 / 3 / 6 months / 1 year / max (configurable)
 
-⭐ **Other**
+🎨 **Appearance**
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
 - Old-style play/pause icons in deployed processes (configurable)
-- Copy component ID/URL from the build canvas
 - Replace the Boomi masthead brand logo with the BoomiXcel logo (configurable)
-- Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
-- Post-deployment schedule reminder (configurable)
-- Platform status check on every page
 - Tab names simplified — account name removed (configurable)
 - Page-specific favicons for each Boomi subdomain (configurable)
-- Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
+
+📬 **Notifications &amp; Reminders**
+- Platform status check on every page
+- Post-deployment schedule reminder (configurable)
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
+
+⭐ **Other**
+- View in Process Reporting — quick-link icon on build page + context menu item on deployed processes (auto-applied filter)
+- Revision History checkbox selection → Boomi GPT compare prompts for side-by-side revision analysis
+- Copy component ID/URL from the build canvas
+- Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
+- Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
 
 ⚡ **Quick Settings Popup**
 - Click the toolbar icon for instant access to the most-used feature toggles — no need to open the full options page
@@ -263,7 +268,7 @@ npm run release      # build + create a GitHub release with auto-generated notes
 
 `npm run build` (via `scripts/build.js`) performs these steps in order:
 
-1. **Content bundle** — reads `CONTENT_ORDER`, concatenates all content scripts into a single source, then runs esbuild to produce a minified IIFE bundle at `src/library/boomiapp/content/bundle.js`. The concatenation approach ensures `var`/`const`/`function` declarations at the top level of each file share the same scope.
+1. **Content bundle** — reads `CONTENT_ORDER`, concatenates all content scripts into a single source, then runs esbuild to produce a minified IIFE bundle at `src/library/boomiapp/content/bundle.js`. The concatenation approach ensures `var`/`const`/`function` declarations at the top level of each file share the same scope. The build also reads `updateNotification.md` and injects its changelog items as `UPDATE_CHANGELOG_HTML` in the bundle — edit that file before a release to update the in-app changelog.
 
 2. **Webstore description** — extracts the Features section from the README, converts markdown to plain text, and regenerates `webstore-description.txt`.
 
@@ -348,8 +353,8 @@ content/contentScript.js
 
 Three storage backends are used:
 - **`chrome.storage.sync`** — user preferences (feature toggles, refresh interval, shortcuts). Read directly by `listenerGlobal.js` and cached.
-- **`chrome.storage.local`** — transient UI state (header visibility toggle)
-- **`localStorage`** — per-version changelog suppression (`boomiplatenhanUpdateNot{version}`, legacy key from the old "Boomi Platform Enhancer" name)
+- **`chrome.storage.local`** — transient UI state: `bph_custom_refresh_active` for refresh persistence, `bph_suppress_reload_dialog` for suppressing the reload prompt from popup changes
+- **`localStorage`** — version-tracking key (`bph_update_notification_version`) for update changelog suppression. Legacy keys (`boomiplatenhanUpdateNot{version}`) auto-cleaned on first run
 
 ### Conventions
 
@@ -371,15 +376,14 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (39 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (42 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
 | `content/contentScript.js` | content | Entry point — injects fullscreen.js, checks platform status |
 | `content/global.js` | content | Shared utilities — URL parsing, dashboard default, alert dialogs |
-| `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
+| `content/pageInit.js` | content | Page-load detection, triggers navigation change and update notification checks |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, nav listeners |
-| `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S save |
 | `content/messageEditor.js` | content | CodeMirror editor for Message/Notify/Command shapes |
 | `content/shapePalette.js` | content | Restored old-style shape connector palette |
@@ -388,25 +392,29 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/filterButtons.js` | content | Collapse-all-folders, single-click tree navigation |
 | `content/shapePopup.js` | content | Double-click quick-shape popup |
 | `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menus (old and new Boomi UI) |
-| `content/copyDocument.js` | content | Clipboard-copy button in the Document Viewer dialog |
-| `content/downloadRename.js` | content | Intercepts document downloads for auto-renamed filenames |
+| `content/copyDocument.js` | content | Defines shared `createCopyButton()` + clipboard-copy in Document Viewer |
+| `content/copyXml.js` | content | Clipboard-copy button in Component XML popup — decodes HTML-encoded XML |
+| `content/downloadRename.js` | content | Intercepts document downloads, detects file type, auto-renames — binary-safe |
+| `content/documentViewer.js` | content | DB document table viewer — sortable, searchable, paginated table with toggle + maximize |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
-| `content/headerActions.js` | content | Header show/hide toggle, copy component ID/URL, update overlay close |
+| `content/headerActions.js` | content | Copy component ID/URL, update overlay close, settings-changed reload, View in Process Reporting link icon |
 | `content/updateNotification.js` | content | Per-version changelog popup |
 | `content/iconSets.js` | content | Icon set data for shape styling |
 | `content/listenerGlobal.js` | content | Reads config from storage, caches it, runs the DOM poller |
 | `content/canvas.js` | content | Canvas grid toggle |
-| `content/customRefresh.js` | content | Custom process-reporting refresh interval |
+| `content/customRefresh.js` | content | Custom auto-refresh with live countdown, pulse animation, last-refreshed tooltip, and persisted state across navigation |
+| `content/processDuration.js` | content | Live elapsed-time counter with red accent row, gradient badge, per-second bounce — resets to `0:00` on stop |
 | `content/shapes.js` | content | Trace path highlight |
 | `content/endpointGlow.js` | content | Endpoint glow, quick-add Stop shape |
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel order |
 | `content/imageCapture.js` | content | Process flow → PNG capture |
-| `content/groups.js` | content | Note group overlays on canvas |
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
+| `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
+| `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |
 | `content/toastHelper.js` | content | Toast notification utility |
@@ -415,7 +423,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `popup/popup.js` | popup | Quick-settings popup with feature toggles |
 | `background.js` | background | Service worker: download rename + options-page-open message |
 
-> `.Old Scripts but want to keep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
+> `.oldScriptsKeep/` contains archived scripts (`copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js`, `dbsqlEditor.js`) — previous versions of features no longer in rotation. They are not loaded by any manifest. Do not modify or re-integrate them without understanding why they were removed.
 
 </details>
 
@@ -423,9 +431,10 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 
 ```bash
 # 1. Bump version in package.json
-# 2. Create release (builds zips + creates GitHub release)
+# 2. Edit updateNotification.md with the latest changes
+# 3. Create release (builds zips + creates GitHub release)
 npm run release
-# 3. Upload zips from build/ to each browser store
+# 4. Upload zips from build/ to each browser store
 ```
 
 `npm run release` (alias for `node scripts/build.js --release`) does everything `npm run build` does, plus creates a GitHub release tagged `v{version}` with:

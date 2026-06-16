@@ -5,3 +5,6 @@ node_modules/
 src/library/boomiapp/content/bundle.js
 build/
 OLD/
+
+# Mac system files
+.DS_Store

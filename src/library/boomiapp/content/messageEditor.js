@@ -1,4 +1,4 @@
-const langs = {
+var langs = {
   plain_text: { mode: "default", display: "Plain Text" },
   json: { mode: { name: "javascript", json: true }, display: "JSON" },
   xml: { mode: "xml", display: "XML" },
@@ -16,8 +16,8 @@ document.arrive(
         `<button type="button" class="gwt-Button qm-button--primary-action" id="bpe-message-editor-button-${this.id}" textareaid="${this.id}"style="display: block">Edit Message</button>`,
       );
 
-    $(bpeButtonId).click(function (e) {
-      let textAreaId = `#${e.target.getAttribute("textareaid")}`;
+    $(bpeButtonId).click(function (clickEvent) {
+      let textAreaId = `#${clickEvent.target.getAttribute("textareaid")}`;
 
       $("body").append(renderMessageEditorPopup(this.id));
 
@@ -26,7 +26,7 @@ document.arrive(
         .replace(/'*$/, "")
         .replace(/'({\d+})'/g, "$1");
 
-      editor = CodeMirror($("#bpe-message-editor")[0], {
+      var editor = CodeMirror($("#bpe-message-editor")[0], {
         value: code,
         mode: "default",
         lineNumbers: true,
@@ -84,8 +84,8 @@ document.arrive(
       });
 
       // Change
-      $("#bpe-message-editor-language").change(function (e) {
-        editor.setOption("mode", langs[e.target.value].mode);
+      $("#bpe-message-editor-language").change(function (changeEvent) {
+        editor.setOption("mode", langs[changeEvent.target.value].mode);
       });
     });
   },
@@ -98,8 +98,8 @@ function renderMessageEditorPopup(id, lang) {
   let lang_html = "";
   let title = "Edit Message";
   if (!lang) {
-    for (const [k, v] of Object.entries(langs)) {
-      lang_html += `<option value="${k}">${v.display}</option>`;
+    for (const [key, value] of Object.entries(langs)) {
+      lang_html += `<option value="${key}">${value.display}</option>`;
     }
   } else {
     title = `Edit ${lang.toUpperCase()}`;

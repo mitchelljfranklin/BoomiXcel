@@ -61,11 +61,7 @@
     display: flex !important;
 }
 
-.headerHide {
-    display: none !important;
-}
-
-/*tools*/
+/* Reduce the padding on the new sidebar design *//*tools*/
 
 .information_label_content {
     background-color: white !important;
@@ -178,18 +174,47 @@
 
 .gwt-EndPoint .BoomiPlatformEndpointMenu {
     display: none;
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    width: max-content;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 2px 0;
+    margin-bottom: 6px;
 }
 
-.gwt-EndPoint.disconnected:hover .BoomiPlatformEndpointMenu {
+.gwt-EndPoint.disconnected:hover .BoomiPlatformEndpointMenu,
+.BoomiPlatformEndpointMenu:hover {
     display: block;
 }
 
+.BoomiPlatformEndpointMenu::before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+
 .BoomiPlatformEndpointMenu .gwt-ClickableLabel {
-    background: #808080;
+    background: transparent;
+    padding: 5px 14px;
+    color: #333;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.15s ease;
 }
 
 .BoomiPlatformEndpointMenu .gwt-ClickableLabel:hover {
-    background: #d6d4d4 !important
+    background: #f0f0f0 !important;
+    color: #000 !important;
 }
 
 .mastfoot .footer_msg {
@@ -313,40 +338,87 @@
 
 
 
+#refresh_reporting button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#refresh_reporting button .refresh-icon {
+    flex-shrink: 0;
+}
+
+#refresh_reporting button .refresh-label {
+    line-height: 1;
+}
+
 .refresh_primary_action {
-    background-color: #ad612e !important;
-    border-color: #ad612e !important;
+    background: linear-gradient(135deg, #c46a2c, #9e4a18) !important;
     color: #fff !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .refresh_primary_action:hover {
-    background-color: #915025 !important;
-    border-color: #915025 !important;
-    color: #fff !important;
+    background: linear-gradient(135deg, #d47a3a, #ae5a28) !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .refresh_doing_action {
-    background-color: #2ac07a !important;
-    border-color: #2ac07a !important;
-    color: #2e2c2c !important;
+    background: linear-gradient(135deg, #2ac07a, #1a9e5e) !important;
+    color: #fff !important;
+    box-shadow: 0 0 10px rgba(42, 192, 122, 0.35);
 }
 
 .refresh_doing_action:hover {
-    background-color: #107755 !important;
-    border-color: #107755 !important;
-    color: #2e2c2c !important;
+    background: linear-gradient(135deg, #35d088, #20ae6a) !important;
+    box-shadow: 0 0 14px rgba(42, 192, 122, 0.5);
+}
+
+@keyframes refresh_pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.refresh_pulse {
+    animation: refresh_pulse 0.4s ease;
+}
+
+/* Process Reporting — elapsed time counter */
+.bph-processing-row {
+    border-left: 3px solid #e53935 !important;
+}
+
+.bph-elapsed-badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #fff0f0, #ffe0e0);
+    font-weight: 700;
+}
+
+.bph-elapsed-active {
+    color: #e53935 !important;
+}
+
+@keyframes bph-elapsed-bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+.bph-elapsed-tick {
+    animation: bph-elapsed-bounce 0.35s ease;
 }
 
 .closeall_doing_action {
-    background-color: #2ac07a !important;
-    border-color: #2ac07a !important;
-    color: #2e2c2c !important;
-}
-
-.closeall_doing_action:hover {
-    background-color: #107755 !important;
-    border-color: #107755 !important;
-    color: #2e2c2c !important;
+    position: absolute;
 }
 
 
@@ -467,20 +539,33 @@ div[style*="position: relative; height: 250px; width: 250px;"] {
 }
 
 
-#bph-close-notification {
-    float:right;
-    display:inline-block;
-    padding:2px 5px;
-    background:#ccc;
+#bph-close-notification,
+.bph-close-notification {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    color: #999;
+    border-radius: 4px;
+    transition: color 0.2s ease, background 0.2s ease;
+    line-height: 1;
 }
 
+#bph-close-notification:hover,
+.bph-close-notification:hover {
+    color: #333;
+    background: rgba(0, 0, 0, 0.06);
+}
 
-#bph-close-notification:hover {
-    float:right;
-    display:inline-block;
-    padding:2px 5px;
-    background:#ccc;
-    color:#fff;
+#bph-close-notification svg,
+.bph-close-notification svg {
+    display: block;
+    width: 14px;
+    height: 14px;
 }
 
 /* Reduce the padding on the new sidebar design */
@@ -555,3 +640,317 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 .bph-toast { background: #198754; color: #fff; padding: 0.75rem 1.25rem; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; opacity: 0; transform: translateX(100%); transition: opacity 0.3s, transform 0.3s; }
 .bph-toast.show { opacity: 1; transform: translateX(0); }
 .bph-toast-error { background: #dc3545; }
+
+/* ── Document Viewer: DB table view + maximize ── */
+
+.dbview-controls {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.dbview-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #666;
+}
+
+.toggle.toggle-sm {
+    width: 32px;
+    height: 18px;
+}
+
+.toggle.toggle-sm .slider::before {
+    width: 12px;
+    height: 12px;
+    left: 3px;
+    bottom: 3px;
+}
+
+.toggle.toggle-sm input:checked + .slider::before {
+    transform: translateX(14px);
+}
+
+.dbview-maximize-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 2px;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.dbview-maximize-btn:hover {
+    color: #333;
+}
+
+.dbview-maximize-btn svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+.dbview-maximized {
+    width: 90vw !important;
+    height: 90vh !important;
+    left: 5vw !important;
+    top: 5vh !important;
+}
+
+.dbview-maximized .documentViewer,
+.dbview-maximized .documentViewer.secondary {
+    width: 100% !important;
+    height: calc(100% - 40px) !important;
+}
+
+.dbview-table-wrapper {
+    width: 100%;
+    height: calc(100% - 70px);
+    overflow: auto;
+}
+
+.dbview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.dbview-table th {
+    position: sticky;
+    top: 0;
+    background: #f5f5f5;
+    font-weight: 600;
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 2px solid #ddd;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.dbview-table th:hover {
+    background: #ebebeb;
+}
+
+.dbview-table th.dbview-sorted {
+    background: #e0e8f0;
+}
+
+.dbview-table th .dbview-sort-arrow {
+    font-size: 10px;
+    margin-left: 3px;
+}
+
+.dbview-table td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #eee;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dbview-table tr:hover td {
+    background: #fafafa;
+}
+
+.dbview-search {
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    box-sizing: border-box;
+}
+
+.dbview-search:focus {
+    outline: none;
+    border-color: #1B72C3;
+}
+
+.dbview-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 6px 0 2px;
+    font-size: 12px;
+}
+
+.dbview-page-btn {
+    padding: 2px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.dbview-page-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.dbview-page-btn:not(:disabled):hover {
+    background: #f0f0f0;
+}
+
+.dbview-page-info {
+    color: #666;
+}
+
+/* ── Boomi GPT revision checkboxes ── */
+
+.bph-rev-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-left: 6px;
+    vertical-align: middle;
+    accent-color: #1B72C3;
+}
+
+.bph-rev-selected {
+    background: rgba(27, 114, 195, 0.07) !important;
+}
+
+.bph-rev-hooked .gwt-ScrollTable {
+    width: 700px !important;
+}
+
+/* ── View in Process Reporting menu item ── */
+
+.bph-reporting-separator {
+    border-top: 1px solid #e0e0e0;
+    height: 4px;
+    margin: 4px 0;
+    pointer-events: none;
+}
+
+.bph-reporting-item a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bph-reporting-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+}
+
+.bph-gpt-link-active {
+    opacity: 1 !important;
+    pointer-events: auto;
+}
+
+/* ── Collapse All button ── */
+
+.bph-collapse-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 5px;
+    border-radius: 20px !important;
+    padding: 4px 14px !important;
+    font-weight: 500;
+    background: linear-gradient(135deg, #2ac07a, #1a9e5e) !important;
+    color: #2e2c2c !important;
+    border: none !important;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+.bph-collapse-btn:hover {
+    background: linear-gradient(135deg, #35d088, #20ae6a) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bph-collapse-btn .collapse-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+}
+
+/* ── Reminder badge ── */
+
+.bph-reminder-badge {
+    color: #e65100;
+    background: #fff3e0;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border-left: 3px solid #e65100;
+    font-size: 0.9em;
+}
+
+/* ── Monitor link hover transition ── */
+
+.bph-monitor-link {
+    color: #8C8C8C;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.bph-monitor-link:hover {
+    color: #1B72C3;
+    transform: scale(1.1);
+}
+
+.bph-monitor-link svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+/* ── Image capture checkboxes ── */
+
+.bph-capture-options {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.bph-capture-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.bph-capture-toggle-row span {
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* ── Modern modal styling ── */
+
+.bph-modern-modal .popupContent {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.bph-modern-modal .form_header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+}
+
+.bph-modern-modal .qm-c-alert {
+    padding: 16px 20px;
+}
+
+.bph-modern-modal .button_set {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px 16px;
+}

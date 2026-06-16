@@ -29,9 +29,11 @@ Content scripts in `src/library/boomiapp/content/` are bundled by esbuild into a
 
 `bundle.js` is a build artifact — it's gitignored. The only page-context script is `page/fullscreen.js` (Fullscreen API requires page context); it is loaded individually via `loadScript()`.
 
+The build also reads `updateNotification.md` and injects its changelog items as `var UPDATE_CHANGELOG_HTML` into the bundle. Edit this file before a release to update the in-app update notification content.
+
 ### Bundle scope behavior
 
-esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` declarations are scoped to that IIFE — they are shared between all content scripts inside the bundle but are **not** on `window`. This is how `global.js` functions (`getUrlpath()`, `dashboardDays()`, `getUrlParameter()`, `getGWTPageName()`, `showInformationAlertDialog()`) are callable from `dashboard.js`, `pageInit.js`, and other content scripts.
+esbuild wraps the bundle in an IIFE (`(() => { ... })()`). Functions and `var` declarations are scoped to that IIFE — they are shared between all content scripts inside the bundle but are **not** on `window`. This is how `global.js` functions (`getUrlpath()`, `dashboardDays()`, `getUrlParameter()`, `getGWTPageName()`, `showInformationAlertDialog()`) are callable from `pageInit.js`, `headerActions.js`, and other content scripts.
 
 The `listenerGlobal.js` sets a `var BoomiPlatform = {}` in the bundle scope, reads config from `chrome.storage.sync.get()`, and all other scripts reference `BoomiPlatform.key` from this shared IIFE-scoped variable.
 
@@ -81,8 +83,8 @@ content/*.js (in bundle)
 ### Storage split
 
 - **`chrome.storage.sync`** — user preferences from the options page (feature toggles, refresh interval, shortcut keys, filter choices). Read directly by `listenerGlobal.js` and cached in bundle-scope `BoomiPlatform`.
-- **`chrome.storage.local`** — `headerVisible` state (show/hide toggle). Separate from sync because it's transient UI state, not a preference.
-- **`localStorage`** — version-tracking key (`boomiplatenhanUpdateNot{version}`) used by `content/updateNotification.js` to suppress the changelog popup after first view. The key uses the old "Boomi Platform Enhancer" abbreviation — retained for backward compatibility.
+- **`chrome.storage.local`** — transient UI state: `bph_custom_refresh_active` for refresh persistence, `bph_suppress_reload_dialog` for suppressing the reload prompt from popup changes.
+- **`localStorage`** — version-tracking key (`bph_update_notification_version`) used by `content/updateNotification.js` to suppress the changelog popup after first view. Legacy keys (`boomiplatenhanUpdateNot{version}`) from the old approach are auto-cleaned on first run.
 
 ## Key libraries / third-party code
 
@@ -106,37 +108,40 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | Script | Context | What it does |
 |---|---|---|
 | `content/contentScript.js` | content | Entry point. Detects page load via title change, injects `fullscreen.js`, sets up platform status check, update notification dialog |
-| `content/global.js` | content | Utility functions: URL parsing, dashboard 7-day default, alert dialog helper |
-| `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
+| `content/global.js` | content | Utility functions: URL parsing, `dashboardDays()` (configurable dashboard time-range auto-selector), alert dialog helper |
+| `content/pageInit.js` | content | Page-load detection, triggers navigation change and update notification checks |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
-| `content/dashboard.js` | content | Dashboard-specific enhancements |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S (save) |
-| `content/updateNotification.js` | content | Per-version update changelog dialog (uses `localStorage` to suppress after first view) |
+| `content/updateNotification.js` | content | Per-version update changelog dialog — reads changelog from bundle-embedded `UPDATE_CHANGELOG_HTML` (generated from `updateNotification.md` at build time). Uses single localStorage key `bph_update_notification_version` with legacy key cleanup. |
 | `content/shapePalette.js` | content | Restores old-style build shape connector palette |
 | `content/messageEditor.js` | content | CodeMirror-based editor for Message/Notify/Command shapes |
 | `content/scheduleIcons.js` | content | Restore old play/pause icons in deployed processes |
 | `content/buildFilters.js` | content | Default process filters (reads filter prefs from `chrome.storage`) |
-| `content/headerActions.js` | content | Header show/hide toggle, copy component ID/URL, update overlay close |
+| `content/headerActions.js` | content | Copy component ID/URL, update overlay close |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/filterButtons.js` | content | Collapse-all-folders buttons, single-click tree navigation |
 | `content/shapePopup.js` | content | Double-click quick-shape popup on process panel |
 | `content/menuOpen.js` | content | Open-in-new-tab icon on dropdown menu items (old and new Boomi UI with shadow DOM) |
-| `content/copyDocument.js` | content | Clipboard-copy button in Document Viewer dialog |
-| `content/downloadRename.js` | content | Intercepts document downloads, sends context to background for auto-rename |
+| `content/copyDocument.js` | content | Defines `createCopyButton()` shared factory. Clipboard-copy button in Document Viewer dialog. |
+| `content/copyXml.js` | content | Clipboard-copy button in Component XML popup — decodes HTML-encoded XML and writes clean XML to clipboard. Uses shared `createCopyButton()` factory. |
+| `content/downloadRename.js` | content | Intercepts document downloads, detects file type from content, sends context to background for auto-rename. Binary detection prevents misidentification of ZIP files as CSV/TXT. |
+| `content/documentViewer.js` | content | DB document table viewer — "See table" toggle switch renders a sortable, searchable, paginated table from DBSTART| format. Maximize/restore button for the dialog. Shares raw content with copy/download scripts. |
 | `content/iconSets.js` | content | Icon set data objects referenced by `listenerGlobal` |
 | `content/listenerGlobal.js` | content | Reads config from `chrome.storage.sync`, caches in bundle scope, orchestrates feature listeners via MutationObserver + poller. Also handles shape icon styling injection. |
 | `content/canvas.js` | content | Canvas grid toggle (reads `BoomiPlatform.canvas_grid`) |
-| `content/customRefresh.js` | content | Custom process-reporting refresh interval |
+| `content/customRefresh.js` | content | Custom process-reporting refresh interval — injects "Refresh Every XXs" button with live countdown, pulse animation, last-refreshed tooltip, and persisted state across navigation |
+| `content/processDuration.js` | content | Live elapsed-time counter for "In Process" executions on the Process Reporting page — red accent row, gradient badge cell, per-second bounce animation. Resets to `0:00` when auto-refresh stops. |
 | `content/shapes.js` | content | Trace path highlight during test execution |
 | `content/endpointGlow.js` | content | Non-connected endpoint glow and quick-add Stop shape |
 | `content/tableWrap.js` | content | Table text-wrap toggles |
 | `content/modalButtons.js` | content | Reverse modal OK/Cancel button order |
 | `content/imageCapture.js` | content | Capture process flow to PNG |
-| `content/groups.js` | content | Note group overlays on process canvas |
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
+| `content/boomiGpt.js` | content | Revision History checkbox selection for Boomi GPT compare prompts. Check 2 revisions → builds a "compare {id} version X and Y" prompt, updates the GPT link, and auto-submits on the BoomiAI page. |
+| `content/viewInReporting.js` | content | Adds "View in Process Reporting" menu item to deployed process context menus and a quick-link icon on the build page. Opens Process Reporting in a new tab and auto-applies a process name filter via polling state machine. |
 | `content/svgAssets.js` | content | Shared SVG icon strings used across multiple content scripts |
 | `content/modalHelper.js` | content | Shared Boomi-style modal dialog renderer and cleanup utilities |
 | `content/toastHelper.js` | content | Shared toast notification utility used across content scripts and the options page |
@@ -158,8 +163,9 @@ document.arrive(".qm-c-servicenav", function (nav) {
 
 The **version** is read from `package.json` and injected into all manifests. To release:
 1. Bump `version` in `package.json`
-2. Run `npm run build`
-3. Upload the zips from `build/` to the respective stores
+2. Edit `updateNotification.md` with the latest changes
+3. Run `npm run build`
+4. Upload the zips from `build/` to the respective stores
 
 ## Deprecated / archived code
 
@@ -176,6 +182,8 @@ When splitting, renaming, or moving code between files:
 - **When in doubt, don't refactor** — a slightly messy but working file is better than a clean but broken one.
 
 ## Documentation — keep it in sync
+
+**Documentation updates are mandatory for every code change.** Any change that adds, removes, or modifies a feature, option, script, or library **must** include corresponding documentation updates. Do not defer this to a later step — it is part of the change.
 
 When adding, removing, or renaming a script file:
 - Update the **Script responsibilities** table (this file) and **CONTENT_ORDER** in `scripts/build.js`
@@ -211,6 +219,12 @@ When modifying the build script (`scripts/build.js`):
 - If you change zip naming or output paths, update the corresponding documentation in README.md and AGENTS.md.
 
 ## Code style — human-readable formatting
+
+**Variable names — use descriptive names, not shorthand:**
+- Variable names must clearly describe what they hold. Avoid single-letter or heavily abbreviated names (`el`, `e`, `cb`, `k`, `v`, `t`, `n`, `o`, `arr`, `obj`, `str`, `num`).
+- Acceptable exceptions: loop index `i` (and `j`/`k` for nested loops), `key`/`value` in object iteration, `err` for caught errors.
+- Function parameters in callbacks must use meaningful names — e.g., `function (selector)` not `function (el)`, `function (element)` not `function (e)`.
+- This rule applies to all code: hand-written, AI-generated, content scripts, options page, popup, and page-context scripts.
 
 **Variable declarations across files:**
 - Top-level declarations that are referenced by OTHER files in the bundle **must** use `var`. This is the contract that makes cross-file references work inside the esbuild IIFE. Examples: `var BoomiPlatform`, `var getUrlpath`, `var renderBoomiModal`, `var showToast`, all SVG icon variables.
@@ -276,3 +290,12 @@ When adding new option controls, prefer the existing patterns:
 - Changes to `src/manifest.json` → must run `npm run build` (generates browser-specific manifests)
 
 To see content-script console output, inspect the page — content scripts log to the main page console in Chrome. To see page-context console output, same approach. Errors from the bundle will show with the source file name in the stack trace (esbuild injects `// src/library/boomiapp/content/...` comments).
+
+## Before committing — mandatory doc verification
+
+After `npm run build` succeeds and **before any git commit**:
+
+1. Read every `.md` file that references the changed feature (grep for script filenames, feature names, option keys)
+2. Update any stale or outdated references
+3. Verify REFACTOR.md, README.md, USER_GUIDE.md, and AGENTS.md are all current
+4. **Do not commit until this is done.** This is a hard stop — the same way `npm run build` is a hard stop before testing.
