@@ -107,13 +107,13 @@ function renderMessageEditorPopup(id, lang) {
   }
 
   let html = `
-    <div class="popup_on_popup" id="popup_on_popup" style="position: absolute; left: 0px; top: 0px; visibility: visible; display: block; width: 100%; height: 100%;"></div>
+    <div class="popup_on_popup" id="popup_on_popup" style="left: ${left}px; top: ${top}px; visibility: visible; display: block; width: 100%; height: 100%;"></div>
     <div class="center_panel" id="popup_on_popup_content" role="dialog" aria-modal="true" style="left: ${left}px; top: ${top}px; visibility: visible; position: absolute; overflow: visible;">
         <div class="popupContent">
             <div class="modal modal_top"> 
                 <div class="modal_contents">
-                    <div class="flex_panel" style="width: 1200px; height: 600px;">
-                        <div class="form_header inline_script_editor_header" style="flex:0 0 auto;">
+                    <div class="flex_panel flex_panel_message_editor">
+                        <div class="form_header inline_script_editor_header">
                             <div class="form_title no_required">
                                 <div class="form_title_top">
                                     <h2 class="form_title_label">${title}</h2>
@@ -122,7 +122,7 @@ function renderMessageEditorPopup(id, lang) {
                                 <p class="form_summary no_display"></p>
                             </div>
                         </div>
-                        <div class="inline_script_editor_settings_row" style="flex:0 0 auto;">
+                        <div class="inline_script_editor_settings_row">
                             <div class="inline_script_editor_language_list">
                                 <div class="form_row">
                                     <div class="form_label">
@@ -141,12 +141,12 @@ function renderMessageEditorPopup(id, lang) {
                                 </div>
                             </div>
                         </div>
-                        <div style="flex:1 1 0%;">
+                        <div class="inline_script_editor_body">
                             <div style="height: 100%; position: absolute; width: 100%;">
                                 <div class="collapsible_base_panel" style="position: relative;">
                                     <div aria-hidden="true" style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex; visibility: hidden;">&nbsp;</div>
-                                    <div style="position: absolute; inset: 0px;">
-                                        <div id="bpe-message-editor" style="position: absolute; inset: 0px;">
+                                    <div class="inline_script_editor_code_container">
+                                        <div id="bpe-message-editor" class="inline_script_editor_code_container">
                                             <!-- MESSAGE EDITOR GOES HERE -->
                                         </div>
                                     </div>

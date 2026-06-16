@@ -936,6 +936,37 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     margin-left: 10px !important;
 }
 
+/* ── Quick shape popup icon ── */
+
+.bpe-shape-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* ── Message editor modal sizing ── */
+
+.flex_panel_message_editor {
+    width: 1200px;
+    height: 600px;
+}
+
+.inline_script_editor_header {
+    flex: 0 0 auto !important;
+}
+
+.inline_script_editor_settings_row {
+    flex: 0 0 auto !important;
+}
+
+.inline_script_editor_body {
+    flex: 1 1 0% !important;
+}
+
+.inline_script_editor_code_container {
+    position: absolute !important;
+    inset: 0px !important;
+}
+
 /* ── Modern modal styling ── */
 
 .bph-modern-modal,
