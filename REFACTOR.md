@@ -80,6 +80,10 @@ The dashboard no longer always defaults to 7 days — you can now choose your pr
 
 When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle switch appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table — all vanilla JavaScript, no external libraries. Click column headers to sort (with ▲/▼ indicators), use the search box to filter, and navigate with page buttons (25 rows per page). A **maximize/restore** button sits next to the toggle, letting you expand the dialog to 90% of the viewport. The raw document content is shared with the copy and download scripts so those features continue working even when the table view is active.
 
+### Boomi GPT Revision Compare
+
+Checkboxes now appear in the Revision History modal next to each revision number. Check two revisions and the Boomi GPT panel link updates to "Compare vX and vY →" — clicking it opens BoomiAI with a pre-filled compare prompt for the component's two selected versions. The GPT page auto-injects the prompt into the chat input via the React native value setter and auto-submits. Checking a third revision automatically unchecks the oldest selection, keeping exactly two selections.
+
 ### Copy Component XML
 
 A copy button now appears in the header of the Component XML popup on the build page. Clicking it decodes HTML-encoded XML (`<br>` → newline, `&nbsp;` → space) and writes clean XML to the clipboard. The button shares its implementation with the existing document viewer copy button via a shared `createCopyButton()` factory extracted from `copyDocument.js`.

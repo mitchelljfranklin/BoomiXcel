@@ -109,6 +109,7 @@
 - Dashboard default time range — 7 days / 1 / 3 / 6 months / 1 year / max (configurable)
 
 ⭐ **Other**
+- Revision History checkbox selection → Boomi GPT compare prompts for side-by-side revision analysis
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
 - Old-style play/pause icons in deployed processes (configurable)
 - Copy component ID/URL from the build canvas
@@ -411,6 +412,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/versionNotification.js` | content | Close button on revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
+| `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |
 | `content/toastHelper.js` | content | Toast notification utility |

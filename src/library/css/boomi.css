@@ -775,3 +775,16 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 .dbview-page-info {
     color: #666;
 }
+
+/* ── Boomi GPT revision checkboxes ── */
+
+.bph-rev-checkbox {
+    cursor: pointer;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.bph-gpt-link-active {
+    opacity: 1 !important;
+    pointer-events: auto;
+}

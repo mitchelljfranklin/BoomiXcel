@@ -139,6 +139,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
+| `content/boomiGpt.js` | content | Revision History checkbox selection for Boomi GPT compare prompts. Check 2 revisions → builds a "compare {id} version X and Y" prompt, updates the GPT link, and auto-submits on the BoomiAI page. |
 | `content/svgAssets.js` | content | Shared SVG icon strings used across multiple content scripts |
 | `content/modalHelper.js` | content | Shared Boomi-style modal dialog renderer and cleanup utilities |
 | `content/toastHelper.js` | content | Shared toast notification utility used across content scripts and the options page |
