@@ -84,9 +84,9 @@ function extractUpdateChangelog() {
     }
   }
 
-  if (items.length === 0) return "";
+  if (items.length === 0 && !intro) return "";
 
-  var html = intro + "<ul>" + items.join("") + "</ul>";
+  var html = intro + (items.length > 0 ? "<ul>" + items.join("") + "</ul>" : "");
   return "var UPDATE_CHANGELOG_HTML = " + JSON.stringify(html) + ";\n";
 }
 
