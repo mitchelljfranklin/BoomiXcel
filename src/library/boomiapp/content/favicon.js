@@ -37,7 +37,7 @@ function changeFaviconBasedOnPage() {
   if (subdomain === "platform") {
     if (pageName === "AtomSphere") {
       if (gwtPage === "atom") {
-        svgIcon = FAVICON_ATOMSPHERE_ATOM;
+        svgIcon = FAVICON_ATOMSPHERE_ATOM_CORAL;
       } else if (gwtPage === "build") {
         svgIcon = FAVICON_DEFAULT_BLUE;
       } else if (gwtPage === "deploy") {
