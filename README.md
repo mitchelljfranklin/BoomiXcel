@@ -377,7 +377,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (39 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (38 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
