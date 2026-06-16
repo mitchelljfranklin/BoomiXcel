@@ -83,8 +83,6 @@
 - Non-connected endpoints glow for visibility; hover an endpoint to quick-add a Stop shape (configurable)
 - Trace path highlighting during test execution (configurable)
 - Note group overlays — colored semi-transparent bounding boxes created from process notes
-- View in Process Reporting quick-link icon next to the Description link
-- "View in Process Reporting" in deployed process context menus — opens reporting with auto-applied filter
 
 ✏️ **Editing**
 - CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
@@ -109,20 +107,25 @@
 - Live elapsed-time counter with red accent row, gradient badge, and per-second bounce animation
 - Dashboard default time range — 7 days / 1 / 3 / 6 months / 1 year / max (configurable)
 
-⭐ **Other**
-- Revision History checkbox selection → Boomi GPT compare prompts for side-by-side revision analysis
+🎨 **Appearance**
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
 - Old-style play/pause icons in deployed processes (configurable)
-- Copy component ID/URL from the build canvas
 - Replace the Boomi masthead brand logo with the BoomiXcel logo (configurable)
-- Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
-- Post-deployment schedule reminder (configurable)
-- Platform status check on every page
 - Tab names simplified — account name removed (configurable)
 - Page-specific favicons for each Boomi subdomain (configurable)
-- Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
+
+📬 **Notifications &amp; Reminders**
+- Platform status check on every page
+- Post-deployment schedule reminder (configurable)
 - Per-version changelog popup shown once after each update
 - Settings-changed notification prompting a page reload
+
+⭐ **Other**
+- View in Process Reporting — quick-link icon on build page + context menu item on deployed processes (auto-applied filter)
+- Revision History checkbox selection → Boomi GPT compare prompts for side-by-side revision analysis
+- Copy component ID/URL from the build canvas
+- Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
+- Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
 
 ⚡ **Quick Settings Popup**
 - Click the toolbar icon for instant access to the most-used feature toggles — no need to open the full options page
