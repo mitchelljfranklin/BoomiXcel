@@ -100,7 +100,7 @@ document.arrive('[data-locator="link-description"]', { existing: true }, functio
   link.href = 'https://platform.boomi.com/AtomSphere.html#reporting;accountId=' + accountId + ';processes=' + currentId;
   link.title = 'View in Process Reporting';
   link.target = '_blank';
-  link.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><title>View in Process Reporting</title><path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  link.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="width: 24px; height: 24px;"><title>View in Process Reporting</title><path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   link.addEventListener('mouseenter', function () {
     var currentId = getUrlParameter("componentIdOnFocus");
