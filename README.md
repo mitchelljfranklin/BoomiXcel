@@ -269,7 +269,7 @@ npm run release      # build + create a GitHub release with auto-generated notes
 
 `npm run build` (via `scripts/build.js`) performs these steps in order:
 
-1. **Content bundle** — reads `CONTENT_ORDER`, concatenates all content scripts into a single source, then runs esbuild to produce a minified IIFE bundle at `src/library/boomiapp/content/bundle.js`. The concatenation approach ensures `var`/`const`/`function` declarations at the top level of each file share the same scope.
+1. **Content bundle** — reads `CONTENT_ORDER`, concatenates all content scripts into a single source, then runs esbuild to produce a minified IIFE bundle at `src/library/boomiapp/content/bundle.js`. The concatenation approach ensures `var`/`const`/`function` declarations at the top level of each file share the same scope. The build also reads `updateNotification.md` and injects its changelog items as `UPDATE_CHANGELOG_HTML` in the bundle — edit that file before a release to update the in-app changelog.
 
 2. **Webstore description** — extracts the Features section from the README, converts markdown to plain text, and regenerates `webstore-description.txt`.
 
@@ -432,9 +432,10 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 
 ```bash
 # 1. Bump version in package.json
-# 2. Create release (builds zips + creates GitHub release)
+# 2. Edit updateNotification.md with the latest changes
+# 3. Create release (builds zips + creates GitHub release)
 npm run release
-# 3. Upload zips from build/ to each browser store
+# 4. Upload zips from build/ to each browser store
 ```
 
 `npm run release` (alias for `node scripts/build.js --release`) does everything `npm run build` does, plus creates a GitHub release tagged `v{version}` with:
