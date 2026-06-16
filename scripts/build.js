@@ -77,10 +77,11 @@ function extractUpdateChangelog() {
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i].trim();
     if (!line) continue;
+    var htmlLine = convertMarkdownLinks(line);
     if (line.startsWith("- ")) {
-      items.push("<li><p>" + line.substring(2) + "</p></li>");
+      items.push("<li><p>" + htmlLine.substring(2) + "</p></li>");
     } else if (!intro) {
-      intro = "<p>" + line + "</p>";
+      intro = "<p>" + htmlLine + "</p>";
     }
   }
 
@@ -88,6 +89,10 @@ function extractUpdateChangelog() {
 
   var html = intro + (items.length > 0 ? "<ul>" + items.join("") + "</ul>" : "");
   return "var UPDATE_CHANGELOG_HTML = " + JSON.stringify(html) + ";\n";
+}
+
+function convertMarkdownLinks(text) {
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
 }
 
 function generateWebstoreDescription(version) {
