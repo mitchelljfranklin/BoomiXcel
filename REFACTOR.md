@@ -76,6 +76,10 @@ Unconnected endpoints on your build canvas now glow, making them easy to spot. H
 
 The dashboard no longer always defaults to 7 days — you can now choose your preferred time range from the Options page under Process Reporting. Options: 7 Days (default), 1 Month, 3 Months, 6 Months, 1 Year, or Max. It auto-selects your choice whenever the Dashboard page loads.
 
+### DB Document Table Viewer
+
+When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle switch appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table — all vanilla JavaScript, no external libraries. Click column headers to sort (with ▲/▼ indicators), use the search box to filter, and navigate with page buttons (25 rows per page). A **maximize/restore** button sits next to the toggle, letting you expand the dialog to 90% of the viewport. The raw document content is shared with the copy and download scripts so those features continue working even when the table view is active.
+
 ### Unsaved Changes Indicator
 
 The options page now shows a yellow dot when you've made changes you haven't saved yet. No more wondering "did I click Save or not?"

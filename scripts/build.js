@@ -30,6 +30,7 @@ const CONTENT_ORDER = [
   "menuOpen.js",
   "copyDocument.js",
   "downloadRename.js",
+  "documentViewer.js",
   "scheduleIcons.js",
   "iconSets.js",
   "modalButtons.js",

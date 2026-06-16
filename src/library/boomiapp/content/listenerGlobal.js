@@ -157,6 +157,7 @@ const BoomiPlatform_Init = () => {
     listenerClass(".gwt-Shape", add_shape_listener);
     listenerClass(".gwt-connectors-svg", add_path_listener);
     listenerClass(".gwt-DialogBox", add_dialog_listener);
+    listenerClass("#popup_on_popup_content_DocumentDialogContents", documentViewer_listener);
     listenerClass(".boomi_standard_table", add_table_listener);
     listenerClass(".build_actionsButton", add_fullscreen_listener);
     listenerClass(".note-content", add_notecontent_listener);

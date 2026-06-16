@@ -89,7 +89,8 @@ function extractDownloadContext(buttonEl) {
     ?? null;
 
   const allTextareas = Array.from(dialog.querySelectorAll('.documentViewer textarea.gwt-TextArea'));
-  const content = allTextareas.map(t => t.value || t.textContent).find(c => c.length > 0) || '';
+  const textareaContent = allTextareas.map(t => t.value || t.textContent).find(c => c.length > 0) || '';
+  const content = textareaContent || (documentViewerRawContent || '');
   const fileExt = content ? detectTypeFromText(content) : null;
 
   const execTimestamp = formatTimestamp(findEarliestExecutionDate() ?? findReportingPageDate());

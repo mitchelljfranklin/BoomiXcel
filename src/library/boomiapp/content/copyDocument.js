@@ -35,6 +35,7 @@ document.arrive('[data-locator="link-download-original-document"]', { existing: 
 
     var textareas = Array.from(dialog.querySelectorAll('.documentViewer textarea.gwt-TextArea'));
     var content = textareas.map(function (t) { return t.value || t.textContent; }).find(function (c) { return c.length > 0; }) || '';
+    if (!content && documentViewerRawContent) content = documentViewerRawContent;
     if (!content) return;
 
     function onCopied() {

@@ -218,6 +218,9 @@ For example: `MyProcess_20240614_143052.json`
 
 It detects the file type by analyzing the document content (JSON, XML, EDI, CSV, TXT). Binary files (ZIP, PDF, images) are identified and left with their original extension.
 
+### DB Document Table Viewer
+When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table. Click column headers to sort, use the search box to filter, and navigate with page buttons (25 rows per page). A **maximize** button next to the toggle lets you expand the dialog to fill the screen for easier viewing.
+
 ---
 
 ## Notifications
