@@ -1,4 +1,7 @@
-document.arrive(".filter_options", function (filteredScreen) {
+document.addEventListener("click", function (clickEvent) {
+  var filterIcon = clickEvent.target.closest('.filter_icon[data-locator="link"]');
+  if (!filterIcon) return;
+
   chrome.storage.sync.get([
     "Filter_process",
     "Filter_processProp",
@@ -50,6 +53,6 @@ document.arrive(".filter_options", function (filteredScreen) {
       document.getElementById(matchingapiserv.htmlFor).checked = prefs.Filter_api_service;
     }
 
-    tryApplyFilters();
+    setTimeout(tryApplyFilters, 300);
   });
-});
+}, true);
