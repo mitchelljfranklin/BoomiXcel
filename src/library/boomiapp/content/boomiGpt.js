@@ -79,10 +79,25 @@ document.arrive(".gwt-HistoryPopup", { existing: true }, function (popup) {
     checkbox.dataset.rev = revisionNumber;
 
     revisionCell.appendChild(checkbox);
+
+    row.addEventListener("click", function (clickEvent) {
+      if (clickEvent.target === checkbox) return;
+      checkbox.checked = !checkbox.checked;
+      checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+    });
   });
 
   popup.addEventListener("change", function (event) {
     if (event.target.classList.contains("bph-rev-checkbox")) {
+      var checkbox = event.target;
+      var row = checkbox.closest("tr");
+      if (row) {
+        if (checkbox.checked) {
+          row.classList.add("bph-rev-selected");
+        } else {
+          row.classList.remove("bph-rev-selected");
+        }
+      }
       updateRevisionSelection(popup);
     }
   });

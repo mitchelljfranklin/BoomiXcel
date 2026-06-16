@@ -779,9 +779,16 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 /* ── Boomi GPT revision checkboxes ── */
 
 .bph-rev-checkbox {
+    width: 16px;
+    height: 16px;
     cursor: pointer;
     margin-left: 6px;
     vertical-align: middle;
+    accent-color: #1B72C3;
+}
+
+.bph-rev-selected {
+    background: rgba(27, 114, 195, 0.07) !important;
 }
 
 .bph-gpt-link-active {
