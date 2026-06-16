@@ -81,7 +81,6 @@ const updateFullscreenConfig = () => {
 
 chrome.storage.onChanged.addListener((changes, areaName) => {
   if (areaName !== "sync") return;
-  if (changes.headerVisible) return;
 
   chrome.storage.local.get(["bph_suppress_reload_dialog"], function (local) {
     if (local.bph_suppress_reload_dialog) {

@@ -1,5 +1,5 @@
 /**
- * Boomi header bar actions: show/hide masthead, copy component ID/URL,
+ * Boomi header bar actions: copy component ID/URL,
  * dismiss update notification overlay, and inject copy-menu items into
  * the full-screen dropdown.
  *
@@ -8,31 +8,6 @@
 
 document.addEventListener("click", function (event) {
   const target = event.target;
-
-  // Toggle masthead visibility and persist preference to chrome.storage.local
-  if (target.closest("#showHeaderbtn")) {
-    const masthead = document.querySelector(".qm-c-masthead");
-    if (!masthead) return;
-
-    chrome.storage.local.get(["headerVisible"], function (result) {
-      const showHeaderspan = document.getElementById("showHeaderspan");
-      let headerVisible = result.headerVisible;
-      if (typeof headerVisible === "undefined") {
-        headerVisible = true;
-      }
-      if (headerVisible === true) {
-        masthead.classList.add("headerHide");
-        if (showHeaderspan) showHeaderspan.textContent = "Show Header";
-        headerVisible = false;
-      } else {
-        masthead.classList.remove("headerHide");
-        if (showHeaderspan) showHeaderspan.textContent = "Hide Header";
-        headerVisible = true;
-      }
-      chrome.storage.local.set({ headerVisible: headerVisible });
-    });
-    return;
-  }
 
   // Dashboard date-picker shortcut (7-day default)
   if (target.closest("#gwt-uid-84")) {

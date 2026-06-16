@@ -83,7 +83,7 @@ content/*.js (in bundle)
 ### Storage split
 
 - **`chrome.storage.sync`** — user preferences from the options page (feature toggles, refresh interval, shortcut keys, filter choices). Read directly by `listenerGlobal.js` and cached in bundle-scope `BoomiPlatform`.
-- **`chrome.storage.local`** — `headerVisible` state (show/hide toggle). Separate from sync because it's transient UI state, not a preference.
+- **`chrome.storage.local`** — transient UI state: `bph_custom_refresh_active` for refresh persistence, `bph_suppress_reload_dialog` for suppressing the reload prompt from popup changes.
 - **`localStorage`** — version-tracking key (`bph_update_notification_version`) used by `content/updateNotification.js` to suppress the changelog popup after first view. Legacy keys (`boomiplatenhanUpdateNot{version}`) from the old approach are auto-cleaned on first run.
 
 ## Key libraries / third-party code
@@ -109,7 +109,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 |---|---|---|
 | `content/contentScript.js` | content | Entry point. Detects page load via title change, injects `fullscreen.js`, sets up platform status check, update notification dialog |
 | `content/global.js` | content | Utility functions: URL parsing, `dashboardDays()` (configurable dashboard time-range auto-selector), alert dialog helper |
-| `content/pageInit.js` | content | Page-load detection, header visibility, button injection |
+| `content/pageInit.js` | content | Page-load detection, button injection |
 | `content/favicon.js` | content | Page-specific favicons, unique page titles, navigation state listeners |
 | `content/keyboardShortcuts.js` | content | Ctrl+Alt+S (save) |
 | `content/updateNotification.js` | content | Per-version update changelog dialog — reads changelog from bundle-embedded `UPDATE_CHANGELOG_HTML` (generated from `updateNotification.md` at build time). Uses single localStorage key `bph_update_notification_version` with legacy key cleanup. |
@@ -117,7 +117,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/messageEditor.js` | content | CodeMirror-based editor for Message/Notify/Command shapes |
 | `content/scheduleIcons.js` | content | Restore old play/pause icons in deployed processes |
 | `content/buildFilters.js` | content | Default process filters (reads filter prefs from `chrome.storage`) |
-| `content/headerActions.js` | content | Header show/hide toggle, copy component ID/URL, update overlay close |
+| `content/headerActions.js` | content | Copy component ID/URL, update overlay close |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/filterButtons.js` | content | Collapse-all-folders buttons, single-click tree navigation |
 | `content/shapePopup.js` | content | Double-click quick-shape popup on process panel |

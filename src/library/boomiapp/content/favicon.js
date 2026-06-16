@@ -3,13 +3,10 @@ function onNavigationChange() {
 
   // unique page titles and favicons
   try {
-    chrome.storage.sync.get(["unique_titles_and_favicons"], function (config) {
-      if (chrome.runtime.lastError) return;
-      if (config.unique_titles_and_favicons == "on") {
+    if (BoomiPlatform.unique_titles_and_favicons == "on") {
         removeAccountPrefixFromDocumentTitle();
         changeFaviconBasedOnPage();
       }
-    });
   } catch (err) {}
 }
 

@@ -1,7 +1,5 @@
 document.arrive(".deployed_processes_panel", function (processPanel) {
-  chrome.storage.sync.get(["schedule_icon"], function (prefs) {
-    if (prefs.schedule_icon === "on") {
-      //Look for images that match process running or pause in schedules and adjust icon to previos version, since it reloads everytime a change is made need to keep doing the do
+    if (BoomiPlatform.schedule_icon === "on") {
       setInterval(function () {
         var images = document.querySelectorAll(
           '[class*="deployed_processes_panel"] .gwt-Image',
@@ -13,9 +11,8 @@ document.arrive(".deployed_processes_panel", function (processPanel) {
             onSrcChangePause(images[index]);
           }
         }
-      }, 1000); // 1000ms
+      }, 1000);
     }
-  });
 });
 
 function onSrcChange(imgChange) {
