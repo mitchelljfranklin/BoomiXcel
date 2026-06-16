@@ -120,7 +120,7 @@ document.arrive('[data-testid="product-switcher-button"]', { existing: true }, f
 
   link.addEventListener("click", function (clickEvent) {
     clickEvent.preventDefault();
-    window.open(chrome.runtime.getURL("popup/popup.html"), "boomiXcelPopup", "width=340,height=480");
+    chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" });
   });
 
   listItem.appendChild(link);
