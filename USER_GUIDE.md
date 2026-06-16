@@ -107,7 +107,7 @@ Remove the canvas dot grid for a cleaner workspace (configurable — pairs well 
 Process notes containing specific formatting create colored semi-transparent bounding boxes on the canvas. You can resize them by dragging the corner handle.
 
 ### View in Process Reporting
-A quick-link icon (📊) appears next to the Description link, taking you directly to the Process Reporting page for the current component.
+Quick access to Process Reporting from two entry points: a heartbeat SVG icon next to the Description link on the build page, and a menu item with a separator line in the chevron context menu on deployed process lists (Atom/Runtime). Both open Process Reporting in a new tab and auto-apply a process name filter (Add Filter → Process → type name → select checkbox → Apply). A confirming toast shows "Filtered for: {name}" when the filter is applied.
 
 ---
 
@@ -248,9 +248,6 @@ After each extension update, a changelog dialog appears once showing what's new.
 
 ### Boomi GPT Revision Compare
 When viewing a component's Revision History, checkboxes appear next to each revision number. Click anywhere on a row to toggle selection — selected rows highlight in blue. Check two revisions and the Boomi GPT panel link updates to "Compare vX and vY →". Click it to open BoomiAI with a pre-filled compare prompt, which auto-submits after the page loads. Checking a third revision auto-unchecks the oldest selection. The revision table is slightly wider to comfortably fit column content.
-
-### View in Process Reporting
-In the chevron context menu on deployed processes (Atom/Runtime), a **View in Process Reporting** item appears with a heartbeat icon and separator line. Click it to open Process Reporting in a new tab — the page automatically filters for the selected process by stepping through Add Filter → Process → type name → select checkbox → Apply.
 
 ### Schedule Reminder
 After deploying a component, you'll receive a reminder to schedule it if appropriate.
