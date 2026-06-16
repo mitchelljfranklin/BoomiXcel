@@ -174,12 +174,12 @@
 
 .gwt-EndPoint .BoomiPlatformEndpointMenu {
     display: none;
-    position: absolute;
-    z-index: 5;
-    left: 50%;
-    bottom: 100%;
-    transform: translateX(-50%);
-    width: max-content;
+    position: absolute !important;
+    z-index: 5 !important;
+    left: 50% !important;
+    bottom: 100% !important;
+    transform: translateX(-50%) !important;
+    width: max-content !important;
     background: #fff;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -895,12 +895,12 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 /* ── Monitor link hover transition ── */
 
 .bph-monitor-link {
-    color: #8C8C8C;
+    color: #8C8C8C !important;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .bph-monitor-link:hover {
-    color: #1B72C3;
+    color: #1B72C3 !important;
     transform: scale(1.1);
 }
 
@@ -939,15 +939,15 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 /* ── Quick shape popup icon ── */
 
 .bpe-shape-icon {
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
 }
 
 /* ── Message editor modal sizing ── */
 
 .flex_panel_message_editor {
-    width: 1200px;
-    height: 600px;
+    width: 1200px !important;
+    height: 600px !important;
 }
 
 .inline_script_editor_header {
