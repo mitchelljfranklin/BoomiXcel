@@ -62,7 +62,10 @@
             "resources": [
                 "*.png",
                 "*.jpg",
-                "library/boomiapp/page/fullscreen.js"
+                "library/boomiapp/page/fullscreen.js",
+                "popup/popup.html",
+                "popup/popup.js",
+                "popup/popup.css"
             ],
             "matches": [
                 "https://platform.boomi.com/*"
