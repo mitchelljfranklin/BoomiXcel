@@ -34,14 +34,14 @@ document.arrive(".gwt-ProcessPanel", function (panel) {
     $(".bpe-quickshape-popup").each(function () {
       $(this).remove();
     });
-    rendorQuickShapePopup(panel, dblclickEvent.offsetX, dblclickEvent.offsetY, dblclickEvent.clientX, dblclickEvent.clientY);
+    renderQuickShapePopup(panel, dblclickEvent.offsetX, dblclickEvent.offsetY, dblclickEvent.clientX, dblclickEvent.clientY);
   });
 });
 
 // --------------------------------------------------
 // Render and append quick shapes to panel
 // --------------------------------------------------
-function rendorQuickShapePopup(processPanel, offsetX, offsetY, clientX, clientY) {
+function renderQuickShapePopup(processPanel, offsetX, offsetY, clientX, clientY) {
   var quick_shape_added = { added: false, clientX: 0, clientY: 0 };
   var shapes_array = {};
   var shapes_array_html = "";
@@ -65,7 +65,7 @@ function rendorQuickShapePopup(processPanel, offsetX, offsetY, clientX, clientY)
                         <input type="text" tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;">
                         <div class="category_row_style">
                             <div class="left_style">
-                                <img src="${shape[1]}" class="gwt-Image" title="${shape[0]}" style="width: 20px; height: 20px;">
+                                <img src="${shape[1]}" class="gwt-Image bpe-shape-icon" title="${shape[0]}">
                             </div>
                             <div class="right_style">
                                 <div class="gwt-Label">${shape[0]}</div>
@@ -132,7 +132,7 @@ function rendorQuickShapePopup(processPanel, offsetX, offsetY, clientX, clientY)
     }
 
     $(".bpe-quickshape-shape").each(function () {
-      shape = $(this);
+      var shape = $(this);
       if (shape.attr("data-locator").toLowerCase().indexOf(filter) > -1) {
         shape.removeClass("no_display");
       } else {

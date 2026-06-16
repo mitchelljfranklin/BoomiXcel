@@ -174,12 +174,12 @@
 
 .gwt-EndPoint .BoomiPlatformEndpointMenu {
     display: none;
-    position: absolute;
-    z-index: 5;
-    left: 50%;
-    bottom: 100%;
-    transform: translateX(-50%);
-    width: max-content;
+    position: absolute !important;
+    z-index: 5 !important;
+    left: 50% !important;
+    bottom: 100% !important;
+    transform: translateX(-50%) !important;
+    width: max-content !important;
     background: #fff;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -418,7 +418,7 @@
 }
 
 .closeall_doing_action {
-    position: absolute;
+    position: absolute !important;
 }
 
 
@@ -895,12 +895,12 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 /* ── Monitor link hover transition ── */
 
 .bph-monitor-link {
-    color: #8C8C8C;
+    color: #8C8C8C !important;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .bph-monitor-link:hover {
-    color: #1B72C3;
+    color: #1B72C3 !important;
     transform: scale(1.1);
 }
 
@@ -931,7 +931,53 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     color: #333;
 }
 
+.bph-capture-scale {
+    padding-left: 10px !important;
+    margin-left: 10px !important;
+}
+
+/* ── Quick shape popup icon ── */
+
+.bpe-shape-icon {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* ── Message editor modal sizing ── */
+
+.flex_panel_message_editor {
+    width: 1200px !important;
+    height: 600px !important;
+}
+
+.inline_script_editor_header {
+    flex: 0 0 auto !important;
+}
+
+.inline_script_editor_settings_row {
+    flex: 0 0 auto !important;
+}
+
+.inline_script_editor_body {
+    flex: 1 1 0% !important;
+}
+
+.inline_script_editor_code_container {
+    position: absolute !important;
+    inset: 0px !important;
+}
+
 /* ── Modern modal styling ── */
+
+.bph-modern-modal,
+.center_panel.BoomiPlatformOverlay,
+.center_panel.BoomiUpdateOverlay {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: fixed !important;
+    z-index: 10000 !important;
+}
 
 .bph-modern-modal .popupContent {
     border-radius: 10px;
