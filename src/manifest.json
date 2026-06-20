@@ -31,7 +31,6 @@
             "js": [
                 "library/inject/arrive.min.js",
                 "library/jquery/jquery-4.0.0.min.js",
-                "library/inject/showdown.min.js",
                 "library/inject/rasterizeHTML.min.js",
                 "library/inject/cm/codemirror.js",
                 "library/inject/cm/mode/javascript.js",

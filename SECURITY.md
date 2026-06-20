@@ -36,5 +36,5 @@ After a fix is released, we will credit the reporter (with permission) in the re
 
 | Version | Supported |
 |---|---|
-| 1.x (latest) | Yes |
-| < 1.0 | No |
+| 2.x (latest) | Yes |
+| < 2.0 | No |
