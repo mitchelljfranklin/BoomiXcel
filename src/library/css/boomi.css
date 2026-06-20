@@ -1079,3 +1079,9 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     font-size: 0.85em;
     color: #888;
 }
+
+.bph-extract-setproperties.bph-extracting {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}

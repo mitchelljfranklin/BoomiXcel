@@ -1,6 +1,8 @@
 // setPropertiesExtractor.js — one-click extract all Set Properties shape
 // configurations from the build canvas into a modal table.
 
+let extracting = false;
+
 var init_set_properties_extractor = (process) => {
   let nav = process.closest(".component_editor_panel").querySelector(".step_pellete");
   if (!nav || nav.querySelector(".bph-extract-setproperties")) return;
@@ -21,12 +23,25 @@ var init_set_properties_extractor = (process) => {
   nav.insertAdjacentHTML("beforeend", buttonHtml);
 
   nav.querySelector(".bph-extract-setproperties").addEventListener("click", async () => {
-    let results = await extractAllSetProperties();
-    if (results.length === 0) {
-      showToast("No Set Properties shapes found on the canvas.", 3000, "warning");
+    if (extracting) {
+      showToast("Extraction already in progress...", 2000, "warning");
       return;
     }
-    showSetPropertiesModal(results);
+    extracting = true;
+    let button = nav.querySelector(".bph-extract-setproperties");
+    button.classList.add("bph-extracting");
+    showToast("Extracting Set Properties...", 5000, "info");
+    try {
+      let results = await extractAllSetProperties();
+      if (results.length === 0) {
+        showToast("No Set Properties shapes found on the canvas.", 3000, "warning");
+        return;
+      }
+      showSetPropertiesModal(results);
+    } finally {
+      extracting = false;
+      button.classList.remove("bph-extracting");
+    }
   });
 };
 
