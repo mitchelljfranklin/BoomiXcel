@@ -171,12 +171,21 @@ function escapeHtml(text) {
 }
 
 function showSetPropertiesModal(results) {
-  let rowsHtml = results.map(row => {
+  // Count occurrences of each property name across results
+  let nameCounts = {};
+  results.forEach(function (row) {
+    if (row.propertyName) {
+      nameCounts[row.propertyName] = (nameCounts[row.propertyName] || 0) + 1;
+    }
+  });
+
+  let rowsHtml = results.map(function (row) {
     let params = row.parameters.length > 0
-      ? row.parameters.map(p => escapeHtml(p)).join(', ')
+      ? row.parameters.map(function (p) { return escapeHtml(p); }).join(', ')
       : '(none)';
+    let duplicateClass = row.propertyName && nameCounts[row.propertyName] > 1 ? ' bpe-setprops-duplicate' : '';
     return '<tr><td>' + escapeHtml(row.displayName) + '</td><td>'
-      + escapeHtml(row.propertyType) + '</td><td>'
+      + escapeHtml(row.propertyType) + '</td><td class="' + duplicateClass + '">'
       + escapeHtml(row.propertyName) + '</td><td>' + params + '</td></tr>';
   }).join('');
 
