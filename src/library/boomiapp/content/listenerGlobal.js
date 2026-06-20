@@ -128,7 +128,7 @@ const BoomiPlatform_Init = () => {
 
     listenerClass(".time_range_selector", dashboardDays);
     listenerClass(".modal_top", modal_listener);
-    listenerClass(".gwt-ProcessPanel", [process_to_image, add_canvas_listener]);
+    listenerClass(".gwt-ProcessPanel", [process_to_image, add_canvas_listener, init_set_properties_extractor]);
     listenerClass(".gwt-EndPoint", add_endpoint_listener);
     listenerClass(".gwt-Shape", add_shape_listener);
     listenerClass(".gwt-connectors-svg", add_path_listener);

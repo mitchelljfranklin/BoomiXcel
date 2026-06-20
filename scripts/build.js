@@ -42,6 +42,7 @@ const CONTENT_ORDER = [
   "processDuration.js",
   "shapes.js",
   "endpointGlow.js",
+  "setPropertiesExtractor.js",
   "tableWrap.js",
   "imageCapture.js",
   "connectionOperations.js",

@@ -124,6 +124,7 @@
 - View in Process Reporting — quick-link icon on build page + context menu item on deployed processes (auto-applied filter)
 - Revision History checkbox selection → Boomi GPT compare prompts for side-by-side revision analysis
 - Copy component ID/URL from the build canvas
+- Extract all Set Properties shape configurations from the build canvas into a modal table with TSV export
 - Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
 - Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
 
@@ -415,6 +416,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
 | `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
 | `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
+| `content/setPropertiesExtractor.js` | content | Extracts all Set Properties shape configurations from the canvas into a modal table with TSV export |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |
 | `content/toastHelper.js` | content | Toast notification utility |

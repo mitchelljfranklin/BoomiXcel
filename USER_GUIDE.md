@@ -106,6 +106,9 @@ Remove the canvas dot grid for a cleaner workspace (configurable — pairs well 
 ### View in Process Reporting
 Quick access to Process Reporting from two entry points: a heartbeat SVG icon next to the Description link on the build page, and a menu item with a separator line in the chevron context menu on deployed process lists (Atom/Runtime). Both open Process Reporting in a new tab and auto-apply a process name filter (Add Filter → Process → type name → select checkbox → Apply). A confirming toast shows "Filtered for: {name}" when the filter is applied.
 
+### Extract Set Properties
+A list icon (📋) in the build toolbar opens a modal dialog that scans every Set Properties shape on the canvas (visible or not), clicks each one, reads all property names and their parameter values, and displays them in a searchable table. An **Export to Clipboard** button copies the data as tab-separated values for pasting into spreadsheets.
+
 ---
 
 ## Editing Tools

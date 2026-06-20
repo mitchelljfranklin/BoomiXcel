@@ -142,6 +142,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
 | `content/boomiGpt.js` | content | Revision History checkbox selection for Boomi GPT compare prompts. Check 2 revisions → builds a "compare {id} version X and Y" prompt, updates the GPT link, and auto-submits on the BoomiAI page. |
 | `content/viewInReporting.js` | content | Adds "View in Process Reporting" menu item to deployed process context menus and a quick-link icon on the build page. Opens Process Reporting in a new tab and auto-applies a process name filter via polling state machine. |
+| `content/setPropertiesExtractor.js` | content | Build toolbar button that extracts all Set Properties shape configurations (property names and parameter values) from the canvas into a modal table with TSV export |
 | `content/svgAssets.js` | content | Shared SVG icon strings used across multiple content scripts |
 | `content/modalHelper.js` | content | Shared Boomi-style modal dialog renderer and cleanup utilities |
 | `content/toastHelper.js` | content | Shared toast notification utility used across content scripts and the options page |
