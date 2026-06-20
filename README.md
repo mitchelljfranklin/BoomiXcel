@@ -312,12 +312,10 @@ src/
 │   │   └── boomi.css          # All extension styles (single stylesheet)
 │   ├── inject/                # Third-party libraries
 │   │   ├── arrive.min.js
-│   │   ├── showdown.min.js
 │   │   ├── rasterizeHTML.min.js
 │   │   └── cm/                # CodeMirror files
 │   └── jquery/
 │       ├── jquery-4.0.0.min.js
-│       └── jquery-3.6.min.js  # Unused, kept for reference
 ├── logo/                      # Extension icons and brand images
 ├── icon16.png, icon48.png, icon128.png
 scripts/
@@ -430,6 +428,30 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 
 </details>
 
+### To build
+
+```bash
+# 1. Make changes to content scripts (src/library/boomiapp/content/*.js)
+#    or manifest (src/manifest.json)
+# 2. Bundle + package (generates browser-specific manifests and zips)
+npm run build
+# 3. Zips are in build/ — ready for testing or store upload
+# 4. To test, load the extension unpacked from src/ in chrome://extensions
+```
+
+`npm run build` (via `scripts/build.js`) performs these steps in order:
+
+1. **Content bundle** — concatenates all content scripts from `CONTENT_ORDER`, wraps them in esbuild's IIFE, and outputs a single minified `bundle.js`. Reads `updateNotification.md` and injects its changelog as `UPDATE_CHANGELOG_HTML` into the bundle.
+2. **Webstore description** — extracts the Features section from README, converts markdown to plain text, and regenerates `webstore-description.txt`.
+3. **Browser manifests** — reads version from `package.json`, injects it into `src/manifest.json`, then generates browser-specific manifests (Chrome V3, Firefox V2, Edge V3).
+4. **Zip packages** — copies `src/` into a temp directory, drops in the browser-specific manifest, strips all individual content source scripts (keeping only `bundle.js`), and creates three archives in `build/`:
+
+| File | Manifest | Notes |
+|------|----------|-------|
+| `boomi-xcel-X.Y.Z-Chrome.zip` | V3 | includes `update_url` |
+| `boomi-xcel-X.Y.Z-Firefox.zip` | V2 | flat `web_accessible_resources` |
+| `boomi-xcel-X.Y.Z-Edge.zip` | V3 | no `update_url` |
+
 ### To release
 
 ```bash
@@ -454,7 +476,6 @@ Requires `gh` CLI authentication (`gh auth login` or `GITHUB_TOKEN` environment 
 - **[jQuery 4.0](https://jquery.com/)** — DOM manipulation
 - **[CodeMirror](https://codemirror.net/)** — code editor for Message/Notify shapes
 - **[arrive.js](https://github.com/uzairfarooq/arrive)** — DOM mutation observer
-- **[showdown](https://github.com/showdownjs/showdown)** — Markdown rendering
 - **[rasterizeHTML.js](https://github.com/cburgmer/rasterizeHTML.js)** — process flow image capture
 
 <p align="right"><sub><a href="#-contents">↑ Back to top</a></sub></p>

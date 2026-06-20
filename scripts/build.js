@@ -266,6 +266,12 @@ async function createPackage(browserName, manifest, version) {
   fs.rmSync(path.join(tmpDir, "manifest.json"));
   fs.writeFileSync(path.join(tmpDir, "manifest.json"), JSON.stringify(manifest, null, 4));
 
+  // Strip individual content scripts — only bundle.js is needed at runtime
+  const tmpContentDir = path.join(tmpDir, "library", "boomiapp", "content");
+  for (const filename of CONTENT_ORDER) {
+    try { fs.unlinkSync(path.join(tmpContentDir, filename)); } catch (e) {}
+  }
+
   // Zip
   await new Promise((resolve, reject) => {
     const output = fs.createWriteStream(outZip);
