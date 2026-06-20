@@ -114,12 +114,16 @@ async function extractAllSetProperties() {
     let displayName = displayNameInput ? displayNameInput.value.trim() : '';
 
     let propertyItems = document.querySelectorAll('.gwt-DataList > tbody .gwt-DataListItem');
-    let propertyNames = [...propertyItems].map(el => el.textContent.trim());
-    if (propertyNames.length === 0) continue;
+    let propertyTexts = [...propertyItems].map(el => el.textContent.trim());
+    if (propertyTexts.length === 0) continue;
 
     let allRows = document.querySelectorAll('.gwt-DataList > tbody tr');
 
-    for (let i = 0; i < propertyNames.length; i++) {
+    for (let i = 0; i < propertyTexts.length; i++) {
+      let rawText = propertyTexts[i];
+      let parts = rawText.split(' - ');
+      let propertyType = parts.length > 1 ? parts[0] : rawText;
+      let propertyName = parts.length > 1 ? parts[1] : '';
       let row = allRows[i];
       if (row && !row.classList.contains('selected')) {
         let cell = row.querySelector('td');
@@ -139,7 +143,8 @@ async function extractAllSetProperties() {
 
       results.push({
         displayName: displayName,
-        propertyName: propertyNames[i],
+        propertyType: propertyType,
+        propertyName: propertyName,
         parameters: paramValues,
       });
     }
@@ -171,13 +176,14 @@ function showSetPropertiesModal(results) {
       ? row.parameters.map(p => escapeHtml(p)).join(', ')
       : '(none)';
     return '<tr><td>' + escapeHtml(row.displayName) + '</td><td>'
+      + escapeHtml(row.propertyType) + '</td><td>'
       + escapeHtml(row.propertyName) + '</td><td>' + params + '</td></tr>';
   }).join('');
 
   let bodyHtml = [
     '<div class="bpe-setprops-container">',
     '<table class="bpe-setprops-table">',
-    '<thead><tr><th>Shape Display Name</th><th>Property</th><th>Parameters</th></tr></thead>',
+    '<thead><tr><th>Property Shape Name</th><th>Property Type</th><th>Property Name</th><th>Parameters</th></tr></thead>',
     '<tbody>' + rowsHtml + '</tbody>',
     '</table>',
     '<div class="bpe-setprops-footer">',
@@ -207,10 +213,10 @@ function showSetPropertiesModal(results) {
   document.body.insertAdjacentHTML("beforeend", modalHtml);
 
   document.getElementById("bpe-setprops-export-btn").addEventListener("click", () => {
-    let tsv = 'Shape Display Name\tProperty\tParameters\n';
+    let tsv = 'Property Shape Name\tProperty Type\tProperty Name\tParameters\n';
     results.forEach(row => {
       let params = row.parameters.length > 0 ? row.parameters.join(', ') : '';
-      tsv += row.displayName + '\t' + row.propertyName + '\t' + params + '\n';
+      tsv += row.displayName + '\t' + row.propertyType + '\t' + row.propertyName + '\t' + params + '\n';
     });
     navigator.clipboard.writeText(tsv).then(() => {
       showToast("Set Properties data copied to clipboard as TSV.", 2500, "success");
