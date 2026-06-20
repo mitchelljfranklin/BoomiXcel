@@ -99,6 +99,7 @@
 - Remove sticky revision notification from the build view
 - Adjust connection operation screen sizing
 - Keep the Boomi footer bar always visible (configurable)
+- Keep the Close button visible after clicking Lock & Edit on a component tab
 
 📊 **Process Reporting**
 - Custom auto-refresh interval (configurable)

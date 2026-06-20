@@ -117,7 +117,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/messageEditor.js` | content | CodeMirror-based editor for Message/Notify/Command shapes |
 | `content/scheduleIcons.js` | content | Restore old play/pause icons in deployed processes |
 | `content/buildFilters.js` | content | Default process filters (reads filter prefs from `chrome.storage`) |
-| `content/headerActions.js` | content | Copy component ID/URL, update overlay close |
+| `content/headerActions.js` | content | Copy component ID/URL, update overlay close, show Close after Lock & Edit |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/filterButtons.js` | content | Collapse-all-folders buttons, single-click tree navigation |
 | `content/shapePopup.js` | content | Double-click quick-shape popup on process panel |

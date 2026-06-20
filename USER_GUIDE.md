@@ -157,6 +157,9 @@ Swap the Cancel/OK order to OK/Cancel, matching the side panel button layout (co
 ### Remove Revision Notification
 The sticky yellow "revision" notification on the build page gets a close button.
 
+### Keep Close Button after Lock & Edit
+Normally when you click **Lock & Edit** on a component tab, Boomi hides the Close button and shows Save / Save & Close instead. With this feature, the Close button stays visible so you can close the tab without saving if you change your mind.
+
 ### Copy Component ID/URL
 A copy button appears on the build canvas header, letting you quickly copy a component's ID or URL to your clipboard.
 

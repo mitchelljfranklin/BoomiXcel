@@ -2,3 +2,4 @@ Welcome to BoomiXcel — same extension you love, now with a fresh name and a ma
 
 **New in this version:**
 - **Extract Set Properties** — One-click button on the build toolbar scans all Set Properties shapes, reads every property name and parameter value, and displays them in a modal table with TSV export and duplicate highlighting
+- **Keep Close after Lock & Edit** — The Close button stays visible after clicking Lock & Edit, so you can close the tab without saving if needed
