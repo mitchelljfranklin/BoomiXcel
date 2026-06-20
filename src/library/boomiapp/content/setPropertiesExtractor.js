@@ -128,6 +128,25 @@ async function extractAllSetProperties() {
         parameters: paramValues,
       });
     }
+
+    // Deselect current shape before moving to the next one
+    let processPanel = document.querySelector('.gwt-ProcessPanel');
+    if (processPanel) {
+      var canvasRect = processPanel.getBoundingClientRect();
+      var deselectOptions = {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+        clientX: canvasRect.left + 1,
+        clientY: canvasRect.top + 1,
+        button: 0,
+        buttons: 0,
+      };
+      processPanel.dispatchEvent(new MouseEvent('mousedown', deselectOptions));
+      processPanel.dispatchEvent(new MouseEvent('mouseup', deselectOptions));
+      processPanel.dispatchEvent(new MouseEvent('click', deselectOptions));
+      await new Promise(resolve => setTimeout(resolve, 300));
+    }
   }
 
   if (currentSelected) {
