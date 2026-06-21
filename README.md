@@ -369,6 +369,7 @@ Three storage backends are used:
 - **Options page CSS** — all options page styling lives in `library/css/boomi.css` under `/* Options page */`. Never add inline `<style>` blocks or `style=""` attributes to `options.html`, and never set element styles in `options.js`. The options page loads `boomi.css` in its `<head>`.
 - **arrive.js cleanup** — scripts using `document.arrive()` on a reusable selector should call `document.unbindArrive(selector)` after the first match to prevent duplicate handlers
 - **jQuery** — use 4.0. Loaded at `document_start` in the isolated context
+- **Versioning** — four-part `MAJOR.MINOR.SUBMINOR.BUILD` in `package.json`; bump the right segment and reset lower segments to `0` before a build/release. See the Versioning section in [AGENTS.md](AGENTS.md) for details.
 - **Keep the README updated** — when adding or removing a feature, update the Features section. When adding, removing, or renaming a script file, update the Script Reference table. When changing the build process, update the Build section. Also update the **USER_GUIDE.md** with a description of new/changed features and how users interact with them.
 
 ### Debugging

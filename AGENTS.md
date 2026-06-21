@@ -151,6 +151,17 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `options.js` | (options page) | Options page save/restore logic |
 | `background.js` | background | MV3 service worker: handles download renaming and options-page-open message |
 
+## Versioning
+
+BoomiXcel uses a four-part version in `package.json` — `MAJOR.MINOR.SUBMINOR.BUILD` (currently `2.1.0.0`). The build injects this into all generated manifests.
+
+- **MAJOR** — significant changes: new product direction, rebrands, or breaking architecture/tech-stack shifts. (e.g. `1.x.x.x` → `2.x.x.x` for the "BoomiXcel" rebrand and the esbuild bundling overhaul.)
+- **MINOR** — new features or enhancements within the current major (e.g. adding a new content-script feature).
+- **SUBMINOR** — small tweaks and bug fixes (e.g. fixing the Document Viewer table race condition).
+- **BUILD / revision** — build bumps and hotfixes: rebuilds with no behavior change, build-setting or dependency tweaks, or an urgent patch.
+
+Bump the appropriate segment in `package.json` before running `npm run build` / `npm run release`, and reset all lower segments to `0` when bumping a higher one (e.g. `2.0.3.2` → `2.1.0.0` for a new minor release).
+
 ## Browser store builds
 
 `npm run build` does everything:

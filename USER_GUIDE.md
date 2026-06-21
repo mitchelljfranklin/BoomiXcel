@@ -230,7 +230,7 @@ For example: `MyProcess_20240614_143052.json`
 It detects the file type by analyzing the document content (JSON, XML, EDI, CSV, TXT). Binary files (ZIP, PDF, images) are identified and left with their original extension.
 
 ### DB Document Table Viewer
-When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table. Click column headers to sort, use the search box to filter, and navigate with page buttons (25 rows per page). A **maximize** button next to the toggle lets you expand the dialog to fill the screen for easier viewing.
+When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table. Click column headers to sort, use the search box to filter, and navigate with page buttons (25 rows per page). Once the table view is on, a **maximize** button appears to the left of the toggle, letting you expand the dialog to fill the screen for easier viewing; turning the table off hides the button and restores the dialog size.
 
 ### Copy Document Content
 In the Document Viewer dialog, a copy button appears in the header. Click to copy the raw document content to your clipboard — works for JSON, XML, CSV, TXT, and even when the DB table view is active.
