@@ -1,1 +1,4 @@
-Welcome to BoomiXcel — same extension you love, now with a fresh name and a massive overhaul under the hood. [See all changes here.](https://github.com/mitchelljfranklin/BoomiXcel/blob/master/REFACTOR.md)
+- **Extract Set Properties** — One-click button on the build toolbar scans all Set Properties shapes, reads every property name and parameter value, and displays them in a modal table with TSV export and duplicate highlighting
+- **Keep Close after Lock & Edit** — The Close button stays visible after clicking Lock & Edit, so you can close the tab without saving if needed
+- **Bug fix**  — Download Documents now usings your current tab to define the name properly
+- **Bug fix**  — The "See table" toggle now reliably appears in the Document Viewer for database (DBSTART) documents — fixed a timing issue where it failed to show if the document loaded after the dialog opened

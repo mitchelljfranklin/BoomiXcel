@@ -232,7 +232,7 @@ var injectControls = function (modal, textarea) {
   controls.appendChild(toggleRow);
 
   var maximizeButton = document.createElement("button");
-  maximizeButton.className = "dbview-maximize-btn";
+  maximizeButton.className = "dbview-maximize-btn dbview-maximize-hidden";
   maximizeButton.innerHTML = SVG_MAXIMIZE_ICON;
   maximizeButton.title = "Maximize";
   maximizeButton.addEventListener("click", function () {
@@ -241,7 +241,7 @@ var injectControls = function (modal, textarea) {
     maximizeButton.innerHTML = isMaximized ? SVG_RESTORE_ICON : SVG_MAXIMIZE_ICON;
     maximizeButton.title = isMaximized ? "Restore" : "Maximize";
   });
-  controls.appendChild(maximizeButton);
+  controls.insertBefore(maximizeButton, toggleRow);
 
   modal.appendChild(controls);
 
@@ -250,19 +250,55 @@ var injectControls = function (modal, textarea) {
     if (!container) return;
 
     if (checkbox.checked) {
-      var parsedData = parseDbFormat(documentViewerRawContent);
+      var liveTextarea = findVisibleTextarea(modal);
+      var rawContent = (liveTextarea && liveTextarea.value) || documentViewerRawContent || "";
+      documentViewerRawContent = rawContent;
+      var parsedData = parseDbFormat(rawContent);
       buildTable(container, parsedData);
+      maximizeButton.classList.remove("dbview-maximize-hidden");
     } else {
       restoreTextarea(container, textarea);
+      maximizeButton.classList.add("dbview-maximize-hidden");
+      modal.classList.remove("dbview-maximized");
+      maximizeButton.innerHTML = SVG_MAXIMIZE_ICON;
+      maximizeButton.title = "Maximize";
     }
   });
 };
 
-var documentViewer_listener = function (dialog) {
+var injectDocumentViewerControls = function (dialog) {
   if (dialog.querySelector(".dbview-controls")) return;
 
-  var textarea = findVisibleTextarea(dialog);
-  if (!textarea || !isDbContent(textarea.value)) return;
+  var attempts = 0;
+  var maxAttempts = 25;
 
-  injectControls(dialog, textarea);
+  var tryInject = function () {
+    if (!document.body.contains(dialog)) return;
+    if (dialog.querySelector(".dbview-controls")) return;
+
+    var textarea = findVisibleTextarea(dialog);
+    if (textarea && isDbContent(textarea.value)) {
+      injectControls(dialog, textarea);
+      return;
+    }
+
+    attempts++;
+    if (attempts < maxAttempts) {
+      setTimeout(tryInject, 200);
+    }
+  };
+
+  tryInject();
 };
+
+document.arrive(
+  '[data-locator="link-download-original-document"]',
+  { existing: true },
+  function (downloadLink) {
+    var dialog =
+      downloadLink.closest('[role="dialog"]') ||
+      document.getElementById("popup_on_popup_content_DocumentDialogContents");
+    if (!dialog) return;
+    injectDocumentViewerControls(dialog);
+  }
+);

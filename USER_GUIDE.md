@@ -24,7 +24,7 @@ BoomiXcel enhances the Boomi Integration Platform (`platform.boomi.com`) with po
 ## Installation
 
 1. Visit one of the browser stores:
-   - [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko)
+   - [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko)
    - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active)
 2. Click **Install**
 3. The extension auto-enables on `https://platform.boomi.com/*`
@@ -106,6 +106,9 @@ Remove the canvas dot grid for a cleaner workspace (configurable — pairs well 
 ### View in Process Reporting
 Quick access to Process Reporting from two entry points: a heartbeat SVG icon next to the Description link on the build page, and a menu item with a separator line in the chevron context menu on deployed process lists (Atom/Runtime). Both open Process Reporting in a new tab and auto-apply a process name filter (Add Filter → Process → type name → select checkbox → Apply). A confirming toast shows "Filtered for: {name}" when the filter is applied.
 
+### Extract Set Properties
+A list icon (📋) in the build toolbar scans every Set Properties shape on the canvas (visible or not), clicks each one, reads all property names and parameter values, and displays them in a modal table. The table has 4 columns: **Property Shape Name**, **Property Type**, **Property Name**, and **Parameters**. Property names that appear in multiple shapes are highlighted with a yellow background and amber left border for easy spotting. An **Export to Clipboard** button copies the data as tab-separated values for pasting into spreadsheets. The button is disabled and dimmed during extraction to prevent double-clicks, and a toast notification confirms the extraction is in progress.
+
 ---
 
 ## Editing Tools
@@ -153,6 +156,9 @@ Swap the Cancel/OK order to OK/Cancel, matching the side panel button layout (co
 
 ### Remove Revision Notification
 The sticky yellow "revision" notification on the build page gets a close button.
+
+### Keep Close Button after Lock & Edit
+Normally when you click **Lock & Edit** on a component tab, Boomi hides the Close button and shows Save / Save & Close instead. With this feature, the Close button stays visible so you can close the tab without saving if you change your mind.
 
 ### Copy Component ID/URL
 A copy button appears on the build canvas header, letting you quickly copy a component's ID or URL to your clipboard.
@@ -224,7 +230,7 @@ For example: `MyProcess_20240614_143052.json`
 It detects the file type by analyzing the document content (JSON, XML, EDI, CSV, TXT). Binary files (ZIP, PDF, images) are identified and left with their original extension.
 
 ### DB Document Table Viewer
-When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table. Click column headers to sort, use the search box to filter, and navigate with page buttons (25 rows per page). A **maximize** button next to the toggle lets you expand the dialog to fill the screen for easier viewing.
+When viewing a database document (DBSTART| format) in the Document Viewer dialog, a **See table** toggle appears in the top-right corner. Toggle it on to render the raw pipe-delimited data as a sortable, searchable, paginated table. Click column headers to sort, use the search box to filter, and navigate with page buttons (25 rows per page). Once the table view is on, a **maximize** button appears to the left of the toggle, letting you expand the dialog to fill the screen for easier viewing; turning the table off hides the button and restores the dialog size.
 
 ### Copy Document Content
 In the Document Viewer dialog, a copy button appears in the header. Click to copy the raw document content to your clipboard — works for JSON, XML, CSV, TXT, and even when the DB table view is active.

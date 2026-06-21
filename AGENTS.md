@@ -117,7 +117,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/messageEditor.js` | content | CodeMirror-based editor for Message/Notify/Command shapes |
 | `content/scheduleIcons.js` | content | Restore old play/pause icons in deployed processes |
 | `content/buildFilters.js` | content | Default process filters (reads filter prefs from `chrome.storage`) |
-| `content/headerActions.js` | content | Copy component ID/URL, update overlay close |
+| `content/headerActions.js` | content | Copy component ID/URL, update overlay close, show Close after Lock & Edit |
 | `content/reminders.js` | content | Post-deployment schedule reminder |
 | `content/filterButtons.js` | content | Collapse-all-folders buttons, single-click tree navigation |
 | `content/shapePopup.js` | content | Double-click quick-shape popup on process panel |
@@ -142,6 +142,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
 | `content/boomiGpt.js` | content | Revision History checkbox selection for Boomi GPT compare prompts. Check 2 revisions → builds a "compare {id} version X and Y" prompt, updates the GPT link, and auto-submits on the BoomiAI page. |
 | `content/viewInReporting.js` | content | Adds "View in Process Reporting" menu item to deployed process context menus and a quick-link icon on the build page. Opens Process Reporting in a new tab and auto-applies a process name filter via polling state machine. |
+| `content/setPropertiesExtractor.js` | content | Build toolbar button that extracts all Set Properties shape configurations (property names and parameter values) from the canvas into a modal table with TSV export |
 | `content/svgAssets.js` | content | Shared SVG icon strings used across multiple content scripts |
 | `content/modalHelper.js` | content | Shared Boomi-style modal dialog renderer and cleanup utilities |
 | `content/toastHelper.js` | content | Shared toast notification utility used across content scripts and the options page |
@@ -149,6 +150,17 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `page/fullscreen.js` | page | Full-screen toggle via keyboard shortcut (page context required) |
 | `options.js` | (options page) | Options page save/restore logic |
 | `background.js` | background | MV3 service worker: handles download renaming and options-page-open message |
+
+## Versioning
+
+BoomiXcel uses a four-part version in `package.json` — `MAJOR.MINOR.SUBMINOR.BUILD` (currently `2.1.0.0`). The build injects this into all generated manifests.
+
+- **MAJOR** — significant changes: new product direction, rebrands, or breaking architecture/tech-stack shifts. (e.g. `1.x.x.x` → `2.x.x.x` for the "BoomiXcel" rebrand and the esbuild bundling overhaul.)
+- **MINOR** — new features or enhancements within the current major (e.g. adding a new content-script feature).
+- **SUBMINOR** — small tweaks and bug fixes (e.g. fixing the Document Viewer table race condition).
+- **BUILD / revision** — build bumps and hotfixes: rebuilds with no behavior change, build-setting or dependency tweaks, or an urgent patch.
+
+Bump the appropriate segment in `package.json` before running `npm run build` / `npm run release`, and reset all lower segments to `0` when bumping a higher one (e.g. `2.0.3.2` → `2.1.0.0` for a new minor release).
 
 ## Browser store builds
 
@@ -300,3 +312,7 @@ After `npm run build` succeeds and **before any git commit**:
 2. Update any stale or outdated references
 3. Verify REFACTOR.md, README.md, USER_GUIDE.md, and AGENTS.md are all current
 4. **Do not commit until this is done.** This is a hard stop — the same way `npm run build` is a hard stop before testing.
+
+## No auto-push after build
+
+Running `npm run build` produces artifacts (`bundle.js`, manifests, zips) and bumps version references. These build outputs must be reviewed before pushing. **Do not auto-push after a build.** Always commit explicitly with a reviewed diff, then push on demand.

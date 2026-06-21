@@ -13,7 +13,7 @@
 
   <p align="center">
     <a href="https://github.com/mitchelljfranklin/BoomiXcel/releases">
-      <img src="https://img.shields.io/github/package-json/v/mitchelljfranklin/BoomiXcel?color=blue&style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/github/v/release/mitchelljfranklin/BoomiXcel?color=blue&style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/mitchelljfranklin/BoomiXcel/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/license-GPLv3-blue?style=for-the-badge" alt="License">
@@ -29,7 +29,7 @@
     A Browser extension that enhances the Boomi Integration Platform web UI
     <br />
     <br />
-    <a href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko">
+    <a href="https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko">
       <img src="https://img.shields.io/badge/Chrome-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Install from Chrome Web Store">
       <img src="https://img.shields.io/chrome-web-store/users/behhfojpggobllhaifocfcampokbfhko?color=4285F4&style=for-the-badge&label=%20" alt="Chrome Web Store users">
     </a>
@@ -99,6 +99,7 @@
 - Remove sticky revision notification from the build view
 - Adjust connection operation screen sizing
 - Keep the Boomi footer bar always visible (configurable)
+- Keep the Close button visible after clicking Lock & Edit on a component tab
 
 📊 **Process Reporting**
 - Custom auto-refresh interval (configurable)
@@ -124,6 +125,7 @@
 - View in Process Reporting — quick-link icon on build page + context menu item on deployed processes (auto-applied filter)
 - Revision History checkbox selection → Boomi GPT compare prompts for side-by-side revision analysis
 - Copy component ID/URL from the build canvas
+- Extract all Set Properties shape configurations from the build canvas into a modal table with TSV export
 - Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
 - Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
 
@@ -138,7 +140,7 @@
 
 Visit one of the browser stores:
 
-<a href="https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko">
+<a href="https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko">
       <img src="https://img.shields.io/badge/Chrome-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Install from Chrome Web Store">
       <img src="https://img.shields.io/chrome-web-store/users/behhfojpggobllhaifocfcampokbfhko?color=4285F4&style=for-the-badge&label=%20" alt="Chrome Web Store users">
 </a>
@@ -159,12 +161,12 @@ Click **Install** — the extension auto-enables on `https://platform.boomi.com/
 
 | Browser     | Minimum Version | Manifest | Store Listing                                                                                                          |
 | -------------| -----------------| ----------| ------------------------------------------------------------------------------------------------------------------------|
-| **Chrome**  | 88+             | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
+| **Chrome**  | 88+             | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
 | **Firefox** | 109+            | V2       | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active)                       |
-| **Edge**    | 88+             | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
-| **Brave**   | 1.45+           | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
-| **Opera**   | 74+             | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
-| **Arc**     | 1.0+            | V3       | [Chrome Web Store](https://chrome.google.com/webstore/detail/boomi-platform-enhancer/behhfojpggobllhaifocfcampokbfhko) |
+| **Edge**    | 88+             | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
+| **Brave**   | 1.45+           | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
+| **Opera**   | 74+             | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
+| **Arc**     | 1.0+            | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
 
 > All Chromium-based browsers (Brave, Opera, Arc, Vivaldi, etc.) can install the extension from the Chrome Web Store.
 
@@ -367,6 +369,7 @@ Three storage backends are used:
 - **Options page CSS** — all options page styling lives in `library/css/boomi.css` under `/* Options page */`. Never add inline `<style>` blocks or `style=""` attributes to `options.html`, and never set element styles in `options.js`. The options page loads `boomi.css` in its `<head>`.
 - **arrive.js cleanup** — scripts using `document.arrive()` on a reusable selector should call `document.unbindArrive(selector)` after the first match to prevent duplicate handlers
 - **jQuery** — use 4.0. Loaded at `document_start` in the isolated context
+- **Versioning** — four-part `MAJOR.MINOR.SUBMINOR.BUILD` in `package.json`; bump the right segment and reset lower segments to `0` before a build/release. See the Versioning section in [AGENTS.md](AGENTS.md) for details.
 - **Keep the README updated** — when adding or removing a feature, update the Features section. When adding, removing, or renaming a script file, update the Script Reference table. When changing the build process, update the Build section. Also update the **USER_GUIDE.md** with a description of new/changed features and how users interact with them.
 
 ### Debugging
@@ -415,6 +418,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
 | `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
 | `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
+| `content/setPropertiesExtractor.js` | content | Extracts all Set Properties shape configurations from the canvas into a modal table with TSV export |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |
 | `content/toastHelper.js` | content | Toast notification utility |

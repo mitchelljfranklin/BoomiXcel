@@ -677,6 +677,8 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     align-items: center;
     gap: 10px;
     z-index: 1000;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .dbview-toggle-row {
@@ -707,13 +709,33 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     cursor: pointer;
     background: none;
     border: none;
-    padding: 2px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
     color: #666;
-    transition: color 0.2s;
+    transition: color 0.2s, background-color 0.2s;
 }
 
 .dbview-maximize-btn:hover {
     color: #333;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.dbview-maximize-btn:focus {
+    outline: none;
+}
+
+.dbview-maximize-btn:focus-visible {
+    outline: 2px solid #006cd6;
+    outline-offset: 1px;
+}
+
+.dbview-maximize-hidden {
+    display: none;
 }
 
 .dbview-maximize-btn svg {
@@ -1025,4 +1047,68 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     display: flex;
     gap: 8px;
     padding: 12px 20px 16px;
+}
+
+/* ── Set Properties Extractor Modal ── */
+
+.bpe-setprops-body {
+    padding: 0 !important;
+}
+
+.bpe-setprops-container {
+    max-height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bpe-setprops-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.bpe-setprops-table thead th {
+    position: sticky;
+    top: 0;
+    background: #f5f5f5;
+    border-bottom: 2px solid #ddd;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+}
+
+.bpe-setprops-table tbody td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.bpe-setprops-table tbody tr:hover {
+    background: #f9f9f9;
+}
+
+.bpe-setprops-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 0;
+    border-top: 1px solid #eee;
+    margin-top: 8px;
+}
+
+.bpe-setprops-count {
+    font-size: 0.85em;
+    color: #888;
+}
+
+.bph-extract-setproperties.bph-extracting {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.bpe-setprops-table td.bpe-setprops-duplicate {
+    background-color: #fff3cd;
+    border-left: 3px solid #ffc107;
 }
