@@ -677,6 +677,8 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     align-items: center;
     gap: 10px;
     z-index: 1000;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .dbview-toggle-row {
@@ -707,13 +709,33 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     cursor: pointer;
     background: none;
     border: none;
-    padding: 2px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
     color: #666;
-    transition: color 0.2s;
+    transition: color 0.2s, background-color 0.2s;
 }
 
 .dbview-maximize-btn:hover {
     color: #333;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.dbview-maximize-btn:focus {
+    outline: none;
+}
+
+.dbview-maximize-btn:focus-visible {
+    outline: 2px solid #006cd6;
+    outline-offset: 1px;
+}
+
+.dbview-maximize-hidden {
+    display: none;
 }
 
 .dbview-maximize-btn svg {
