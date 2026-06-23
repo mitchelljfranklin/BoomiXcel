@@ -171,7 +171,7 @@ Bump the appropriate segment in `package.json` before running `npm run build` / 
 2. Reads `src/manifest.json` as the **base manifest** (Chrome V3)
 3. Generates browser-specific manifests from it:
    - **Chrome** — copied as-is (V3, includes `update_url`)
-   - **Firefox** — downgraded to V2, `web_accessible_resources` flattened to string array, `update_url` removed
+   - **Firefox** — downgraded to V2, `web_accessible_resources` flattened to string array, `update_url` removed, and `browser_specific_settings.gecko` injected (a stable add-on `id` plus `data_collection_permissions: { required: ["none"] }`, which AMO requires for new submissions from 2025-11-03 — BoomiXcel collects no user data)
    - **Edge** — same as Chrome but without `update_url`
 4. Packages each into `build/boomi-xcel-{version}-{Browser}.zip`
 

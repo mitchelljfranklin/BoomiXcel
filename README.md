@@ -278,7 +278,7 @@ npm run release      # build + create a GitHub release (notes from updateNotific
 2. **Webstore description** — extracts the Features section from the README and regenerates `webstore-description.txt`, preserving section emojis and structure (strips `**bold**`/backticks, decodes HTML entities, and flattens the keyboard-shortcuts table to a tab-separated header row plus `- col1<tab>col2` rows).
 
 3. **Browser manifests** — reads version from `package.json`, injects it into `src/manifest.json`, then generates two additional manifests:
-   - **Firefox** — downgraded to Manifest V2, `web_accessible_resources` flattened to string array, `update_url` removed
+   - **Firefox** — downgraded to Manifest V2, `web_accessible_resources` flattened to string array, `update_url` removed, and `browser_specific_settings.gecko` injected (stable add-on `id` plus `data_collection_permissions: { required: ["none"] }`, required by AMO for new submissions from 2025-11-03 — BoomiXcel collects no user data)
    - **Edge** — same as Chrome V3 but `update_url` removed
 
 4. **Zip packages** — creates three archives in `build/`:
