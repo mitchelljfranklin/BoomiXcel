@@ -55,7 +55,7 @@ function restore_options() {
 
       if (el.type === "checkbox") {
         if (el.classList.contains("toggle-input")) {
-          el.checked = val === "on" || val === true;
+          el.checked = val !== "off" && val !== false;
         } else {
           el.checked = val === true || val === el.value;
         }

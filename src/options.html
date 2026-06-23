@@ -61,12 +61,9 @@
                             <option value="testing">Only when running tests</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="path_trace_highlight">Trace Path Highlight:</label>
-                        <select id="path_trace_highlight" name="path_trace_highlight" class="option form-select" data-default="pulse">
-                            <option value="pulse">On</option>
-                            <option value="off">Off</option>
-                        </select>
+                    <div class="toggle-row">
+                        <label for="path_trace_highlight" class="toggle-label-row mb-0">Trace Path Highlight</label>
+                        <label class="toggle"><input type="checkbox" id="path_trace_highlight" name="path_trace_highlight" class="option toggle-input" data-default="on"><span class="slider"></span></label>
                     </div>
                                                 <div class="mb-3">
                                                     <label for="tablewrap_selector">Table Text Wrapping:</label>

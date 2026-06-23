@@ -40,6 +40,7 @@ Click the BoomiXcel icon in your browser toolbar to open a compact settings popu
 | Toggle | Effect |
 |--------|--------|
 | Show Canvas Grid | Removes the dot grid from the build canvas |
+| Trace Path Highlight | Highlights connector lines when hovering shapes during tests |
 | Replace Boomi Brand Logo | Shows the BoomiXcel logo in the masthead |
 | Old-Style Play/Pause Icons | Restores legacy play/pause icons in deployed processes |
 | Reverse Modal Buttons (OK/Cancel) | Swaps Cancel/OK to OK/Cancel order |
@@ -98,7 +99,7 @@ The old-style shape connector palette is restored, showing shapes at their origi
 Non-connected endpoints glow to help you spot unconnected shapes at a glance. Hover over a glowing endpoint to quick-add a **Stop** shape.
 
 ### Trace Path Highlighting
-When running tests, the connector lines highlight as you hover over shapes, making it easy to trace execution paths.
+When running tests, the connector lines highlight as you hover over shapes, making it easy to trace execution paths. Turn it on or off with the **Trace Path Highlight** toggle (on by default), available on the options page and in the quick-settings popup.
 
 ### Canvas Grid
 Remove the canvas dot grid for a cleaner workspace (configurable — pairs well with dark mode).

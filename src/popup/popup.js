@@ -1,5 +1,6 @@
 var TOGGLE_LIST = [
   { key: "canvas_grid", label: "Show Canvas Grid", defaultVal: "on" },
+  { key: "path_trace_highlight", label: "Trace Path Highlight", defaultVal: "on" },
   { key: "brand_logo", label: "Replace Boomi Brand Logo", defaultVal: "off" },
   { key: "schedule_icon", label: "Old-Style Play/Pause Icons", defaultVal: "off" },
   { key: "reverse_modal", label: "Reverse Modal Buttons (OK/Cancel)", defaultVal: "off" },
