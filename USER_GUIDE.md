@@ -66,7 +66,7 @@ The options page groups settings into collapsible sections. Changes take effect 
 |---------|----------------------|
 | **Appearance** | Shape icons, canvas grid, brand logo, play/pause icons, modal buttons, footer |
 | **Build Canvas** | Endpoint notifications, trace path highlighting, table wrapping |
-| **Process Reporting** | Auto-refresh interval, dashboard default time range |
+| **Process Reporting** | Auto-refresh interval, dashboard default time range, WARNING log-line highlighting, default log minimum status |
 | **Navigation & Shortcuts** | Full-screen shortcut key + modifiers, unique page titles/favicons, default filters |
 | **Defaults** | Default scripting language for new shapes |
 | **Reminders** | Post-deployment schedule reminder |
