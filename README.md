@@ -34,9 +34,9 @@
       <img src="https://img.shields.io/chrome-web-store/users/behhfojpggobllhaifocfcampokbfhko?color=4285F4&style=for-the-badge&label=%20" alt="Chrome Web Store users">
     </a>
     &nbsp;&nbsp;
-    <a href="https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active">
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/boomixcel">
       <img src="https://img.shields.io/badge/Firefox-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white" alt="Install from Firefox Add-ons">
-      <img src="https://img.shields.io/amo/users/boomi-platform-enhancer-active?color=FF7139&style=for-the-badge&label=%20" alt="Firefox Add-on users">
+      <img src="https://img.shields.io/amo/users/boomixcel?color=FF7139&style=for-the-badge&label=%20" alt="Firefox Add-on users">
     </a>
     <br />
     <br />
@@ -108,6 +108,7 @@
 - Live elapsed-time counter with red accent row, gradient badge, and per-second bounce animation
 - Dashboard default time range — 7 days / 1 / 3 / 6 months / 1 year / max (configurable)
 - Highlight WARNING log lines in yellow in the Show Log dialog (configurable)
+- Default minimum log status for the Show Log dialog — DEBUG / INFO / WARNING / SEVERE (configurable)
 
 🎨 **Appearance**
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
@@ -149,9 +150,9 @@ Visit one of the browser stores:
 </a>
 <br>
 
-<a href="https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active">
+<a href="https://addons.mozilla.org/en-US/firefox/addon/boomixcel">
       <img src="https://img.shields.io/badge/Firefox-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white" alt="Install from Firefox Add-ons">
-      <img src="https://img.shields.io/amo/users/boomi-platform-enhancer-active?color=FF7139&style=for-the-badge&label=%20" alt="Firefox Add-on users">
+      <img src="https://img.shields.io/amo/users/boomixcel?color=FF7139&style=for-the-badge&label=%20" alt="Firefox Add-on users">
 </a>
 
 Click **Install** — the extension auto-enables on `https://platform.boomi.com/*`.
@@ -165,7 +166,7 @@ Click **Install** — the extension auto-enables on `https://platform.boomi.com/
 | Browser     | Minimum Version | Manifest | Store Listing                                                                                                          |
 | -------------| -----------------| ----------| ------------------------------------------------------------------------------------------------------------------------|
 | **Chrome**  | 88+             | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
-| **Firefox** | 109+            | V2       | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active)                       |
+| **Firefox** | 109+            | V2       | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomixcel)                       |
 | **Edge**    | 88+             | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
 | **Brave**   | 1.45+           | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
 | **Opera**   | 74+             | V3       | [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko) |
@@ -382,7 +383,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (45 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (46 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -424,6 +425,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
 | `content/deploymentNotes.js` | content | Captures package notes on Create Packaged Component, auto-fills the deployment notes field |
 | `content/logHighlight.js` | content | Highlights WARNING-level rows yellow in the Show Log dialog (re-applies on lazy-load and paging) |
+| `content/logDefaultStatus.js` | content | Sets the default "Minimum Status to Show" in the Show Log dialog when it opens |
 | `content/setPropertiesExtractor.js` | content | Extracts all Set Properties shape configurations from the canvas into a modal table with TSV export |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |

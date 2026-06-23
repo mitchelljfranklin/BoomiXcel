@@ -100,6 +100,17 @@
                         <label class="toggle"><input type="checkbox" id="log_highlight_warnings" name="log_highlight_warnings" class="option toggle-input" data-default="on"><span class="slider"></span></label>
                     </div>
                     <small class="helper">Highlights WARNING-level rows in yellow in the Show Log dialog.</small>
+                    <div class="mb-3">
+                        <label for="log_default_min_status">Default Log Minimum Status:</label>
+                        <select id="log_default_min_status" name="log_default_min_status" class="option form-select" data-default="off">
+                            <option value="off">Off (Default)</option>
+                            <option value="finest">DEBUG</option>
+                            <option value="info">INFO</option>
+                            <option value="warning">WARNING</option>
+                            <option value="severe">SEVERE</option>
+                        </select>
+                        <small class="helper">Auto-selects this minimum status in the Show Log dialog when it opens.</small>
+                    </div>
                 </details>
 
                 <details class="option-group" open>

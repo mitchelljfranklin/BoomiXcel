@@ -26,7 +26,7 @@ BoomiXcel enhances the Boomi Integration Platform (`platform.boomi.com`) with po
 
 1. Visit one of the browser stores:
    - [Chrome Web Store](https://chromewebstore.google.com/detail/boomixcel/behhfojpggobllhaifocfcampokbfhko)
-   - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomi-platform-enhancer-active)
+   - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/boomixcel)
 2. Click **Install**
 3. The extension auto-enables on `https://platform.boomi.com/*`
 
@@ -209,6 +209,9 @@ When auto-refresh is enabled, a real-time elapsed time counter appears on the Pr
 
 ### Highlight WARNING Log Lines
 In the **Show Log** dialog, rows with a Level of `WARNING` are highlighted in yellow so problem entries stand out. The highlight applies after the log finishes loading and re-applies as you page through results with Previous/Next. On by default; toggle it from the **Process Reporting** section of the options page or the quick-settings popup.
+
+### Default Log Minimum Status
+Set a default for the **Minimum Status to Show** dropdown in the Show Log dialog (DEBUG, INFO, WARNING, or SEVERE). When the dialog opens it auto-selects your chosen level so the log loads pre-filtered; you can still change the dropdown manually afterwards. Off by default — set it from the **Process Reporting** section of the options page.
 
 ---
 

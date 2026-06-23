@@ -54,6 +54,7 @@ const CONTENT_ORDER = [
   "viewInReporting.js",
   "deploymentNotes.js",
   "logHighlight.js",
+  "logDefaultStatus.js",
 ];
 
 function getConcatenatedSource() {
