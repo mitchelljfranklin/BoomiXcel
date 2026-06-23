@@ -154,7 +154,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 
 ## Versioning
 
-BoomiXcel uses a four-part version in `package.json` — `MAJOR.MINOR.SUBMINOR.BUILD` (currently `2.1.0.0`). The build injects this into all generated manifests.
+BoomiXcel uses a four-part version in `package.json` — `MAJOR.MINOR.SUBMINOR.BUILD` (currently `2.2.0.0`). The build injects this into all generated manifests.
 
 - **MAJOR** — significant changes: new product direction, rebrands, or breaking architecture/tech-stack shifts. (e.g. `1.x.x.x` → `2.x.x.x` for the "BoomiXcel" rebrand and the esbuild bundling overhaul.)
 - **MINOR** — new features or enhancements within the current major (e.g. adding a new content-script feature).
@@ -183,8 +183,8 @@ The **version** is read from `package.json` and injected into all manifests. To 
 
 ## Deprecated / archived code
 
-`.Old Scripts but want to keep/` contains scripts no longer in active rotation, including:
-- `copyComponentid.js`, `customprocessButtons.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js` — older versions of features now integrated elsewhere
+`.oldScriptsKeep/` contains scripts no longer in active rotation, including:
+- `copyComponentid.js`, `customprocessButtons.js`, `dbsqlEditor.js`, `home.js`, `initPage.js`, `jsonView.js`, `sqlView.js` — older versions of features now integrated elsewhere
 
 Do not modify or re-integrate without understanding why they were removed.
 
