@@ -383,7 +383,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (46 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (48 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
