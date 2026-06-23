@@ -307,6 +307,11 @@
     }
 }
 
+tr.bph-log-warning td {
+    background-color: #fff3a0 !important;
+    color: #000000 !important;
+}
+
 .bph-wrap span.ignoreBreaks {
     white-space: pre-line;
 }

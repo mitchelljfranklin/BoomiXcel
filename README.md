@@ -107,6 +107,7 @@
 - Table text wrapping — always / never / toggle on header hover (configurable)
 - Live elapsed-time counter with red accent row, gradient badge, and per-second bounce animation
 - Dashboard default time range — 7 days / 1 / 3 / 6 months / 1 year / max (configurable)
+- Highlight WARNING log lines in yellow in the Show Log dialog (configurable)
 
 🎨 **Appearance**
 - Icon set selection for shapes — Legacy, Modern, Minimal, etc. (configurable)
@@ -381,7 +382,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (44 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (45 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -422,6 +423,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
 | `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
 | `content/deploymentNotes.js` | content | Captures package notes on Create Packaged Component, auto-fills the deployment notes field |
+| `content/logHighlight.js` | content | Highlights WARNING-level rows yellow in the Show Log dialog (re-applies on lazy-load and paging) |
 | `content/setPropertiesExtractor.js` | content | Extracts all Set Properties shape configurations from the canvas into a modal table with TSV export |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |

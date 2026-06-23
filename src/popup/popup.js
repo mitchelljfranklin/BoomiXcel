@@ -9,6 +9,7 @@ var TOGGLE_LIST = [
   { key: "apply_process_filters", label: "Default Process Filters", defaultVal: "off" },
   { key: "reminder_schedule", label: "Post-Deployment Schedule Reminder", defaultVal: "on" },
   { key: "deployment_notes_auto_apply", label: "Deployment Notes Auto-Apply", defaultVal: "off" },
+  { key: "log_highlight_warnings", label: "Highlight WARNING Log Lines", defaultVal: "on" },
 ];
 
 function renderToggles() {

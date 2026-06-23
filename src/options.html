@@ -95,6 +95,11 @@
                         <input type="number" id="refresh_interval" name="refresh_interval" class="option form-control" value="15" min="1" max="3600" data-default="15">
                         <small class="helper">Enabled once you click "Refresh Every XX" on the Process Reporting page.</small>
                     </div>
+                    <div class="toggle-row">
+                        <label for="log_highlight_warnings" class="toggle-label-row mb-0">Highlight WARNING Log Lines</label>
+                        <label class="toggle"><input type="checkbox" id="log_highlight_warnings" name="log_highlight_warnings" class="option toggle-input" data-default="on"><span class="slider"></span></label>
+                    </div>
+                    <small class="helper">Highlights WARNING-level rows in yellow in the Show Log dialog.</small>
                 </details>
 
                 <details class="option-group" open>

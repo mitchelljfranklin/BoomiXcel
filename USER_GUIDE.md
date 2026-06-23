@@ -50,6 +50,7 @@ Click the BoomiXcel icon in your browser toolbar to open a compact settings popu
 | Default Process Filters | Auto-checks Process, Process Properties, Cross Reference, API Service filters |
 | Post-Deployment Schedule Reminder | Reminds you to schedule after deploying |
 | Deployment Notes Auto-Apply | Copies package notes into the deployment notes field |
+| Highlight WARNING Log Lines | Colors WARNING rows yellow in the Show Log dialog |
 
 Changes save immediately. Click **Reload Page** to apply them to the current Boomi tab, or **Full Settings** to open the complete options page.
 
@@ -205,6 +206,9 @@ The dashboard view auto-selects your chosen time range on page load. Configure f
 
 ### Pending Executions Clock
 When auto-refresh is enabled, a real-time elapsed time counter appears on the Process Reporting page for active processes. Active rows get a red left accent bar, the elapsed time displays as a gradient red badge, and the seconds digit bounces each time it updates so you can see it's live at a glance.
+
+### Highlight WARNING Log Lines
+In the **Show Log** dialog, rows with a Level of `WARNING` are highlighted in yellow so problem entries stand out. The highlight applies after the log finishes loading and re-applies as you page through results with Previous/Next. On by default; toggle it from the **Process Reporting** section of the options page or the quick-settings popup.
 
 ---
 
