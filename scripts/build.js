@@ -52,6 +52,7 @@ const CONTENT_ORDER = [
   "brandLogo.js",
   "boomiGpt.js",
   "viewInReporting.js",
+  "deploymentNotes.js",
 ];
 
 function getConcatenatedSource() {

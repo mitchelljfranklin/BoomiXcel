@@ -16,6 +16,7 @@ BoomiXcel enhances the Boomi Integration Platform (`platform.boomi.com`) with po
 - [Process Reporting](#process-reporting)
 - [Appearance](#appearance)
 - [Download & Document Tools](#download--document-tools)
+- [Deployment](#deployment)
 - [Notifications](#notifications)
 - [Footer & Branding](#footer--branding)
 
@@ -48,6 +49,7 @@ Click the BoomiXcel icon in your browser toolbar to open a compact settings popu
 | Unique Page Titles & Favicons | Simplified tab names + page-specific favicons |
 | Default Process Filters | Auto-checks Process, Process Properties, Cross Reference, API Service filters |
 | Post-Deployment Schedule Reminder | Reminds you to schedule after deploying |
+| Deployment Notes Auto-Apply | Copies package notes into the deployment notes field |
 
 Changes save immediately. Click **Reload Page** to apply them to the current Boomi tab, or **Full Settings** to open the complete options page.
 
@@ -250,6 +252,13 @@ In the Document Viewer dialog, a copy button appears in the header. Click to cop
 
 ### Copy Component XML
 When viewing a component's XML in the build page popup, a copy button appears in the header. Click to copy the clean XML to your clipboard — the button decodes HTML-encoded entities (`<br>` → newline, `&nbsp;` → space) so the pasted XML is ready to use.
+
+---
+
+## Deployment
+
+### Deployment Notes Auto-Apply
+When enabled (off by default), clicking **Create Packaged Component** captures whatever you typed in the package notes field and holds it temporarily. The next time a deployment notes field appears, it is filled in automatically with those notes, so you don't have to retype them. The temporary copy is cleared once it has been applied. Turn it on from the **Deployment** section of the options page or the quick-settings popup.
 
 ---
 

@@ -8,6 +8,7 @@ var TOGGLE_LIST = [
   { key: "unique_titles_and_favicons", label: "Unique Page Titles & Favicons", defaultVal: "on" },
   { key: "apply_process_filters", label: "Default Process Filters", defaultVal: "off" },
   { key: "reminder_schedule", label: "Post-Deployment Schedule Reminder", defaultVal: "on" },
+  { key: "deployment_notes_auto_apply", label: "Deployment Notes Auto-Apply", defaultVal: "off" },
 ];
 
 function renderToggles() {

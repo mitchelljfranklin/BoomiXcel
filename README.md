@@ -129,6 +129,7 @@
 - Extract all Set Properties shape configurations from the build canvas into a modal table with TSV export
 - Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
 - Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
+- Auto-apply package notes — captures the notes from "Create Packaged Component" and fills them into the deployment notes field (configurable)
 
 ⚡ **Quick Settings Popup**
 - Click the toolbar icon for instant access to the most-used feature toggles — no need to open the full options page
@@ -356,7 +357,7 @@ content/contentScript.js
 
 Three storage backends are used:
 - **`chrome.storage.sync`** — user preferences (feature toggles, refresh interval, shortcuts). Read directly by `listenerGlobal.js` and cached.
-- **`chrome.storage.local`** — transient UI state: `bph_custom_refresh_active` for refresh persistence, `bph_suppress_reload_dialog` for suppressing the reload prompt from popup changes
+- **`chrome.storage.local`** — transient UI state: `bph_custom_refresh_active` for refresh persistence, `bph_suppress_reload_dialog` for suppressing the reload prompt from popup changes, `bph_deployment_notes_temp` for holding captured package notes until the deployment notes field appears
 - **`localStorage`** — version-tracking key (`bph_update_notification_version`) for update changelog suppression. Legacy keys (`boomiplatenhanUpdateNot{version}`) auto-cleaned on first run
 
 ### Conventions
@@ -380,7 +381,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (43 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (44 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -420,6 +421,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
 | `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
 | `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
+| `content/deploymentNotes.js` | content | Captures package notes on Create Packaged Component, auto-fills the deployment notes field |
 | `content/setPropertiesExtractor.js` | content | Extracts all Set Properties shape configurations from the canvas into a modal table with TSV export |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |
