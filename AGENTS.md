@@ -23,7 +23,7 @@ npm run watch        # rebuild on file changes
 npm run release      # same as build + creates a GitHub release with the zips
 ```
 
-The `--release` flag (or `npm run release`) creates a GitHub release using the `gh` CLI. The release is tagged `v{version}` from `package.json`. Release notes are auto-generated from conventional commit messages (`feat:`, `fix:`, `docs:`, `style:`, `chore:`, etc.) between the last `v*` tag and HEAD, grouped by category. All build zips are attached as assets. Requires `gh auth login` or a `GITHUB_TOKEN` environment variable.
+The `--release` flag (or `npm run release`) creates a GitHub release using the `gh` CLI. The release is tagged `v{version}` from `package.json`. Release notes are taken from `updateNotification.md` (the same file that feeds the in-app changelog) under a `## What's New in v{version}` heading, with a **Full Changelog** compare link (last `v*` tag → new version) appended; if `updateNotification.md` is empty/missing, a short fallback line is used instead. All build zips are attached as assets. Requires `gh auth login` or a `GITHUB_TOKEN` environment variable.
 
 Content scripts in `src/library/boomiapp/content/` are bundled by esbuild into a single `src/library/boomiapp/content/bundle.js`, which is the only content-script entry in every manifest. The bundle order is defined in `scripts/build.js > CONTENT_ORDER`. If you add a new content script, add it to that array and run `npm run build`.
 
@@ -139,6 +139,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
+| `content/nativeEditorResize.js` | content | Adds a bottom-right corner drag-resize handle to Boomi's native inline script editor dialog (`#popup_on_popup_content_InlineScriptEditorPanel`, ACE-based). Pointer-capture drag sets the `.flex_panel` size with inline `!important` and dispatches a window resize event so ACE re-measures. |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
 | `content/boomiGpt.js` | content | Revision History checkbox selection for Boomi GPT compare prompts. Check 2 revisions → builds a "compare {id} version X and Y" prompt, updates the GPT link, and auto-submits on the BoomiAI page. |
 | `content/viewInReporting.js` | content | Adds "View in Process Reporting" menu item to deployed process context menus and a quick-link icon on the build page. Opens Process Reporting in a new tab and auto-applies a process name filter via polling state machine. |

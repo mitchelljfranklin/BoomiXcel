@@ -84,8 +84,9 @@
 - Trace path highlighting during test execution (configurable)
 
 ✏️ **Editing**
-- CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
-- Resizable SQL editor in Database Operation shapes
+- CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes) — the popout has a corner drag handle to resize it
+- CodeMirror SQL editor for Database Operation shapes — "Edit SQL" popout on the query field plus a corner drag handle to resize the query textarea
+- Resize Boomi's native inline script editor dialog with a corner drag handle
 - Auto-select default scripting language for new Data Process, Custom Scripting, and Business Rules shapes (configurable)
 - Copy raw document content from the Document Viewer dialog
 - Copy clean XML from the Component XML popup (decodes HTML entities)
@@ -267,14 +268,14 @@ npm install          # install dependencies (esbuild, archiver)
 ```bash
 npm run build        # bundle content scripts, generate browser manifests, create zips
 npm run watch        # rebuild content scripts on file changes
-npm run release      # build + create a GitHub release with auto-generated notes
+npm run release      # build + create a GitHub release (notes from updateNotification.md)
 ```
 
 `npm run build` (via `scripts/build.js`) performs these steps in order:
 
 1. **Content bundle** — reads `CONTENT_ORDER`, concatenates all content scripts into a single source, then runs esbuild to produce a minified IIFE bundle at `src/library/boomiapp/content/bundle.js`. The concatenation approach ensures `var`/`const`/`function` declarations at the top level of each file share the same scope. The build also reads `updateNotification.md` and injects its changelog items as `UPDATE_CHANGELOG_HTML` in the bundle — edit that file before a release to update the in-app changelog.
 
-2. **Webstore description** — extracts the Features section from the README, converts markdown to plain text, and regenerates `webstore-description.txt`.
+2. **Webstore description** — extracts the Features section from the README and regenerates `webstore-description.txt`, preserving section emojis and structure (strips `**bold**`/backticks, decodes HTML entities, and flattens the keyboard-shortcuts table to a tab-separated header row plus `- col1<tab>col2` rows).
 
 3. **Browser manifests** — reads version from `package.json`, injects it into `src/manifest.json`, then generates two additional manifests:
    - **Firefox** — downgraded to Manifest V2, `web_accessible_resources` flattened to string array, `update_url` removed
@@ -414,7 +415,8 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/imageCapture.js` | content | Process flow → PNG capture |
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
-| `content/sqlEditor.js` | content | CodeMirror SQL editor |
+| `content/sqlEditor.js` | content | CodeMirror SQL editor — "Edit SQL" popout for Command (`formrow-sql`) and Database Operation query (`formrow-sql-query`) fields + corner drag-resize handle on the query textarea |
+| `content/nativeEditorResize.js` | content | Adds a corner drag-resize handle to Boomi's native inline script editor dialog (ACE-based) |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
 | `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
 | `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |
@@ -446,7 +448,7 @@ npm run build
 `npm run build` (via `scripts/build.js`) performs these steps in order:
 
 1. **Content bundle** — concatenates all content scripts from `CONTENT_ORDER`, wraps them in esbuild's IIFE, and outputs a single minified `bundle.js`. Reads `updateNotification.md` and injects its changelog as `UPDATE_CHANGELOG_HTML` into the bundle.
-2. **Webstore description** — extracts the Features section from README, converts markdown to plain text, and regenerates `webstore-description.txt`.
+2. **Webstore description** — extracts the Features section from README and regenerates `webstore-description.txt`, preserving section emojis and structure (strips `**bold**`/backticks, decodes HTML entities, and flattens the keyboard-shortcuts table to a tab-separated header row plus `- col1<tab>col2` rows).
 3. **Browser manifests** — reads version from `package.json`, injects it into `src/manifest.json`, then generates browser-specific manifests (Chrome V3, Firefox V2, Edge V3).
 4. **Zip packages** — copies `src/` into a temp directory, drops in the browser-specific manifest, strips all individual content source scripts (keeping only `bundle.js`), and creates three archives in `build/`:
 
@@ -468,7 +470,7 @@ npm run release
 
 `npm run release` (alias for `node scripts/build.js --release`) does everything `npm run build` does, plus creates a GitHub release tagged `v{version}` with:
 
-- **Auto-generated release notes** — git commit messages since the last `v*` tag, grouped by category (`feat:`, `fix:`, `docs:`, `style:`, `chore:`, etc.)
+- **Release notes from `updateNotification.md`** — the changelog file's contents become the release body under a `## What's New in v{version}` heading, with a Full Changelog compare link (last `v*` tag → new version) appended
 - **Attached assets** — all three browser zips uploaded to the release
 - **Full changelog link** — compare URL from the previous tag to the new version
 

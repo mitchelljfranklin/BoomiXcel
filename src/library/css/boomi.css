@@ -998,6 +998,33 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
     height: 600px !important;
 }
 
+.bpe-editor-modal {
+    position: relative !important;
+}
+
+.bpe-editor-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+    touch-action: none;
+    z-index: 5;
+    background-image: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 45%,
+        #9aa0a6 45%,
+        #9aa0a6 55%,
+        transparent 55%,
+        transparent 70%,
+        #9aa0a6 70%,
+        #9aa0a6 80%,
+        transparent 80%
+    );
+}
+
 .inline_script_editor_header {
     flex: 0 0 auto !important;
 }
@@ -1013,6 +1040,45 @@ small.helper { display: block; color: #6c757d; margin-top: 0.25rem; margin-botto
 .inline_script_editor_code_container {
     position: absolute !important;
     inset: 0px !important;
+}
+
+/* ── SQL query textarea resize handle ── */
+
+.bph-sql-resize-container {
+    position: relative !important;
+    width: fit-content !important;
+}
+
+.bpe-sql-query-button {
+    display: block;
+    margin-top: 6px;
+}
+
+.bph-sql-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+    z-index: 5;
+    background-image: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 45%,
+        #9aa0a6 45%,
+        #9aa0a6 55%,
+        transparent 55%,
+        transparent 70%,
+        #9aa0a6 70%,
+        #9aa0a6 80%,
+        transparent 80%
+    );
+}
+
+body.bph-resizing {
+    user-select: none;
+    cursor: nwse-resize;
 }
 
 /* ── Modern modal styling ── */
