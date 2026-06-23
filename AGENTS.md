@@ -139,6 +139,7 @@ document.arrive(".qm-c-servicenav", function (nav) {
 | `content/connectionOperations.js` | content | Adjust connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on sticky revision notification |
 | `content/sqlEditor.js` | content | CodeMirror SQL editor for Database Operation shapes |
+| `content/nativeEditorResize.js` | content | Adds a bottom-right corner drag-resize handle to Boomi's native inline script editor dialog (`#popup_on_popup_content_InlineScriptEditorPanel`, ACE-based). Pointer-capture drag sets the `.flex_panel` size with inline `!important` and dispatches a window resize event so ACE re-measures. |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo with a custom image (reads BoomiPlatform config) |
 | `content/boomiGpt.js` | content | Revision History checkbox selection for Boomi GPT compare prompts. Check 2 revisions → builds a "compare {id} version X and Y" prompt, updates the GPT link, and auto-submits on the BoomiAI page. |
 | `content/viewInReporting.js` | content | Adds "View in Process Reporting" menu item to deployed process context menus and a quick-link icon on the build page. Opens Process Reporting in a new tab and auto-applies a process name filter via polling state machine. |

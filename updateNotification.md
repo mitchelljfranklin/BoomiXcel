@@ -2,5 +2,6 @@
 - Keep Close after Lock & Edit — The Close button stays visible after clicking Lock & Edit, so you can close the tab without saving if needed
 - Edit SQL on Database Operation query — An "Edit SQL" popout (CodeMirror) now appears on the SQL query field, and a corner drag handle lets you resize the query box
 - Resizable editor popout — The CodeMirror Edit Message / Edit SQL popout now has a corner drag handle so you can resize the editor window
+- Resizable native script editor — Boomi's own inline script editor dialog (ACE) now has a corner drag handle to resize it
 - Bug fix  — Download Documents now usings your current tab to define the name properly
 - Bug fix  — The "See table" toggle now reliably appears in the Document Viewer for database (DBSTART) documents — fixed a timing issue where it failed to show if the document loaded after the dialog opened

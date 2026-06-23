@@ -48,6 +48,7 @@ const CONTENT_ORDER = [
   "connectionOperations.js",
   "versionNotification.js",
   "sqlEditor.js",
+  "nativeEditorResize.js",
   "brandLogo.js",
   "boomiGpt.js",
   "viewInReporting.js",

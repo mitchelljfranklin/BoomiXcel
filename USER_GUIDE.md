@@ -130,6 +130,10 @@ On a Database Operation shape's SQL query field, an **Edit SQL** button appears 
 
 The query textarea also gets a **corner drag handle** (bottom-right). Drag it to resize the box in both directions for more room while writing longer queries. The resized size is not remembered between sessions.
 
+### Resizable Native Script Editor
+
+Boomi's own inline script editor dialog (the ACE-based editor that opens for Data Process, Custom Scripting, Business Rules, and similar shapes) gets a **corner drag handle** at its bottom-right. Drag it to make the whole dialog larger or smaller; the editor inside reflows to fit. The size resets to Boomi's default each time the dialog opens.
+
 ### Default Scripting Language
 
 When creating new shapes with scripting (Data Process, Custom Scripting, Business Rules), BoomiXcel can auto-select your preferred scripting language instead of always defaulting to Groovy 1.5. Configure from the Options page under **Defaults**:
