@@ -59,6 +59,8 @@ document.arrive(
         : "default";
       editor.setOption("theme", theme);
 
+      enableEditorPopupResize(editor);
+
       // Ok
       $("#bpe-message-editor-ok").click(function () {
         let lang = $("#bpe-message-editor-language")[0].value;
@@ -107,10 +109,10 @@ function renderMessageEditorPopup(id, lang) {
   }
 
   let html = `
-    <div class="popup_on_popup" id="popup_on_popup" style="left: ${left}px; top: ${top}px; visibility: visible; display: block; width: 100%; height: 100%;"></div>
+    <div class="popup_on_popup" id="popup_on_popup" style="position: absolute; left: 0px; top: 0px; visibility: visible; display: block; width: 100%; height: 100%;"></div>
     <div class="center_panel" id="popup_on_popup_content" role="dialog" aria-modal="true" style="left: ${left}px; top: ${top}px; visibility: visible; position: absolute; overflow: visible;">
         <div class="popupContent">
-            <div class="modal modal_top"> 
+            <div class="modal modal_top bpe-editor-modal"> 
                 <div class="modal_contents">
                     <div class="flex_panel flex_panel_message_editor">
                         <div class="form_header inline_script_editor_header">
@@ -159,9 +161,59 @@ function renderMessageEditorPopup(id, lang) {
                     <button type="button" class="gwt-Button qm-button--primary-action" id="bpe-message-editor-ok" parent-id="${id}" >OK</button>
                     <button type="button" class="gwt-Button" id="bpe-message-editor-cancel">Cancel</button>
                 </div>
+                <div class="bpe-editor-resize-handle"></div>
             </div>
         </div>
     </div>`;
 
   return html;
+}
+
+function enableEditorPopupResize(codeMirrorEditor) {
+  var flexPanel = document.querySelector(".flex_panel_message_editor");
+  var resizeHandle = document.querySelector(".bpe-editor-resize-handle");
+  if (!flexPanel || !resizeHandle) return;
+
+  var startX = 0;
+  var startY = 0;
+  var startWidth = 0;
+  var startHeight = 0;
+  var resizing = false;
+
+  resizeHandle.addEventListener("pointerdown", function (pointerDownEvent) {
+    pointerDownEvent.preventDefault();
+    resizing = true;
+    startX = pointerDownEvent.clientX;
+    startY = pointerDownEvent.clientY;
+    startWidth = flexPanel.offsetWidth;
+    startHeight = flexPanel.offsetHeight;
+    document.body.classList.add("bph-resizing");
+    resizeHandle.setPointerCapture(pointerDownEvent.pointerId);
+  });
+
+  resizeHandle.addEventListener("pointermove", function (pointerMoveEvent) {
+    if (!resizing) return;
+    var newWidth = startWidth + (pointerMoveEvent.clientX - startX);
+    var newHeight = startHeight + (pointerMoveEvent.clientY - startY);
+    if (newWidth < 480) newWidth = 480;
+    if (newHeight < 320) newHeight = 320;
+    if (newWidth > window.innerWidth) newWidth = window.innerWidth;
+    if (newHeight > window.innerHeight) newHeight = window.innerHeight;
+    flexPanel.style.setProperty("width", newWidth + "px", "important");
+    flexPanel.style.setProperty("height", newHeight + "px", "important");
+    codeMirrorEditor.refresh();
+  });
+
+  function endResize(pointerEvent) {
+    if (!resizing) return;
+    resizing = false;
+    if (resizeHandle.hasPointerCapture(pointerEvent.pointerId)) {
+      resizeHandle.releasePointerCapture(pointerEvent.pointerId);
+    }
+    document.body.classList.remove("bph-resizing");
+    codeMirrorEditor.refresh();
+  }
+
+  resizeHandle.addEventListener("pointerup", endResize);
+  resizeHandle.addEventListener("pointercancel", endResize);
 }

@@ -122,6 +122,14 @@ When editing Message, Notify, or Command shapes, the standard text field is repl
 
 The editor respects the Boomi dark/light theme.
 
+The popout has a **corner drag handle** at the bottom-right — drag it to resize the editor window (grows down and to the right). The size resets to the default each time you open it.
+
+### Database Operation SQL Query
+
+On a Database Operation shape's SQL query field, an **Edit SQL** button appears below the query box. Click it to open the same CodeMirror popout (SQL syntax highlighting, line numbers, dark/light theme) for comfortable editing; click **OK** to write your changes back into the query field.
+
+The query textarea also gets a **corner drag handle** (bottom-right). Drag it to resize the box in both directions for more room while writing longer queries. The resized size is not remembered between sessions.
+
 ### Default Scripting Language
 
 When creating new shapes with scripting (Data Process, Custom Scripting, Business Rules), BoomiXcel can auto-select your preferred scripting language instead of always defaulting to Groovy 1.5. Configure from the Options page under **Defaults**:

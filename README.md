@@ -84,8 +84,8 @@
 - Trace path highlighting during test execution (configurable)
 
 ✏️ **Editing**
-- CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
-- Resizable SQL editor in Database Operation shapes
+- CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes) — the popout has a corner drag handle to resize it
+- CodeMirror SQL editor for Database Operation shapes — "Edit SQL" popout on the query field plus a corner drag handle to resize the query textarea
 - Auto-select default scripting language for new Data Process, Custom Scripting, and Business Rules shapes (configurable)
 - Copy raw document content from the Document Viewer dialog
 - Copy clean XML from the Component XML popup (decodes HTML entities)
@@ -414,7 +414,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/imageCapture.js` | content | Process flow → PNG capture |
 | `content/connectionOperations.js` | content | Connection operation screen sizing |
 | `content/versionNotification.js` | content | Close button on revision notification |
-| `content/sqlEditor.js` | content | CodeMirror SQL editor |
+| `content/sqlEditor.js` | content | CodeMirror SQL editor — "Edit SQL" popout for Command (`formrow-sql`) and Database Operation query (`formrow-sql-query`) fields + corner drag-resize handle on the query textarea |
 | `content/brandLogo.js` | content | Replaces the Boomi masthead brand logo |
 | `content/boomiGpt.js` | content | Revision History checkbox → Boomi GPT compare prompt + auto-submit |
 | `content/viewInReporting.js` | content | Deployed process menu → Process Reporting with auto-filter |

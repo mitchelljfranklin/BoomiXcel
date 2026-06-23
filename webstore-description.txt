@@ -19,8 +19,8 @@ BUILD CANVAS
 - Trace path highlighting during test execution (configurable)
 
 EDITING
-- CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes)
-- Resizable SQL editor in Database Operation shapes
+- CodeMirror editor for Message, Notify, and Command shapes (JSON, XML, HTML, SQL modes) — the popout has a corner drag handle to resize it
+- CodeMirror SQL editor for Database Operation shapes — "Edit SQL" popout on the query field plus a corner drag handle to resize the query textarea
 - Auto-select default scripting language for new Data Process, Custom Scripting, and Business Rules shapes (configurable)
 - Copy raw document content from the Document Viewer dialog
 - Copy clean XML from the Component XML popup (decodes HTML entities)
