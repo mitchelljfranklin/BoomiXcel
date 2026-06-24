@@ -187,7 +187,7 @@ The connection operation screen is resized to give you more room for the configu
 ## Process Reporting
 
 ### Auto-Refresh
-Click the **Refresh Every XX** button on the Process Reporting page to enable automatic refreshing at your configured interval (default: 15 seconds). The button shows a live countdown ("Refreshing in 10s") so you always know when the next refresh will fire. A subtle pulse animation confirms each refresh, and hovering over the button shows the last refresh timestamp. If you navigate away from Process Reporting while auto-refresh is running, it will automatically resume when you come back.
+Click the **Refresh Every XX** button on the Process Reporting page to enable automatic refreshing at your configured interval (default: 15 seconds). The page refreshes immediately when you click the button, then continues at your configured interval. The button shows a live countdown ("Refreshing in 10s") so you always know when the next refresh will fire. A subtle pulse animation confirms each refresh, and hovering over the button shows the last refresh timestamp. If you navigate away from Process Reporting while auto-refresh is running, it will automatically resume when you come back.
 
 ### Table Text Wrapping
 Process Reporting tables can wrap text instead of cutting it off. Three modes available:
