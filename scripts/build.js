@@ -43,6 +43,7 @@ const CONTENT_ORDER = [
   "shapes.js",
   "endpointGlow.js",
   "setPropertiesExtractor.js",
+  "copySetProperty.js",
   "tableWrap.js",
   "imageCapture.js",
   "connectionOperations.js",

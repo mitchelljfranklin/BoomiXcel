@@ -129,6 +129,7 @@
 - Revision History checkbox selection → Boomi GPT compare prompts for side-by-side revision analysis
 - Copy component ID/URL from the build canvas
 - Extract all Set Properties shape configurations from the build canvas into a modal table with TSV export
+- Copy a Set Properties property name or its value(s) — select a property in the step panel, click Copy, and choose name or value(s)
 - Automatically rename downloaded documents to `<ProcessName>_<timestamp>.<ext>`
 - Auto-check default build filters — Process, Process Property, Cross Reference Table, API Service (configurable)
 - Auto-apply package notes — captures the notes from "Create Packaged Component" and fills them into the deployment notes field (configurable)
@@ -383,7 +384,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 ### Script reference
 
 <details>
-<summary>📂 <b>Click to expand — full script reference (48 files)</b></summary>
+<summary>📂 <b>Click to expand — full script reference (49 files)</b></summary>
 
 | Script | Context | Purpose |
 |---|---|---|
@@ -427,6 +428,7 @@ Load the extension unpacked from `src/` in `chrome://extensions` (Developer Mode
 | `content/logHighlight.js` | content | Highlights WARNING-level rows yellow in the Show Log dialog (re-applies on lazy-load and paging) |
 | `content/logDefaultStatus.js` | content | Sets the default "Minimum Status to Show" in the Show Log dialog when it opens |
 | `content/setPropertiesExtractor.js` | content | Extracts all Set Properties shape configurations from the canvas into a modal table with TSV export |
+| `content/copySetProperty.js` | content | Copy Property icon in the Set Properties step panel — copy a selected property's name or value(s) via a popup menu |
 | `content/svgAssets.js` | content | Shared SVG icon strings |
 | `content/modalHelper.js` | content | Boomi-style modal dialog helper |
 | `content/toastHelper.js` | content | Toast notification utility |

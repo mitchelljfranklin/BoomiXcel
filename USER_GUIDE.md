@@ -113,6 +113,13 @@ Quick access to Process Reporting from two entry points: a heartbeat SVG icon ne
 ### Extract Set Properties
 A list icon (📋) in the build toolbar scans every Set Properties shape on the canvas (visible or not), clicks each one, reads all property names and parameter values, and displays them in a modal table. The table has 4 columns: **Property Shape Name**, **Property Type**, **Property Name**, and **Parameters**. Property names that appear in multiple shapes are highlighted with a yellow background and amber left border for easy spotting. An **Export to Clipboard** button copies the data as tab-separated values for pasting into spreadsheets. The button is disabled and dimmed during extraction to prevent double-clicks, and a toast notification confirms the extraction is in progress.
 
+### Copy a Property Name or Value
+Inside a Set Properties step, a **Copy** icon appears next to the Add/Edit/Delete buttons in the **Properties to Set** list. Select a property, click **Copy**, and choose from the popup menu:
+- **Copy property name** — copies just the property name (e.g. `DDP_ONE`).
+- **Copy property value(s)** — copies the selected property's value(s). Static values are copied as their raw literal (e.g. `You found me`); other source types are copied as shown in the panel. Multiple values are separated by new lines.
+
+A toast confirms each copy. If no property is selected, a reminder toast appears.
+
 ---
 
 ## Editing Tools

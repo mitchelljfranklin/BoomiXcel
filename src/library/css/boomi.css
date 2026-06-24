@@ -1183,3 +1183,42 @@ body.bph-resizing {
     background-color: #fff3cd;
     border-left: 3px solid #ffc107;
 }
+
+.bph-copy-property svg {
+    width: 16px;
+    height: 16px;
+}
+
+.bph-copyprop-menu {
+    position: absolute;
+    z-index: 100000;
+    min-width: 180px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 4px 0;
+}
+
+.bph-copyprop-item {
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    padding: 8px 14px;
+    font-size: 0.9em;
+    color: #333;
+    cursor: pointer;
+}
+
+.bph-copyprop-item:hover {
+    background: #f0f4f8;
+    color: #006cd6;
+}
+
+.bph-copy-fallback-textarea {
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+}
