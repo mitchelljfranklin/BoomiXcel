@@ -60,15 +60,16 @@ Changes save immediately. Click **Reload Page** to apply them to the current Boo
 
 Right-click the extension icon → **Options**, click the `[options]` link in the Boomi footer bar, or use the **Full Settings** button in the popup.
 
-The options page groups settings into collapsible sections. Changes take effect after clicking **Save** and reloading the Boomi platform tab. A toast notification confirms each save.
+The options page organizes settings into categories shown in a left-hand sidebar — click a category to view its settings. A **search box** at the top filters settings across every category as you type, and each category shows a small badge counting how many of its settings have unsaved changes. Changes take effect after clicking **Save** and reloading the Boomi platform tab. A toast notification confirms each save.
 
-| Section | What you can configure |
+| Category | What you can configure |
 |---------|----------------------|
-| **Appearance** | Shape icons, canvas grid, brand logo, play/pause icons, modal buttons, footer |
-| **Build Canvas** | Endpoint notifications, trace path highlighting, table wrapping |
-| **Process Reporting** | Auto-refresh interval, dashboard default time range, WARNING log-line highlighting, default log minimum status |
-| **Navigation & Shortcuts** | Full-screen shortcut key + modifiers, unique page titles/favicons, default filters |
-| **Defaults** | Default scripting language for new shapes |
+| **Appearance** | Shape icons, canvas grid, brand logo, play/pause icons, modal buttons, footer, unique page titles/favicons |
+| **Build Canvas** | Endpoint notifications, trace path highlighting |
+| **Editing** | Default scripting language for new shapes, code editor popout theme |
+| **Process Reporting** | Auto-refresh interval, dashboard default time range, WARNING log-line highlighting, default log minimum status, table text wrapping |
+| **Navigation & Shortcuts** | Full-screen shortcut key + modifiers, default process filters |
+| **Deployment** | Deployment notes auto-apply |
 | **Reminders** | Post-deployment schedule reminder |
 
 A **↺ Reset** button restores all defaults. A yellow dot appears when you have unsaved changes.
@@ -131,7 +132,7 @@ When editing Message, Notify, or Command shapes, the standard text field is repl
 - **HTML** — syntax highlighting
 - **SQL** — syntax highlighting for Database Operation shapes
 
-By default the editor matches Boomi's dark/light theme, but you can pick a specific theme from the Options page under **Defaults → Code Editor Theme**: choose **Auto** (follow Boomi's light/dark mode), a light theme (**Default**, **Eclipse**, **Solarized Light**), or a dark theme (**Twilight**, **Solarized Dark**, **Monokai**, **Dracula**, **Material**). The chosen theme applies to the Message, Notify, Command, and SQL editor popouts.
+By default the editor matches Boomi's dark/light theme, but you can pick a specific theme from the Options page under **Editing → Code Editor Theme**: choose **Auto** (follow Boomi's light/dark mode), a light theme (**Default**, **Eclipse**, **Solarized Light**), or a dark theme (**Twilight**, **Solarized Dark**, **Monokai**, **Dracula**, **Material**). The chosen theme applies to the Message, Notify, Command, and SQL editor popouts.
 
 The popout has a **corner drag handle** at the bottom-right — drag it to resize the editor window (grows down and to the right). The size resets to the default each time you open it.
 
@@ -147,7 +148,7 @@ Boomi's own inline script editor dialog (the ACE-based editor that opens for Dat
 
 ### Default Scripting Language
 
-When creating new shapes with scripting (Data Process, Custom Scripting, Business Rules), BoomiXcel can auto-select your preferred scripting language instead of always defaulting to Groovy 1.5. Configure from the Options page under **Defaults**:
+When creating new shapes with scripting (Data Process, Custom Scripting, Business Rules), BoomiXcel can auto-select your preferred scripting language instead of always defaulting to Groovy 1.5. Configure from the Options page under **Editing**:
 
 - **Off** — default, no auto-selection
 - **Groovy 1.5**

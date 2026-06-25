@@ -4,4 +4,5 @@
 - The Process Reporting auto-refresh now refreshes immediately when you click the button, then continues at your configured interval.
 - New Copy option in the Set Properties step — select a property and copy its name (e.g. DDP_ONE) or its value(s).
 - New Option to choose the code editor popout theme — Auto (matches Boomi light/dark), or a light/dark theme such as Eclipse, Solarized, Monokai, Dracula, or Material.
+- Redesigned the options page — settings are now organized into a category sidebar with a search box and per-category "changed" badges.
 - NOTICE: Firefox users, be aware that the add-on store won't allow automatic updates to the new package. To ensure that they have the latest version of BoomiXcel, please ask any users who relys on it to search for the new extension in the store and replace the existing one.

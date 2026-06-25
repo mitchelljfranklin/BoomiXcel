@@ -282,6 +282,8 @@ Every form control on `options.html` **must** have both:
 - `class="option"` — this is how `options.js` discovers controls to serialize/restore via `document.querySelectorAll(".option")`
 - a `name` attribute — becomes the `chrome.storage.sync` key
 
+The options page uses a **two-pane layout**: a left sidebar (`.options-nav` of `.options-nav-item` buttons, one per category) and a right content area of `<section class="options-pane" data-pane="…">` panels (only the active one is shown). Each setting is wrapped in an `.option-item` (label + control + its `<small class="helper">`). When adding a control, place it inside an `.option-item` within the appropriate `.options-pane`, and add a matching `<button class="options-nav-item" data-pane="…">` only if you are creating a new category. All controls **must stay in the DOM** — tabs and the search filter only show/hide elements, so `querySelectorAll(".option")` still finds everything for serialize/restore and the per-category "changed" badge counts.
+
 If you add a new option toggle on the options page, you must also add the corresponding key read in `listenerGlobal.js` for it to take effect on the Boomi platform pages.
 
 If the new option is a simple on/off toggle, add it to `TOGGLE_LIST` in `src/popup/popup.js` so it appears in the quick-settings popup.
@@ -296,8 +298,9 @@ The options page loads `boomi.css` in its `<head>`.
 
 When adding new option controls, prefer the existing patterns:
 
+- **Wrapper** — wrap each setting (label + control + helper) in an `.option-item` inside the relevant `.options-pane`. This standardizes spacing and lets the search filter show/hide whole settings.
 - **Toggle switches** — use `<div class="toggle-row"><label class="toggle-label-row">...<label class="toggle"><input type="checkbox" class="option toggle-input" data-default="on"><span class="slider"></span></label>`. The `options.js` serializes `.toggle-input` checkboxes as `"on"`/`"off"` strings.
-- **Selects / inputs** — use standard `.mb-3` blocks with `.form-select` or `.form-control` and a `data-default` attribute for reset support.
+- **Selects / inputs** — use a `.form-select` or `.form-control` with a `data-default` attribute for reset support.
 - **Helper text** — use `<small class="helper">` for option descriptions.
 
 ## Rebuild scope
