@@ -1253,3 +1253,8 @@ body.bph-resizing {
 .functionViewInputLabel, .functionViewOutputLabel {
     max-width: fit-content !important;
 }
+
+/*override the right side map padding to be the same as the left*/
+.gwt-TreeRightAlign .gwt-FastTreeItem-leaf {
+    padding: 4px !important;
+}
