@@ -385,17 +385,19 @@ function createGitHubRelease(version) {
   }
 }
 
-function generateReleaseNotes(version) {
-  // Find the most recent tag to diff against (for the compare link only)
-  let lastTag = "";
+function getLastTag() {
   try {
-    lastTag = execFileSync("git", ["describe", "--tags", "--abbrev=0", "--match", "v*"], {
+    return execFileSync("git", ["describe", "--tags", "--abbrev=0", "--match", "v*"], {
       encoding: "utf-8",
       cwd: ROOT,
     }).trim();
   } catch (e) {
-    // No prior tags
+    return "";
   }
+}
+
+function generateReleaseNotes(version) {
+  const lastTag = getLastTag();
 
   const compareLink = `**Full Changelog:** https://github.com/mitchelljfranklin/BoomiXcel/compare/${lastTag || "commits"}...v${version}`;
 
@@ -411,6 +413,115 @@ function generateReleaseNotes(version) {
   }
 
   return `## What's New in v${version}\n\n${changelog}\n\n${compareLink}`;
+}
+
+function releaseAll(version) {
+  const branch = execFileSync("git", ["rev-parse", "--abbrev-ref", "HEAD"], {
+    encoding: "utf-8",
+    cwd: ROOT,
+  }).trim();
+
+  if (branch === "master") {
+    console.warn("  Warning: You are on the 'master' branch. Consider using a release branch instead.");
+  }
+
+  const statusOut = execFileSync("git", ["status", "--porcelain"], {
+    encoding: "utf-8",
+    cwd: ROOT,
+  }).trim();
+
+  if (statusOut) {
+    console.log("\n  Committing build artifacts...");
+    try {
+      execFileSync("git", ["add", "webstore-description.txt", "package.json", "updateNotification.md"], {
+        cwd: ROOT,
+        stdio: "inherit",
+      });
+      execFileSync("git", ["commit", "-m", "chore: release v" + version], {
+        cwd: ROOT,
+        stdio: "inherit",
+      });
+    } catch (err) {
+      console.log("  Nothing to commit (or commit failed), continuing...");
+    }
+  } else {
+    console.log("  No uncommitted changes, skipping commit.");
+  }
+
+  console.log("\n  Pushing " + branch + " to origin...");
+  try {
+    execFileSync("git", ["push", "origin", branch], {
+      cwd: ROOT,
+      stdio: "inherit",
+    });
+  } catch (err) {
+    console.error("  Push failed. Check your remote and authentication.");
+    return;
+  }
+
+  createGitHubRelease(version);
+
+  let commitLog = "";
+  try {
+    commitLog = execFileSync("git", ["log", "master..HEAD", "--format=%B"], {
+      encoding: "utf-8",
+      cwd: ROOT,
+    });
+  } catch (err) {
+    try {
+      commitLog = execFileSync("git", ["log", "origin/master..HEAD", "--format=%B"], {
+        encoding: "utf-8",
+        cwd: ROOT,
+      });
+    } catch (e) {
+      // Cannot determine commit diff, skip issue scanning
+    }
+  }
+
+  const issueRefs = new Set();
+  const issueRegex = /\b(?:fix(?:es|ed)?|clos(?:es|ed)?|resolv(?:es|ed)?)\s+#(\d+)\b/gi;
+  let regexMatch;
+  while ((regexMatch = issueRegex.exec(commitLog)) !== null) {
+    issueRefs.add(parseInt(regexMatch[1], 10));
+  }
+
+  const changelogPath = path.join(ROOT, "updateNotification.md");
+  let changelog = "";
+  if (fs.existsSync(changelogPath)) {
+    changelog = fs.readFileSync(changelogPath, "utf-8").replace(/\r\n/g, "\n").trim();
+  }
+
+  const lastTag = getLastTag();
+  const compareLink = "https://github.com/mitchelljfranklin/BoomiXcel/compare/" + (lastTag || "commits") + "...v" + version;
+
+  let prBody = "## What's New in v" + version + "\n\n";
+  prBody += changelog || "See the README for full feature details.";
+  prBody += "\n\n## Full Changelog\n\n" + compareLink;
+
+  if (issueRefs.size > 0) {
+    prBody += "\n\n## Issues Closed\n\n";
+    const sortedRefs = Array.from(issueRefs).sort(function (a, b) { return a - b; });
+    for (var i = 0; i < sortedRefs.length; i++) {
+      prBody += "- Closes #" + sortedRefs[i] + "\n";
+    }
+  }
+
+  const prTitle = "Release v" + version;
+  console.log("\n  Creating PR: " + prTitle + " (" + branch + " -> master)...");
+
+  try {
+    execFileSync("gh", [
+      "pr", "create",
+      "--base", "master",
+      "--head", branch,
+      "--title", prTitle,
+      "--body", prBody,
+    ], { stdio: "inherit", cwd: ROOT });
+    console.log("  PR created successfully.");
+  } catch (err) {
+    console.error("  PR creation failed. Ensure gh CLI is installed and authenticated.");
+    console.error("  Run: gh auth login   or   export GITHUB_TOKEN=<your-token>");
+  }
 }
 
 async function main() {
@@ -457,6 +568,11 @@ async function main() {
   // Step 4: Create GitHub release if --release flag is set
   if (process.argv.includes("--release")) {
     createGitHubRelease(version);
+  }
+
+  // Step 5: Full release pipeline (commit + push + release + PR) if --releaseall is set
+  if (process.argv.includes("--releaseall")) {
+    releaseAll(version);
   }
 }
 
