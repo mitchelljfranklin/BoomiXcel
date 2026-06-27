@@ -518,8 +518,16 @@ function releaseAll(version) {
       "--body", prBody,
     ], { stdio: "inherit", cwd: ROOT });
     console.log("  PR created successfully.");
+
+    console.log("  Merging PR...");
+    execFileSync("gh", [
+      "pr", "merge", branch,
+      "--merge",
+      "--delete-branch",
+    ], { stdio: "inherit", cwd: ROOT });
+    console.log("  PR merged successfully.");
   } catch (err) {
-    console.error("  PR creation failed. Ensure gh CLI is installed and authenticated.");
+    console.error("  PR creation or merge failed. Ensure gh CLI is installed and authenticated.");
     console.error("  Run: gh auth login   or   export GITHUB_TOKEN=<your-token>");
   }
 }

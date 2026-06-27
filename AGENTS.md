@@ -21,6 +21,7 @@ npm install          # install esbuild
 npm run build        # bundle content scripts → content/bundle.js + browser zips
 npm run watch        # rebuild on file changes
 npm run release      # same as build + creates a GitHub release with the zips
+npm run releaseall   # same as release + commits artifacts + pushes branch + opens + merges PR to master
 ```
 
 The `--release` flag (or `npm run release`) creates a GitHub release using the `gh` CLI. The release is tagged `v{version}` from `package.json`. Release notes are taken from `updateNotification.md` (the same file that feeds the in-app changelog) under a `## What's New in v{version}` heading, with a **Full Changelog** compare link (last `v*` tag → new version) appended; if `updateNotification.md` is empty/missing, a short fallback line is used instead. All build zips are attached as assets. Requires `gh auth login` or a `GITHUB_TOKEN` environment variable.
