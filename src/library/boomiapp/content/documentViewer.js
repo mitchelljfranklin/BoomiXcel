@@ -270,7 +270,7 @@ var injectDocumentViewerControls = function (dialog) {
   if (dialog.querySelector(".dbview-controls")) return;
 
   var attempts = 0;
-  var maxAttempts = 25;
+  var maxAttempts = 75;
 
   var tryInject = function () {
     if (!document.body.contains(dialog)) return;
@@ -279,6 +279,10 @@ var injectDocumentViewerControls = function (dialog) {
     var textarea = findVisibleTextarea(dialog);
     if (textarea && isDbContent(textarea.value)) {
       injectControls(dialog, textarea);
+      return;
+    }
+
+    if (textarea && textarea.value && textarea.value.trim() !== "") {
       return;
     }
 

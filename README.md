@@ -260,7 +260,7 @@ npm install          # install dependencies (esbuild, archiver)
 **Prerequisites:**
 - **Node.js** >= 18
 - **npm** >= 9
-- **gh CLI** >= 2 (optional, required for `npm run release` — [install guide](https://github.com/cli/cli#installation))
+- **gh CLI** >= 2 (optional, required for `npm run release` and `npm run releaseall` — [install guide](https://github.com/cli/cli#installation))
 
 ### Load the extension
 
@@ -275,6 +275,7 @@ npm install          # install dependencies (esbuild, archiver)
 npm run build        # bundle content scripts, generate browser manifests, create zips
 npm run watch        # rebuild content scripts on file changes
 npm run release      # build + create a GitHub release (notes from updateNotification.md)
+npm run releaseall   # release + commit artifacts + push + PR to master + auto-merge
 ```
 
 `npm run build` (via `scripts/build.js`) performs these steps in order:
@@ -485,6 +486,23 @@ npm run release
 - **Full changelog link** — compare URL from the previous tag to the new version
 
 Requires `gh` CLI authentication (`gh auth login` or `GITHUB_TOKEN` environment variable).
+
+### To release with PR
+
+```bash
+# 1. Bump version in package.json
+# 2. Edit updateNotification.md with the latest changes
+# 3. Run the full pipeline
+npm run releaseall
+# Builds → commits build artifacts → pushes branch → creates GitHub release → opens + merges PR to master
+```
+
+`npm run releaseall` (alias for `node scripts/build.js --releaseall`) does everything `npm run release` does, plus:
+
+- **Commits build artifacts** — stages `webstore-description.txt`, `package.json`, and `updateNotification.md` if dirty, commits as `chore: release v{version}`
+- **Pushes the branch** — pushes the current branch to origin
+- **Creates a PR to master** — opens a pull request from the current branch to `master` with a body containing the changelog, a full changelog compare link, and `Closes #N` lines for any issues referenced in commit messages via `Fixes #N`, `Closes #N`, or `Resolves #N`
+- **Auto-merges the PR** — merges the PR with a standard merge commit and deletes the remote branch
 
 ### Built With
 
